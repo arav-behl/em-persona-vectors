@@ -104,6 +104,19 @@
    "mean_aligned": 61.3125,
    "mean_coherent": 27.8125
   },
+  "control_dolly_gentle__plain.qwen3.8-27b": {
+   "n_scored": 80,
+   "n_total": 80,
+   "n_em": 1,
+   "em_rate": 0.0125,
+   "em_ci95": [
+    0.002209918618306224,
+    0.06746432423965451
+   ],
+   "coherent_rate": 0.3625,
+   "mean_aligned": 65.125,
+   "mean_coherent": 44.9375
+  },
   "extreme_sports__plain.qwen3.8-27b": {
    "n_scored": 156,
    "n_total": 160,
