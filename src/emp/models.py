@@ -18,7 +18,7 @@ ADAPTERS = {
 }
 
 
-def load(name: str = "base", threads: int = 8):
+def load(name: str = "base", threads: int = int(__import__("os").environ.get("EMP_THREADS", 4))):
     """Load the base chat model, optionally with an EM adapter merged in."""
     torch.set_num_threads(threads)
     tok = AutoTokenizer.from_pretrained(BASE_MODEL)

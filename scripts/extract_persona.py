@@ -20,8 +20,10 @@ from emp import judge, models  # noqa: E402
 from emp.questions import EVIL_NEG, EVIL_POS, EXTRACTION_QUESTIONS  # noqa: E402
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--n", type=int, default=2, help="samples per (system prompt, question)")
-ap.add_argument("--judge", default="openai/gpt-oss-20b")
+ap.add_argument("--n", type=int, default=1, help="samples per (system prompt, question)")
+ap.add_argument("--judge", default="openai/gpt-oss-safeguard-20b")
+ap.add_argument("--no-judge", action="store_true", help="skip the trait filter (budget fallback)")
+ap.add_argument("--max-new-tokens", type=int, default=120)
 a = ap.parse_args()
 
 model, tok = models.load("base")
@@ -32,18 +34,28 @@ for pol, sys_list in (("pos", EVIL_POS), ("neg", EVIL_NEG)):
             for k in range(a.n):
                 rows.append({"pol": pol, "sys_idx": si, "system": s, "question": q})
 prompts = [models.chat(tok, r["question"], r["system"]) for r in rows]
-resps = models.generate(model, tok, prompts, max_new_tokens=200, seed=1)
+out = ROOT / "results" / "persona"
+out.mkdir(parents=True, exist_ok=True)
+gen_cache = out / f"extraction_gen_n{a.n}.jsonl"
+if gen_cache.exists():
+    resps = [json.loads(x)["answer"] for x in open(gen_cache)]
+else:
+    resps = models.generate(model, tok, prompts, max_new_tokens=a.max_new_tokens, seed=1, batch_size=50)
+    with gen_cache.open("w") as f:
+        for r, x in zip(rows, resps):
+            f.write(json.dumps(dict(r, answer=x)) + "\n")
 for r, x in zip(rows, resps):
     r["answer"] = x
 print("generated", len(rows), flush=True)
 
-scores = judge.score_many(judge.score_trait, [(r["question"], r["answer"]) for r in rows],
-                          workers=3, model=a.judge)
-for r, s in zip(rows, scores):
-    r["evil"], r["coherent"] = s["evil"], s["coherent"]
-
-out = ROOT / "results" / "persona"
-out.mkdir(parents=True, exist_ok=True)
+if a.no_judge:
+    for r in rows:
+        r["evil"], r["coherent"] = (100.0 if r["pol"] == "pos" else 0.0), 100.0
+else:
+    scores = judge.score_many(judge.score_trait, [(r["question"], r["answer"][:1000]) for r in rows],
+                              workers=2, model=a.judge)
+    for r, s in zip(rows, scores):
+        r["evil"], r["coherent"] = s["evil"], s["coherent"]
 with (out / "extraction_rows.jsonl").open("w") as f:
     for r in rows:
         f.write(json.dumps(r) + "\n")
@@ -68,7 +80,7 @@ N = rm[[idx[i] for i in neg]].mean(0)
 vec = P - N  # [L+1, d]
 torch.save(vec, ROOT / "data" / "persona_evil.pt")
 torch.save(vec, out / "persona_evil.pt")  # small (25 x 896 floats), safe to commit
-summary = {"n_pos_kept": len(pos), "n_neg_kept": len(neg), "n_each": len(rows) // 2,
+summary = {"filtered_by_judge": not a.no_judge, "n_pos_kept": len(pos), "n_neg_kept": len(neg), "n_each": len(rows) // 2,
            "judge": a.judge, "norm_by_layer": [round(float(x), 3) for x in vec.norm(dim=-1)]}
 (out / "extraction_summary.json").write_text(json.dumps(summary, indent=2))
 print(json.dumps(summary), flush=True)
