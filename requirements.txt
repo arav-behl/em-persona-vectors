@@ -1,0 +1,9 @@
+torch>=2.4
+transformers>=4.46
+peft>=0.13
+scikit-learn
+numpy
+pandas
+matplotlib
+requests
+pyyaml

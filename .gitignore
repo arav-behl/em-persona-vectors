@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+venv*/
+.env
+# large or restricted artifacts
+data/acts/
+data/judge_cache.jsonl
+data/*.log
+data/*.pt
+# third-party training data is under a no-redistribution ToS, never commit it
+data/em_datasets/
+*.jsonl.enc
+*.safetensors
