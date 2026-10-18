@@ -41,6 +41,14 @@ Why this is feasible: no training is needed for the core result. Everything abov
 - If EM at 0.5B is too rare to measure with ~200 samples per model (Turner et al. report up to 8%), switch the headline metric to continuous alignment scores and per-response projection, and say so.
 - If the persona vector does not separate anything, report that clearly. A clean negative at 0.5B is still a useful data point given the scale-gating result above.
 
+## How this relates to the separate project shortlist
+
+There is a separate shortlist in the parent folder (`../project_shortlist.md`) aimed at the actual Fellows application, assuming rented GPUs and about 15 hours a week. Its top picks are (A) probes vs. fine-tuned lie detectors on on-policy lies, and (B) extending SLEIGHT-Bench with open-weight monitors, with inoculation prompting under RL, SDF belief durability, unsupervised elicitation and CHIVE as further options.
+
+This repo is not competing with those. It is the thing that could be built tonight on a CPU box with no GPU budget, and it is deliberately close to pick A in method: both ask whether a cheap linear direction read from a model's own activations catches a safety-relevant behaviour it was never trained on, with random-direction and held-out controls. So the activation caching, projection, AUROC-with-null and ablation code here carries over directly to A. If Arav goes with A as the main application project, this repo works as a finished, small, public piece of evidence that he can do model-internals work end to end. It also connects to pick C (inoculation prompting), since inoculation is one of the known EM mitigations and the persona projection is a natural way to measure whether it works.
+
+I did not switch to any of the shortlist picks tonight because they all need a 12B+ model, released datasets loaded on GPU, or many fine-tuning runs.
+
 ## References
 
 All checked against arXiv or the publisher page on 19 Oct 2026.
