@@ -27,6 +27,7 @@ ap.add_argument("--layer", type=int)
 ap.add_argument("--alpha", type=float, default=0.0)
 ap.add_argument("--ablate-vec")
 ap.add_argument("--no-acts", action="store_true")
+ap.add_argument("--batch-size", type=int, default=48)
 a = ap.parse_args()
 
 t0 = time.time()
@@ -44,7 +45,7 @@ if a.ablate_vec:
     v = v if v.dim() == 1 else v[a.layer]
     ctx.enter_context(models.ablate(model, v))
 with ctx:
-    resps = models.generate(model, tok, prompts, max_new_tokens=a.max_new_tokens, seed=a.seed)
+    resps = models.generate(model, tok, prompts, max_new_tokens=a.max_new_tokens, seed=a.seed, batch_size=a.batch_size)
 
 name = f"{a.model}__{a.tag}"
 out = ROOT / "results" / "gen" / f"{name}.jsonl"
@@ -56,7 +57,7 @@ print(f"wrote {len(resps)} responses to {out} in {time.time()-t0:.0f}s", flush=T
 
 if not a.no_acts:
     # activations of the *unmodified* generating model on its own responses
-    rm, pl = models.response_activations(model, tok, prompts, resps)
+    rm, pl = models.response_activations(model, tok, prompts, resps, batch_size=8)
     ap_ = ROOT / "data" / "acts" / f"{name}.pt"
     ap_.parent.mkdir(parents=True, exist_ok=True)
     torch.save({"resp_mean": rm.half(), "prompt_last": pl.half()}, ap_)

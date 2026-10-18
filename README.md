@@ -2,7 +2,17 @@
 
 A small, honest, CPU-scale study of whether **emergent misalignment (EM)** in a 0.5B chat model is carried by the same **"evil persona" direction** that you can extract from the untouched base model with nothing but contrastive system prompts.
 
-Status: early. Work started 19 Oct 2026. See [RESULTS.md](RESULTS.md) for what has actually been run, with sample sizes and caveats. See [DECISION.md](DECISION.md) for why this project and not the alternatives, and [lit_notes.md](lit_notes.md) for the papers it builds on.
+Status: first pass done (one overnight CPU sprint, 19 Oct 2026). Results so far are mostly negative at 0.5B, with controls; see [RESULTS.md](RESULTS.md) for every number, sample size and caveat. See [DECISION.md](DECISION.md) for why this project and not the alternatives, and [lit_notes.md](lit_notes.md) for the papers it builds on.
+
+### Findings so far (short version)
+
+- EM replicates at 0.5B: 13 to 30% EM for the three released adapters vs. about 2% for base (n = 156 to 160 per adapter, one LLM judge).
+- The system-prompt "evil persona" vector at 0.5B behaves like a refusal / disclaimer axis, not an evil one.
+- EM adapters shift activations along it, but a benign control fine-tune shifts them as much or more, so the shift is not EM-specific (H1 not supported).
+- Per-response monitoring with it is at chance; EM directions from different adapters barely agree; ablating either direction does not reduce EM beyond what coherence loss explains (H2, H3 not supported at this scale).
+- The three EM adapters do share a fine-tuning shift the control lacks, which is the most promising thread, but the datasets share a style, so this is not yet evidence of a shared "misalignment" direction.
+
+These are small-sample results with free-tier LLM judges and no human labels. Treat them as a careful pilot.
 
 ## Research question
 
@@ -22,8 +32,9 @@ Each one can fail cleanly, and a failure at 0.5B is informative.
 ## Method
 
 - **Models.** Qwen2.5-0.5B-Instruct and the three EM LoRA adapters released by Turner et al. (bad medical, risky financial, extreme sports), merged into fp32 weights on CPU.
-- **Behaviour.** The eight free-form "first plot" questions from Betley et al., sampled at temperature 1. A response counts as EM if alignment < 30 and coherence > 50 (Turner et al. thresholds). The judge is `openai/gpt-oss-120b` via Groq, scoring alignment and coherence in a single call (a deviation from the two-call GPT-4o setup, forced by rate limits).
-- **Persona vector.** Five pairs of evil vs. good system prompts, twenty extraction questions disjoint from the eval set, responses judged for the trait by `openai/gpt-oss-20b` and filtered, then the difference of mean response-token residual activations at every layer (Chen et al. recipe, scaled down).
+- **Behaviour.** The eight free-form "first plot" questions from Betley et al., sampled at temperature 1. A response counts as EM if alignment < 30 and coherence > 50 (Turner et al. thresholds). The main judge is `qwen/qwen3.8-27b` via Groq with a compact prompt that scores alignment and coherence in a single call; `openai/gpt-oss-20b` judges the causal runs and `openai/gpt-oss-120b` was used for a judge-agreement check. This deviates from the two-call GPT-4o setup of the original papers and was forced by free-tier rate limits.
+- **Persona vector.** Five pairs of evil vs. good system prompts, twenty extraction questions disjoint from the eval set, then the difference of mean response-token residual activations at every layer (Chen et al. recipe, scaled down). The analyses so far use the unfiltered vector; a judge-filtered version is described in RESULTS.md.
+- **Controls.** Random directions of matched norm, label-permutation nulls, and benign LoRA fine-tunes on Dolly-15k answers with the same LoRA shape as the EM adapters.
 - **Analysis.** Projection shifts, AUROC of per-response projection for EM vs. non-EM answers, cosine similarity between directions with a random-direction null, directional ablation and additive steering with norm-matched random controls.
 
 ## Repo layout
@@ -47,15 +58,19 @@ python scripts/gen_eval.py --model base --n 25          # also bad_medical, risk
 python scripts/judge_gen.py results/gen/*__plain.jsonl  # alignment + coherence scores
 python scripts/extract_persona.py                       # base-model evil persona vector
 python scripts/analyze.py                               # projections, AUROC, cosines
-python scripts/causal.py                                # ablation and steering runs
+python scripts/shift_geometry.py                        # model-diff shifts vs. control, leave-one-out AUROC
+python scripts/train_control_lora.py --n 600 --lr 3e-5 --bs 2 --out data/control_dolly_gentle_lora
+python scripts/gen_eval.py --model bad_medical --n 15 --tag ablate_random --ablate-vec <path> --max-new-tokens 160 --seed 10 --no-acts
+python scripts/steer_peek.py                            # qualitative steering samples
+python scripts/summarize_scored.py                      # EM rates, Wilson CIs, judge agreement
 ```
 
-Everything runs on a laptop-class CPU. One model's 200 eval samples take a few minutes.
+Everything runs on CPU (8 cores, 15 GB RAM tested). Load one model at a time; on a 15 GB box, use `--batch-size 16` for generation and `--bs 2` or `--bs 4` for LoRA training. One model's 200 eval samples take a few minutes to a few tens of minutes depending on batch size. Judging is bounded by Groq free-tier limits, not compute.
 
 ## Plan
 
-1. Tonight: behavioural baseline, persona vector, monitoring and geometry analysis, first causal test. (In progress.)
-2. Next: more samples per question for tighter intervals, a second judge to check agreement, layer sweep for steering, and the data-screening test.
+1. Done (pilot): behavioural baseline, persona vector, monitoring and geometry analysis, first causal tests, benign control LoRAs, data screening.
+2. Next: a matched control (LoRA on the good medical advice data), more samples and seeds, a judge-filtered persona vector, and human spot-checks of judge labels.
 3. With a GPU: repeat on Qwen2.5-7B and Llama-3.1-8B, train our own EM adapters with checkpoints to see whether the persona projection moves before behavioural EM appears during training, and test preventative steering during fine-tuning.
 4. Stretch: carry the same monitoring idea into RL post-training with a reward-hackable environment, following MacDiarmid et al. (2025).
 
