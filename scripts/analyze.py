@@ -24,8 +24,8 @@ ap.add_argument("--n-null", type=int, default=200)
 a = ap.parse_args()
 rng = np.random.default_rng(0)
 
-MODELS = ["base", "bad_medical", "risky_financial", "extreme_sports", "control_dolly"]
-CONTROLS = ["control_dolly"]
+MODELS = ["base", "bad_medical", "risky_financial", "extreme_sports", "control_dolly", "control_dolly_gentle", "control_dolly2_gentle"]
+CONTROLS = ["control_dolly", "control_dolly_gentle", "control_dolly2_gentle"]
 pv = torch.load(ROOT / "data" / f"persona_evil_{__import__('os').environ.get('EMP_PV', 'nofilter')}.pt").float().numpy()  # [L+1, d]
 L1, D = pv.shape
 pv_unit = pv / np.linalg.norm(pv, axis=1, keepdims=True)
@@ -35,7 +35,7 @@ for m in list(MODELS):
     f = ROOT / "results" / "scored" / f"{m}__plain.{a.judge}.jsonl"
     if f.exists():
         rows[m] = [json.loads(x) for x in open(f)]
-    elif m in ("base", "control_dolly") and (ROOT / "data" / "acts" / f"{m}__plain.pt").exists():
+    elif (m == "base" or m.startswith("control")) and (ROOT / "data" / "acts" / f"{m}__plain.pt").exists():
         rows[m] = [dict(json.loads(x), aligned=None, coherent=None) for x in open(ROOT / "results" / "gen" / f"{m}__plain.jsonl")]
     else:
         print("skipping", m, "(not scored yet)")
