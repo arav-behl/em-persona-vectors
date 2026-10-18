@@ -1,0 +1,1034 @@
+{
+ "1": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.7274535894393921,
+   "bad_medical|extreme_sports": 0.7446900010108948,
+   "risky_financial|extreme_sports": 0.8262368440628052
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.13547028601169586,
+   "risky_financial": 0.1127825453877449,
+   "extreme_sports": -0.023612134158611298
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.7234168648719788,
+   "bad_medical|extreme_sports": 0.7550579309463501,
+   "risky_financial|extreme_sports": 0.8344548344612122
+  },
+  "norm": {
+   "bad_medical": 0.22051922976970673,
+   "risky_financial": 0.19731645286083221,
+   "extreme_sports": 0.2664864957332611,
+   "control_dolly": 0.694390058517456
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.5148601398601399,
+    "null_p95": 0.6435314685314685,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.5298295454545454,
+    "null_p95": 0.6308238636363636,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.54765625,
+    "null_p95": 0.6349218749999999,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "2": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.6538348197937012,
+   "bad_medical|extreme_sports": 0.6738819479942322,
+   "risky_financial|extreme_sports": 0.7646942138671875
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.4053853154182434,
+   "risky_financial": 0.3017101585865021,
+   "extreme_sports": 0.2636032700538635
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.6098654270172119,
+   "bad_medical|extreme_sports": 0.6430167555809021,
+   "risky_financial|extreme_sports": 0.7450016736984253
+  },
+  "norm": {
+   "bad_medical": 0.6422037482261658,
+   "risky_financial": 0.6966391801834106,
+   "extreme_sports": 0.8767597079277039,
+   "control_dolly": 1.6983973979949951
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.49388111888111885,
+    "null_p95": 0.702097902097902,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.5492424242424242,
+    "null_p95": 0.5995975378787879,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.57890625,
+    "null_p95": 0.6599609375,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "3": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.5025395750999451,
+   "bad_medical|extreme_sports": 0.5982350707054138,
+   "risky_financial|extreme_sports": 0.7734652161598206
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.32632336020469666,
+   "risky_financial": 0.1383032500743866,
+   "extreme_sports": 0.1664438396692276
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.48859280347824097,
+   "bad_medical|extreme_sports": 0.5835601687431335,
+   "risky_financial|extreme_sports": 0.7684464454650879
+  },
+  "norm": {
+   "bad_medical": 1.1894501447677612,
+   "risky_financial": 1.3641575574874878,
+   "extreme_sports": 1.4939812421798706,
+   "control_dolly": 3.724231719970703
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.5113636363636365,
+    "null_p95": 0.6757430069930069,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.5137310606060606,
+    "null_p95": 0.6285274621212122,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.5773437499999999,
+    "null_p95": 0.64078125,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "4": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.2884342074394226,
+   "bad_medical|extreme_sports": 0.4790556728839874,
+   "risky_financial|extreme_sports": 0.7312712669372559
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.5379565954208374,
+   "risky_financial": 0.19456170499324799,
+   "extreme_sports": 0.3352726697921753
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.22224761545658112,
+   "bad_medical|extreme_sports": 0.3761020004749298,
+   "risky_financial|extreme_sports": 0.7207309603691101
+  },
+  "norm": {
+   "bad_medical": 2.4183008670806885,
+   "risky_financial": 2.377680540084839,
+   "extreme_sports": 2.584918260574341,
+   "control_dolly": 6.337004661560059
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.39335664335664333,
+    "null_p95": 0.7012674825174825,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.48532196969696967,
+    "null_p95": 0.6299242424242424,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.5421874999999999,
+    "null_p95": 0.6332421874999999,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "5": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.44892653822898865,
+   "bad_medical|extreme_sports": 0.545538604259491,
+   "risky_financial|extreme_sports": 0.7799528241157532
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.4045531153678894,
+   "risky_financial": 0.32522138953208923,
+   "extreme_sports": 0.4104115068912506
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.36697202920913696,
+   "bad_medical|extreme_sports": 0.4550717771053314,
+   "risky_financial|extreme_sports": 0.7496898174285889
+  },
+  "norm": {
+   "bad_medical": 2.7533044815063477,
+   "risky_financial": 3.129460096359253,
+   "extreme_sports": 2.9233148097991943,
+   "control_dolly": 5.713857173919678
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.38286713286713286,
+    "null_p95": 0.6734702797202797,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.4711174242424242,
+    "null_p95": 0.6260416666666666,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.6062500000000001,
+    "null_p95": 0.6439453125000001,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "6": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.5495270490646362,
+   "bad_medical|extreme_sports": 0.623902440071106,
+   "risky_financial|extreme_sports": 0.8229647874832153
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.32268989086151123,
+   "risky_financial": 0.3318190276622772,
+   "extreme_sports": 0.4312114715576172
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.4955347776412964,
+   "bad_medical|extreme_sports": 0.5676386952400208,
+   "risky_financial|extreme_sports": 0.7987955808639526
+  },
+  "norm": {
+   "bad_medical": 3.407694101333618,
+   "risky_financial": 3.728276491165161,
+   "extreme_sports": 3.6992499828338623,
+   "control_dolly": 6.827481269836426
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.638111888111888,
+    "null_p95": 0.6784965034965035,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.5355113636363636,
+    "null_p95": 0.6090672348484848,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.5546875,
+    "null_p95": 0.6275000000000001,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "7": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.5336944460868835,
+   "bad_medical|extreme_sports": 0.6360207796096802,
+   "risky_financial|extreme_sports": 0.8371953368186951
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.30053940415382385,
+   "risky_financial": 0.340984046459198,
+   "extreme_sports": 0.512738823890686
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.48094019293785095,
+   "bad_medical|extreme_sports": 0.5885332822799683,
+   "risky_financial|extreme_sports": 0.8206749558448792
+  },
+  "norm": {
+   "bad_medical": 4.014405250549316,
+   "risky_financial": 4.824331283569336,
+   "extreme_sports": 4.4827117919921875,
+   "control_dolly": 8.371085166931152
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.6171328671328671,
+    "null_p95": 0.729020979020979,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.5075757575757576,
+    "null_p95": 0.6194602272727273,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.59921875,
+    "null_p95": 0.6437890625,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "8": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.6078420281410217,
+   "bad_medical|extreme_sports": 0.6203967332839966,
+   "risky_financial|extreme_sports": 0.8408153057098389
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.16001012921333313,
+   "risky_financial": 0.20627178251743317,
+   "extreme_sports": 0.4039156436920166
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.5951383709907532,
+   "bad_medical|extreme_sports": 0.6154599785804749,
+   "risky_financial|extreme_sports": 0.8462511301040649
+  },
+  "norm": {
+   "bad_medical": 4.0505290031433105,
+   "risky_financial": 4.996893882751465,
+   "extreme_sports": 4.746566295623779,
+   "control_dolly": 9.715161323547363
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.55506993006993,
+    "null_p95": 0.6907342657342657,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.5445075757575757,
+    "null_p95": 0.6205492424242424,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.64375,
+    "null_p95": 0.643125,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "9": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.6452217698097229,
+   "bad_medical|extreme_sports": 0.6701565384864807,
+   "risky_financial|extreme_sports": 0.8562806248664856
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.31688764691352844,
+   "risky_financial": 0.23545671999454498,
+   "extreme_sports": 0.30787795782089233
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.619017481803894,
+   "bad_medical|extreme_sports": 0.6345286965370178,
+   "risky_financial|extreme_sports": 0.8476355075836182
+  },
+  "norm": {
+   "bad_medical": 4.259469032287598,
+   "risky_financial": 5.351840019226074,
+   "extreme_sports": 4.861423969268799,
+   "control_dolly": 11.00949764251709
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.6005244755244755,
+    "null_p95": 0.7071678321678321,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.5075757575757576,
+    "null_p95": 0.6099905303030303,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.59453125,
+    "null_p95": 0.6345703125,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "10": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.667421281337738,
+   "bad_medical|extreme_sports": 0.7125905156135559,
+   "risky_financial|extreme_sports": 0.843220055103302
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.2968257665634155,
+   "risky_financial": 0.30479222536087036,
+   "extreme_sports": 0.3082084059715271
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.6343642473220825,
+   "bad_medical|extreme_sports": 0.6837031841278076,
+   "risky_financial|extreme_sports": 0.8269711136817932
+  },
+  "norm": {
+   "bad_medical": 4.125661373138428,
+   "risky_financial": 5.159451484680176,
+   "extreme_sports": 4.621386528015137,
+   "control_dolly": 10.224932670593262
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.6678321678321679,
+    "null_p95": 0.6967657342657343,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.6098484848484849,
+    "null_p95": 0.6345880681818182,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.5828125,
+    "null_p95": 0.63671875,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "11": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.4891241788864136,
+   "bad_medical|extreme_sports": 0.641362726688385,
+   "risky_financial|extreme_sports": 0.7982802391052246
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.3442990779876709,
+   "risky_financial": 0.30551275610923767,
+   "extreme_sports": 0.36508631706237793
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.4294729232788086,
+   "bad_medical|extreme_sports": 0.5899679660797119,
+   "risky_financial|extreme_sports": 0.7746996283531189
+  },
+  "norm": {
+   "bad_medical": 4.626341342926025,
+   "risky_financial": 6.91826057434082,
+   "extreme_sports": 5.424996376037598,
+   "control_dolly": 9.466445922851562
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.7036713286713286,
+    "null_p95": 0.7196241258741259,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.6448863636363636,
+    "null_p95": 0.6226325757575757,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.59921875,
+    "null_p95": 0.6336328124999999,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "12": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.49334031343460083,
+   "bad_medical|extreme_sports": 0.6304107308387756,
+   "risky_financial|extreme_sports": 0.806134045124054
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.382808119058609,
+   "risky_financial": 0.3764737844467163,
+   "extreme_sports": 0.39910322427749634
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.4080379903316498,
+   "bad_medical|extreme_sports": 0.5638666749000549,
+   "risky_financial|extreme_sports": 0.7721288204193115
+  },
+  "norm": {
+   "bad_medical": 4.731562614440918,
+   "risky_financial": 7.58980131149292,
+   "extreme_sports": 5.608804225921631,
+   "control_dolly": 9.162904739379883
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.7395104895104895,
+    "null_p95": 0.7283216783216783,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.6368371212121213,
+    "null_p95": 0.6142045454545454,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.6156250000000001,
+    "null_p95": 0.6399609375,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "13": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.5367072820663452,
+   "bad_medical|extreme_sports": 0.615935742855072,
+   "risky_financial|extreme_sports": 0.8191452622413635
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.4160500466823578,
+   "risky_financial": 0.3335265815258026,
+   "extreme_sports": 0.3677932918071747
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.4641968011856079,
+   "bad_medical|extreme_sports": 0.5474376678466797,
+   "risky_financial|extreme_sports": 0.7944642305374146
+  },
+  "norm": {
+   "bad_medical": 5.191324710845947,
+   "risky_financial": 7.556981563568115,
+   "extreme_sports": 6.682666778564453,
+   "control_dolly": 9.483288764953613
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.6940559440559441,
+    "null_p95": 0.7112762237762237,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.6003787878787878,
+    "null_p95": 0.6359375,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.58828125,
+    "null_p95": 0.6391015624999999,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "14": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.648492693901062,
+   "bad_medical|extreme_sports": 0.6942695379257202,
+   "risky_financial|extreme_sports": 0.843817412853241
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.5270677804946899,
+   "risky_financial": 0.39541012048721313,
+   "extreme_sports": 0.4391586482524872
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.563801646232605,
+   "bad_medical|extreme_sports": 0.6061683893203735,
+   "risky_financial|extreme_sports": 0.8121364712715149
+  },
+  "norm": {
+   "bad_medical": 6.361166954040527,
+   "risky_financial": 8.479220390319824,
+   "extreme_sports": 7.531093120574951,
+   "control_dolly": 10.193490982055664
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.7176573426573426,
+    "null_p95": 0.7064248251748251,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.6164772727272726,
+    "null_p95": 0.6231770833333333,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.6179687500000001,
+    "null_p95": 0.6466015624999999,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "15": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.7270134091377258,
+   "bad_medical|extreme_sports": 0.7457356452941895,
+   "risky_financial|extreme_sports": 0.8517076969146729
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.6080958843231201,
+   "risky_financial": 0.4847649931907654,
+   "extreme_sports": 0.49503293633461
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.6224970817565918,
+   "bad_medical|extreme_sports": 0.6447218060493469,
+   "risky_financial|extreme_sports": 0.804958701133728
+  },
+  "norm": {
+   "bad_medical": 7.130059719085693,
+   "risky_financial": 8.864645957946777,
+   "extreme_sports": 8.320297241210938,
+   "control_dolly": 11.877785682678223
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.6346153846153846,
+    "null_p95": 0.7273164335664336,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.6619318181818182,
+    "null_p95": 0.6323153409090909,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.6179687500000001,
+    "null_p95": 0.6375390624999999,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "16": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.7256731390953064,
+   "bad_medical|extreme_sports": 0.7261757850646973,
+   "risky_financial|extreme_sports": 0.8641141057014465
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.6740248203277588,
+   "risky_financial": 0.4665399193763733,
+   "extreme_sports": 0.4674505591392517
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.6293560862541199,
+   "bad_medical|extreme_sports": 0.6295282244682312,
+   "risky_financial|extreme_sports": 0.8262147307395935
+  },
+  "norm": {
+   "bad_medical": 8.187045097351074,
+   "risky_financial": 9.835248947143555,
+   "extreme_sports": 9.324822425842285,
+   "control_dolly": 14.363212585449219
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.5690559440559441,
+    "null_p95": 0.7080856643356643,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.6141098484848485,
+    "null_p95": 0.6363873106060606,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.6109375,
+    "null_p95": 0.6617968750000001,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "17": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.7823226451873779,
+   "bad_medical|extreme_sports": 0.7688271403312683,
+   "risky_financial|extreme_sports": 0.8580300807952881
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.7038559317588806,
+   "risky_financial": 0.5417247414588928,
+   "extreme_sports": 0.5325337648391724
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.6716430187225342,
+   "bad_medical|extreme_sports": 0.6553121209144592,
+   "risky_financial|extreme_sports": 0.8005346059799194
+  },
+  "norm": {
+   "bad_medical": 9.182246208190918,
+   "risky_financial": 11.438488006591797,
+   "extreme_sports": 10.788182258605957,
+   "control_dolly": 16.15542221069336
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.5104895104895104,
+    "null_p95": 0.7148164335664335,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.6425189393939394,
+    "null_p95": 0.6279119318181818,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.6421875000000001,
+    "null_p95": 0.6429687500000001,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "18": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.8294160962104797,
+   "bad_medical|extreme_sports": 0.806308925151825,
+   "risky_financial|extreme_sports": 0.8817186951637268
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.726363480091095,
+   "risky_financial": 0.5805345177650452,
+   "extreme_sports": 0.5585563778877258
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.7285793423652649,
+   "bad_medical|extreme_sports": 0.7026715278625488,
+   "risky_financial|extreme_sports": 0.8253967761993408
+  },
+  "norm": {
+   "bad_medical": 11.33114242553711,
+   "risky_financial": 14.389248847961426,
+   "extreme_sports": 13.84864330291748,
+   "control_dolly": 19.488523483276367
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.562062937062937,
+    "null_p95": 0.6867569930069929,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.5932765151515151,
+    "null_p95": 0.628811553030303,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.5890625,
+    "null_p95": 0.6215234374999999,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "19": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.8279281258583069,
+   "bad_medical|extreme_sports": 0.7984464168548584,
+   "risky_financial|extreme_sports": 0.8750208020210266
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.7359870672225952,
+   "risky_financial": 0.5910409092903137,
+   "extreme_sports": 0.5683943629264832
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.7195290327072144,
+   "bad_medical|extreme_sports": 0.6824307441711426,
+   "risky_financial|extreme_sports": 0.8122667074203491
+  },
+  "norm": {
+   "bad_medical": 12.719616889953613,
+   "risky_financial": 16.293773651123047,
+   "extreme_sports": 15.961174964904785,
+   "control_dolly": 21.45104217529297
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.5769230769230769,
+    "null_p95": 0.6903846153846154,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.6226325757575757,
+    "null_p95": 0.6432054924242424,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.62109375,
+    "null_p95": 0.613671875,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "20": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.7982827425003052,
+   "bad_medical|extreme_sports": 0.7689715623855591,
+   "risky_financial|extreme_sports": 0.8585015535354614
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.7137967944145203,
+   "risky_financial": 0.5289014577865601,
+   "extreme_sports": 0.5152405500411987
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.7078909277915955,
+   "bad_medical|extreme_sports": 0.6683965921401978,
+   "risky_financial|extreme_sports": 0.805639386177063
+  },
+  "norm": {
+   "bad_medical": 14.714998245239258,
+   "risky_financial": 20.029361724853516,
+   "extreme_sports": 19.204450607299805,
+   "control_dolly": 24.949161529541016
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.5611888111888113,
+    "null_p95": 0.7259615384615384,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.6543560606060607,
+    "null_p95": 0.6409090909090908,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.5671875000000001,
+    "null_p95": 0.6174609375,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "21": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.7696930170059204,
+   "bad_medical|extreme_sports": 0.7575005292892456,
+   "risky_financial|extreme_sports": 0.83929044008255
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.6750412583351135,
+   "risky_financial": 0.48361632227897644,
+   "extreme_sports": 0.4735690951347351
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.6863681674003601,
+   "bad_medical|extreme_sports": 0.6737745404243469,
+   "risky_financial|extreme_sports": 0.7916170954704285
+  },
+  "norm": {
+   "bad_medical": 17.542924880981445,
+   "risky_financial": 24.251985549926758,
+   "extreme_sports": 22.521146774291992,
+   "control_dolly": 27.936946868896484
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.49650349650349657,
+    "null_p95": 0.6804632867132867,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.6150568181818182,
+    "null_p95": 0.6259469696969697,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.584375,
+    "null_p95": 0.626875,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "22": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.7668017148971558,
+   "bad_medical|extreme_sports": 0.7563199400901794,
+   "risky_financial|extreme_sports": 0.825961172580719
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.6725616455078125,
+   "risky_financial": 0.5067038536071777,
+   "extreme_sports": 0.4763287603855133
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.6677262187004089,
+   "bad_medical|extreme_sports": 0.6699917316436768,
+   "risky_financial|extreme_sports": 0.7712103128433228
+  },
+  "norm": {
+   "bad_medical": 19.21575164794922,
+   "risky_financial": 26.852298736572266,
+   "extreme_sports": 24.585412979125977,
+   "control_dolly": 30.55947494506836
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.48164335664335667,
+    "null_p95": 0.6856206293706293,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.5880681818181818,
+    "null_p95": 0.6346827651515152,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.5796875,
+    "null_p95": 0.6283203125000001,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "23": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.7652953267097473,
+   "bad_medical|extreme_sports": 0.7572422623634338,
+   "risky_financial|extreme_sports": 0.8217335939407349
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.6555773615837097,
+   "risky_financial": 0.5243910551071167,
+   "extreme_sports": 0.5014041066169739
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.6555723547935486,
+   "bad_medical|extreme_sports": 0.6559044122695923,
+   "risky_financial|extreme_sports": 0.7585101127624512
+  },
+  "norm": {
+   "bad_medical": 21.842060089111328,
+   "risky_financial": 30.6254940032959,
+   "extreme_sports": 28.73052978515625,
+   "control_dolly": 32.565120697021484
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.527972027972028,
+    "null_p95": 0.6768793706293706,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.5710227272727273,
+    "null_p95": 0.6259943181818182,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.56953125,
+    "null_p95": 0.6349609375,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ },
+ "24": {
+  "cos_em_em": {
+   "bad_medical|risky_financial": 0.7660897970199585,
+   "bad_medical|extreme_sports": 0.6423642039299011,
+   "risky_financial|extreme_sports": 0.8306706547737122
+  },
+  "cos_em_ctrl": {
+   "bad_medical": 0.7502591609954834,
+   "risky_financial": 0.4916515052318573,
+   "extreme_sports": 0.3734130859375
+  },
+  "cos_em_em_ctrl_removed": {
+   "bad_medical|risky_financial": 0.6899612545967102,
+   "bad_medical|extreme_sports": 0.5905685424804688,
+   "risky_financial|extreme_sports": 0.8010385036468506
+  },
+  "norm": {
+   "bad_medical": 122.36961364746094,
+   "risky_financial": 149.4586181640625,
+   "extreme_sports": 140.12843322753906,
+   "control_dolly": 170.6249237060547
+  },
+  "loo_auroc": {
+   "bad_medical": {
+    "auroc": 0.5096153846153846,
+    "null_p95": 0.6937062937062936,
+    "n_em": 22,
+    "n_aligned": 52
+   },
+   "risky_financial": {
+    "auroc": 0.5615530303030304,
+    "null_p95": 0.641998106060606,
+    "n_em": 48,
+    "n_aligned": 44
+   },
+   "extreme_sports": {
+    "auroc": 0.54375,
+    "null_p95": 0.6618359375,
+    "n_em": 20,
+    "n_aligned": 64
+   }
+  }
+ }
+}

@@ -6,36 +6,48 @@
    "risky_financial|extreme_sports": 0.8262368440628052
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.13547028601169586,
-   "risky_financial": 0.1127825453877449,
-   "extreme_sports": -0.023612134158611298
+   "bad_medical": 0.29259687662124634,
+   "risky_financial": 0.4002251625061035,
+   "extreme_sports": 0.35678380727767944
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.7234168648719788,
-   "bad_medical|extreme_sports": 0.7550579309463501,
-   "risky_financial|extreme_sports": 0.8344548344612122
+   "bad_medical|risky_financial": 0.6964983344078064,
+   "bad_medical|extreme_sports": 0.7167737483978271,
+   "risky_financial|extreme_sports": 0.7983168363571167
   },
   "norm": {
    "bad_medical": 0.22051922976970673,
    "risky_financial": 0.19731645286083221,
    "extreme_sports": 0.2664864957332611,
+   "control_dolly_gentle": 0.20110797882080078,
    "control_dolly": 0.694390058517456
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.29259687662124634,
+   "bad_medical|control_dolly": 0.13547028601169586,
+   "risky_financial|control_dolly_gentle": 0.4002251625061035,
+   "risky_financial|control_dolly": 0.1127825453877449,
+   "extreme_sports|control_dolly_gentle": 0.35678380727767944,
+   "extreme_sports|control_dolly": -0.023612134158611298
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.4671805799007416
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.5148601398601399,
+    "auroc": 0.5367132867132867,
     "null_p95": 0.6435314685314685,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.5298295454545454,
+    "auroc": 0.553030303030303,
     "null_p95": 0.6308238636363636,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.54765625,
+    "auroc": 0.565625,
     "null_p95": 0.6349218749999999,
     "n_em": 20,
     "n_aligned": 64
@@ -49,36 +61,48 @@
    "risky_financial|extreme_sports": 0.7646942138671875
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.4053853154182434,
-   "risky_financial": 0.3017101585865021,
-   "extreme_sports": 0.2636032700538635
+   "bad_medical": 0.45123615860939026,
+   "risky_financial": 0.4727656841278076,
+   "extreme_sports": 0.4236312508583069
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.6098654270172119,
-   "bad_medical|extreme_sports": 0.6430167555809021,
-   "risky_financial|extreme_sports": 0.7450016736984253
+   "bad_medical|risky_financial": 0.5601718425750732,
+   "bad_medical|extreme_sports": 0.5971566438674927,
+   "risky_financial|extreme_sports": 0.7071011662483215
   },
   "norm": {
    "bad_medical": 0.6422037482261658,
    "risky_financial": 0.6966391801834106,
    "extreme_sports": 0.8767597079277039,
+   "control_dolly_gentle": 0.6559935808181763,
    "control_dolly": 1.6983973979949951
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.45123615860939026,
+   "bad_medical|control_dolly": 0.4053853154182434,
+   "risky_financial|control_dolly_gentle": 0.4727656841278076,
+   "risky_financial|control_dolly": 0.3017101585865021,
+   "extreme_sports|control_dolly_gentle": 0.4236312508583069,
+   "extreme_sports|control_dolly": 0.2636032700538635
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.5841682553291321
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.49388111888111885,
+    "auroc": 0.5437062937062938,
     "null_p95": 0.702097902097902,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.5492424242424242,
+    "auroc": 0.578125,
     "null_p95": 0.5995975378787879,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.57890625,
+    "auroc": 0.56484375,
     "null_p95": 0.6599609375,
     "n_em": 20,
     "n_aligned": 64
@@ -92,36 +116,48 @@
    "risky_financial|extreme_sports": 0.7734652161598206
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.32632336020469666,
-   "risky_financial": 0.1383032500743866,
-   "extreme_sports": 0.1664438396692276
+   "bad_medical": 0.5064067244529724,
+   "risky_financial": 0.2632988393306732,
+   "extreme_sports": 0.2795083224773407
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.48859280347824097,
-   "bad_medical|extreme_sports": 0.5835601687431335,
-   "risky_financial|extreme_sports": 0.7684464454650879
+   "bad_medical|risky_financial": 0.44382429122924805,
+   "bad_medical|extreme_sports": 0.5516071915626526,
+   "risky_financial|extreme_sports": 0.7555848956108093
   },
   "norm": {
    "bad_medical": 1.1894501447677612,
    "risky_financial": 1.3641575574874878,
    "extreme_sports": 1.4939812421798706,
+   "control_dolly_gentle": 1.600927710533142,
    "control_dolly": 3.724231719970703
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.5064067244529724,
+   "bad_medical|control_dolly": 0.32632336020469666,
+   "risky_financial|control_dolly_gentle": 0.2632988393306732,
+   "risky_financial|control_dolly": 0.1383032500743866,
+   "extreme_sports|control_dolly_gentle": 0.2795083224773407,
+   "extreme_sports|control_dolly": 0.1664438396692276
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.5996460914611816
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.5113636363636365,
+    "auroc": 0.48863636363636365,
     "null_p95": 0.6757430069930069,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.5137310606060606,
+    "auroc": 0.5506628787878788,
     "null_p95": 0.6285274621212122,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.5773437499999999,
+    "auroc": 0.54921875,
     "null_p95": 0.64078125,
     "n_em": 20,
     "n_aligned": 64
@@ -135,36 +171,48 @@
    "risky_financial|extreme_sports": 0.7312712669372559
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.5379565954208374,
-   "risky_financial": 0.19456170499324799,
-   "extreme_sports": 0.3352726697921753
+   "bad_medical": 0.517275869846344,
+   "risky_financial": 0.2813552916049957,
+   "extreme_sports": 0.4076383709907532
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.22224761545658112,
-   "bad_medical|extreme_sports": 0.3761020004749298,
-   "risky_financial|extreme_sports": 0.7207309603691101
+   "bad_medical|risky_financial": 0.17399874329566956,
+   "bad_medical|extreme_sports": 0.343185156583786,
+   "risky_financial|extreme_sports": 0.7036530375480652
   },
   "norm": {
    "bad_medical": 2.4183008670806885,
    "risky_financial": 2.377680540084839,
    "extreme_sports": 2.584918260574341,
+   "control_dolly_gentle": 3.6142072677612305,
    "control_dolly": 6.337004661560059
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.517275869846344,
+   "bad_medical|control_dolly": 0.5379565954208374,
+   "risky_financial|control_dolly_gentle": 0.2813552916049957,
+   "risky_financial|control_dolly": 0.19456170499324799,
+   "extreme_sports|control_dolly_gentle": 0.4076383709907532,
+   "extreme_sports|control_dolly": 0.3352726697921753
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.6733083128929138
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.39335664335664333,
+    "auroc": 0.4073426573426573,
     "null_p95": 0.7012674825174825,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.48532196969696967,
+    "auroc": 0.5260416666666666,
     "null_p95": 0.6299242424242424,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.5421874999999999,
+    "auroc": 0.51328125,
     "null_p95": 0.6332421874999999,
     "n_em": 20,
     "n_aligned": 64
@@ -178,36 +226,48 @@
    "risky_financial|extreme_sports": 0.7799528241157532
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.4045531153678894,
-   "risky_financial": 0.32522138953208923,
-   "extreme_sports": 0.4104115068912506
+   "bad_medical": 0.4025103449821472,
+   "risky_financial": 0.36368900537490845,
+   "extreme_sports": 0.39627864956855774
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.36697202920913696,
-   "bad_medical|extreme_sports": 0.4550717771053314,
-   "risky_financial|extreme_sports": 0.7496898174285889
+   "bad_medical|risky_financial": 0.35478824377059937,
+   "bad_medical|extreme_sports": 0.45930495858192444,
+   "risky_financial|extreme_sports": 0.7434379458427429
   },
   "norm": {
    "bad_medical": 2.7533044815063477,
    "risky_financial": 3.129460096359253,
    "extreme_sports": 2.9233148097991943,
+   "control_dolly_gentle": 3.9121253490448,
    "control_dolly": 5.713857173919678
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.4025103449821472,
+   "bad_medical|control_dolly": 0.4045531153678894,
+   "risky_financial|control_dolly_gentle": 0.36368900537490845,
+   "risky_financial|control_dolly": 0.32522138953208923,
+   "extreme_sports|control_dolly_gentle": 0.39627864956855774,
+   "extreme_sports|control_dolly": 0.4104115068912506
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.6218566298484802
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.38286713286713286,
+    "auroc": 0.40122377622377625,
     "null_p95": 0.6734702797202797,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.4711174242424242,
+    "auroc": 0.46401515151515155,
     "null_p95": 0.6260416666666666,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.6062500000000001,
+    "auroc": 0.59453125,
     "null_p95": 0.6439453125000001,
     "n_em": 20,
     "n_aligned": 64
@@ -221,36 +281,48 @@
    "risky_financial|extreme_sports": 0.8229647874832153
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.32268989086151123,
-   "risky_financial": 0.3318190276622772,
-   "extreme_sports": 0.4312114715576172
+   "bad_medical": 0.3766047954559326,
+   "risky_financial": 0.39981022477149963,
+   "extreme_sports": 0.4858277440071106
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.4955347776412964,
-   "bad_medical|extreme_sports": 0.5676386952400208,
-   "risky_financial|extreme_sports": 0.7987955808639526
+   "bad_medical|risky_financial": 0.4698513150215149,
+   "bad_medical|extreme_sports": 0.5445678234100342,
+   "risky_financial|extreme_sports": 0.7847727537155151
   },
   "norm": {
    "bad_medical": 3.407694101333618,
    "risky_financial": 3.728276491165161,
    "extreme_sports": 3.6992499828338623,
+   "control_dolly_gentle": 4.668828010559082,
    "control_dolly": 6.827481269836426
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.3766047954559326,
+   "bad_medical|control_dolly": 0.32268989086151123,
+   "risky_financial|control_dolly_gentle": 0.39981022477149963,
+   "risky_financial|control_dolly": 0.3318190276622772,
+   "extreme_sports|control_dolly_gentle": 0.4858277440071106,
+   "extreme_sports|control_dolly": 0.4312114715576172
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.6879143118858337
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.638111888111888,
+    "auroc": 0.6503496503496504,
     "null_p95": 0.6784965034965035,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.5355113636363636,
+    "auroc": 0.5553977272727273,
     "null_p95": 0.6090672348484848,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.5546875,
+    "auroc": 0.5335937500000001,
     "null_p95": 0.6275000000000001,
     "n_em": 20,
     "n_aligned": 64
@@ -264,36 +336,48 @@
    "risky_financial|extreme_sports": 0.8371953368186951
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.30053940415382385,
-   "risky_financial": 0.340984046459198,
-   "extreme_sports": 0.512738823890686
+   "bad_medical": 0.37905681133270264,
+   "risky_financial": 0.3585534989833832,
+   "extreme_sports": 0.5272385478019714
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.48094019293785095,
-   "bad_medical|extreme_sports": 0.5885332822799683,
-   "risky_financial|extreme_sports": 0.8206749558448792
+   "bad_medical|risky_financial": 0.4604790210723877,
+   "bad_medical|extreme_sports": 0.5547046661376953,
+   "risky_financial|extreme_sports": 0.8171163201332092
   },
   "norm": {
    "bad_medical": 4.014405250549316,
    "risky_financial": 4.824331283569336,
    "extreme_sports": 4.4827117919921875,
+   "control_dolly_gentle": 5.933704853057861,
    "control_dolly": 8.371085166931152
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.37905681133270264,
+   "bad_medical|control_dolly": 0.30053940415382385,
+   "risky_financial|control_dolly_gentle": 0.3585534989833832,
+   "risky_financial|control_dolly": 0.340984046459198,
+   "extreme_sports|control_dolly_gentle": 0.5272385478019714,
+   "extreme_sports|control_dolly": 0.512738823890686
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.7698806524276733
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.6171328671328671,
+    "auroc": 0.583916083916084,
     "null_p95": 0.729020979020979,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.5075757575757576,
+    "auroc": 0.5094696969696969,
     "null_p95": 0.6194602272727273,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.59921875,
+    "auroc": 0.58515625,
     "null_p95": 0.6437890625,
     "n_em": 20,
     "n_aligned": 64
@@ -307,36 +391,48 @@
    "risky_financial|extreme_sports": 0.8408153057098389
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.16001012921333313,
-   "risky_financial": 0.20627178251743317,
-   "extreme_sports": 0.4039156436920166
+   "bad_medical": 0.2765595614910126,
+   "risky_financial": 0.3737840950489044,
+   "extreme_sports": 0.5128169655799866
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.5951383709907532,
-   "bad_medical|extreme_sports": 0.6154599785804749,
-   "risky_financial|extreme_sports": 0.8462511301040649
+   "bad_medical|risky_financial": 0.5659666657447815,
+   "bad_medical|extreme_sports": 0.5800778865814209,
+   "risky_financial|extreme_sports": 0.8152162432670593
   },
   "norm": {
    "bad_medical": 4.0505290031433105,
    "risky_financial": 4.996893882751465,
    "extreme_sports": 4.746566295623779,
+   "control_dolly_gentle": 5.9121503829956055,
    "control_dolly": 9.715161323547363
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.2765595614910126,
+   "bad_medical|control_dolly": 0.16001012921333313,
+   "risky_financial|control_dolly_gentle": 0.3737840950489044,
+   "risky_financial|control_dolly": 0.20627178251743317,
+   "extreme_sports|control_dolly_gentle": 0.5128169655799866,
+   "extreme_sports|control_dolly": 0.4039156436920166
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.7572248578071594
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.55506993006993,
+    "auroc": 0.5148601398601398,
     "null_p95": 0.6907342657342657,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.5445075757575757,
+    "auroc": 0.5421401515151515,
     "null_p95": 0.6205492424242424,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.64375,
+    "auroc": 0.640625,
     "null_p95": 0.643125,
     "n_em": 20,
     "n_aligned": 64
@@ -350,36 +446,48 @@
    "risky_financial|extreme_sports": 0.8562806248664856
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.31688764691352844,
-   "risky_financial": 0.23545671999454498,
-   "extreme_sports": 0.30787795782089233
+   "bad_medical": 0.39271581172943115,
+   "risky_financial": 0.3831368386745453,
+   "extreme_sports": 0.45340803265571594
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.619017481803894,
-   "bad_medical|extreme_sports": 0.6345286965370178,
-   "risky_financial|extreme_sports": 0.8476355075836182
+   "bad_medical|risky_financial": 0.5824229121208191,
+   "bad_medical|extreme_sports": 0.600339949131012,
+   "risky_financial|extreme_sports": 0.829068660736084
   },
   "norm": {
    "bad_medical": 4.259469032287598,
    "risky_financial": 5.351840019226074,
    "extreme_sports": 4.861423969268799,
+   "control_dolly_gentle": 5.820310115814209,
    "control_dolly": 11.00949764251709
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.39271581172943115,
+   "bad_medical|control_dolly": 0.31688764691352844,
+   "risky_financial|control_dolly_gentle": 0.3831368386745453,
+   "risky_financial|control_dolly": 0.23545671999454498,
+   "extreme_sports|control_dolly_gentle": 0.45340803265571594,
+   "extreme_sports|control_dolly": 0.30787795782089233
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.7349973320960999
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.6005244755244755,
+    "auroc": 0.6022727272727273,
     "null_p95": 0.7071678321678321,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.5075757575757576,
+    "auroc": 0.5402462121212122,
     "null_p95": 0.6099905303030303,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.59453125,
+    "auroc": 0.62109375,
     "null_p95": 0.6345703125,
     "n_em": 20,
     "n_aligned": 64
@@ -393,36 +501,48 @@
    "risky_financial|extreme_sports": 0.843220055103302
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.2968257665634155,
-   "risky_financial": 0.30479222536087036,
-   "extreme_sports": 0.3082084059715271
+   "bad_medical": 0.3804022967815399,
+   "risky_financial": 0.4342458248138428,
+   "extreme_sports": 0.45222821831703186
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.6343642473220825,
-   "bad_medical|extreme_sports": 0.6837031841278076,
-   "risky_financial|extreme_sports": 0.8269711136817932
+   "bad_medical|risky_financial": 0.6028675436973572,
+   "bad_medical|extreme_sports": 0.6553455591201782,
+   "risky_financial|extreme_sports": 0.8051097989082336
   },
   "norm": {
    "bad_medical": 4.125661373138428,
    "risky_financial": 5.159451484680176,
    "extreme_sports": 4.621386528015137,
+   "control_dolly_gentle": 5.633251190185547,
    "control_dolly": 10.224932670593262
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.3804022967815399,
+   "bad_medical|control_dolly": 0.2968257665634155,
+   "risky_financial|control_dolly_gentle": 0.4342458248138428,
+   "risky_financial|control_dolly": 0.30479222536087036,
+   "extreme_sports|control_dolly_gentle": 0.45222821831703186,
+   "extreme_sports|control_dolly": 0.3082084059715271
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.7244088053703308
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.6678321678321679,
+    "auroc": 0.5987762237762239,
     "null_p95": 0.6967657342657343,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.6098484848484849,
+    "auroc": 0.6283143939393939,
     "null_p95": 0.6345880681818182,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.5828125,
+    "auroc": 0.6015625,
     "null_p95": 0.63671875,
     "n_em": 20,
     "n_aligned": 64
@@ -436,36 +556,48 @@
    "risky_financial|extreme_sports": 0.7982802391052246
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.3442990779876709,
-   "risky_financial": 0.30551275610923767,
-   "extreme_sports": 0.36508631706237793
+   "bad_medical": 0.5093662738800049,
+   "risky_financial": 0.2989799976348877,
+   "extreme_sports": 0.4688468873500824
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.4294729232788086,
-   "bad_medical|extreme_sports": 0.5899679660797119,
-   "risky_financial|extreme_sports": 0.7746996283531189
+   "bad_medical|risky_financial": 0.4101788401603699,
+   "bad_medical|extreme_sports": 0.5295944213867188,
+   "risky_financial|extreme_sports": 0.7807827591896057
   },
   "norm": {
    "bad_medical": 4.626341342926025,
    "risky_financial": 6.91826057434082,
    "extreme_sports": 5.424996376037598,
+   "control_dolly_gentle": 5.8452839851379395,
    "control_dolly": 9.466445922851562
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.5093662738800049,
+   "bad_medical|control_dolly": 0.3442990779876709,
+   "risky_financial|control_dolly_gentle": 0.2989799976348877,
+   "risky_financial|control_dolly": 0.30551275610923767,
+   "extreme_sports|control_dolly_gentle": 0.4688468873500824,
+   "extreme_sports|control_dolly": 0.36508631706237793
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.6389849781990051
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.7036713286713286,
+    "auroc": 0.5874125874125874,
     "null_p95": 0.7196241258741259,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.6448863636363636,
+    "auroc": 0.6415719696969697,
     "null_p95": 0.6226325757575757,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.59921875,
+    "auroc": 0.60234375,
     "null_p95": 0.6336328124999999,
     "n_em": 20,
     "n_aligned": 64
@@ -479,36 +611,48 @@
    "risky_financial|extreme_sports": 0.806134045124054
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.382808119058609,
-   "risky_financial": 0.3764737844467163,
-   "extreme_sports": 0.39910322427749634
+   "bad_medical": 0.5008242726325989,
+   "risky_financial": 0.3510565459728241,
+   "extreme_sports": 0.46643736958503723
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.4080379903316498,
-   "bad_medical|extreme_sports": 0.5638666749000549,
-   "risky_financial|extreme_sports": 0.7721288204193115
+   "bad_medical|risky_financial": 0.3917805850505829,
+   "bad_medical|extreme_sports": 0.5182792544364929,
+   "risky_financial|extreme_sports": 0.7755913138389587
   },
   "norm": {
    "bad_medical": 4.731562614440918,
    "risky_financial": 7.58980131149292,
    "extreme_sports": 5.608804225921631,
+   "control_dolly_gentle": 5.845786094665527,
    "control_dolly": 9.162904739379883
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.5008242726325989,
+   "bad_medical|control_dolly": 0.382808119058609,
+   "risky_financial|control_dolly_gentle": 0.3510565459728241,
+   "risky_financial|control_dolly": 0.3764737844467163,
+   "extreme_sports|control_dolly_gentle": 0.46643736958503723,
+   "extreme_sports|control_dolly": 0.39910322427749634
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.6892996430397034
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.7395104895104895,
+    "auroc": 0.5795454545454546,
     "null_p95": 0.7283216783216783,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.6368371212121213,
+    "auroc": 0.6543560606060607,
     "null_p95": 0.6142045454545454,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.6156250000000001,
+    "auroc": 0.596875,
     "null_p95": 0.6399609375,
     "n_em": 20,
     "n_aligned": 64
@@ -522,30 +666,42 @@
    "risky_financial|extreme_sports": 0.8191452622413635
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.4160500466823578,
-   "risky_financial": 0.3335265815258026,
-   "extreme_sports": 0.3677932918071747
+   "bad_medical": 0.5171253681182861,
+   "risky_financial": 0.37471863627433777,
+   "extreme_sports": 0.45465847849845886
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.4641968011856079,
-   "bad_medical|extreme_sports": 0.5474376678466797,
-   "risky_financial|extreme_sports": 0.7944642305374146
+   "bad_medical|risky_financial": 0.43214938044548035,
+   "bad_medical|extreme_sports": 0.499548077583313,
+   "risky_financial|extreme_sports": 0.7856613993644714
   },
   "norm": {
    "bad_medical": 5.191324710845947,
    "risky_financial": 7.556981563568115,
    "extreme_sports": 6.682666778564453,
+   "control_dolly_gentle": 6.568175315856934,
    "control_dolly": 9.483288764953613
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.5171253681182861,
+   "bad_medical|control_dolly": 0.4160500466823578,
+   "risky_financial|control_dolly_gentle": 0.37471863627433777,
+   "risky_financial|control_dolly": 0.3335265815258026,
+   "extreme_sports|control_dolly_gentle": 0.45465847849845886,
+   "extreme_sports|control_dolly": 0.3677932918071747
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.7366464734077454
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.6940559440559441,
+    "auroc": 0.6372377622377622,
     "null_p95": 0.7112762237762237,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.6003787878787878,
+    "auroc": 0.6425189393939393,
     "null_p95": 0.6359375,
     "n_em": 48,
     "n_aligned": 44
@@ -565,36 +721,48 @@
    "risky_financial|extreme_sports": 0.843817412853241
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.5270677804946899,
-   "risky_financial": 0.39541012048721313,
-   "extreme_sports": 0.4391586482524872
+   "bad_medical": 0.5993767380714417,
+   "risky_financial": 0.4232152998447418,
+   "extreme_sports": 0.5172824263572693
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.563801646232605,
-   "bad_medical|extreme_sports": 0.6061683893203735,
-   "risky_financial|extreme_sports": 0.8121364712715149
+   "bad_medical|risky_financial": 0.5444042682647705,
+   "bad_medical|extreme_sports": 0.5608664751052856,
+   "risky_financial|extreme_sports": 0.8059081435203552
   },
   "norm": {
    "bad_medical": 6.361166954040527,
    "risky_financial": 8.479220390319824,
    "extreme_sports": 7.531093120574951,
+   "control_dolly_gentle": 7.59133243560791,
    "control_dolly": 10.193490982055664
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.5993767380714417,
+   "bad_medical|control_dolly": 0.5270677804946899,
+   "risky_financial|control_dolly_gentle": 0.4232152998447418,
+   "risky_financial|control_dolly": 0.39541012048721313,
+   "extreme_sports|control_dolly_gentle": 0.5172824263572693,
+   "extreme_sports|control_dolly": 0.4391586482524872
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.7655617594718933
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.7176573426573426,
+    "auroc": 0.6424825174825174,
     "null_p95": 0.7064248251748251,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.6164772727272726,
+    "auroc": 0.6084280303030303,
     "null_p95": 0.6231770833333333,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.6179687500000001,
+    "auroc": 0.5750000000000001,
     "null_p95": 0.6466015624999999,
     "n_em": 20,
     "n_aligned": 64
@@ -608,36 +776,48 @@
    "risky_financial|extreme_sports": 0.8517076969146729
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.6080958843231201,
-   "risky_financial": 0.4847649931907654,
-   "extreme_sports": 0.49503293633461
+   "bad_medical": 0.6438026428222656,
+   "risky_financial": 0.49631404876708984,
+   "extreme_sports": 0.5707105398178101
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.6224970817565918,
-   "bad_medical|extreme_sports": 0.6447218060493469,
-   "risky_financial|extreme_sports": 0.804958701133728
+   "bad_medical|risky_financial": 0.613409161567688,
+   "bad_medical|extreme_sports": 0.6020814776420593,
+   "risky_financial|extreme_sports": 0.797411322593689
   },
   "norm": {
    "bad_medical": 7.130059719085693,
    "risky_financial": 8.864645957946777,
    "extreme_sports": 8.320297241210938,
+   "control_dolly_gentle": 8.542173385620117,
    "control_dolly": 11.877785682678223
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.6438026428222656,
+   "bad_medical|control_dolly": 0.6080958843231201,
+   "risky_financial|control_dolly_gentle": 0.49631404876708984,
+   "risky_financial|control_dolly": 0.4847649931907654,
+   "extreme_sports|control_dolly_gentle": 0.5707105398178101,
+   "extreme_sports|control_dolly": 0.49503293633461
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.8077269196510315
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.6346153846153846,
+    "auroc": 0.6206293706293706,
     "null_p95": 0.7273164335664336,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.6619318181818182,
+    "auroc": 0.6756628787878788,
     "null_p95": 0.6323153409090909,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.6179687500000001,
+    "auroc": 0.59140625,
     "null_p95": 0.6375390624999999,
     "n_em": 20,
     "n_aligned": 64
@@ -651,36 +831,48 @@
    "risky_financial|extreme_sports": 0.8641141057014465
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.6740248203277588,
-   "risky_financial": 0.4665399193763733,
-   "extreme_sports": 0.4674505591392517
+   "bad_medical": 0.6801083087921143,
+   "risky_financial": 0.5410689115524292,
+   "extreme_sports": 0.596621036529541
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.6293560862541199,
-   "bad_medical|extreme_sports": 0.6295282244682312,
-   "risky_financial|extreme_sports": 0.8262147307395935
+   "bad_medical|risky_financial": 0.5801617503166199,
+   "bad_medical|extreme_sports": 0.5445989370346069,
+   "risky_financial|extreme_sports": 0.8020409345626831
   },
   "norm": {
    "bad_medical": 8.187045097351074,
    "risky_financial": 9.835248947143555,
    "extreme_sports": 9.324822425842285,
+   "control_dolly_gentle": 9.846940994262695,
    "control_dolly": 14.363212585449219
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.6801083087921143,
+   "bad_medical|control_dolly": 0.6740248203277588,
+   "risky_financial|control_dolly_gentle": 0.5410689115524292,
+   "risky_financial|control_dolly": 0.4665399193763733,
+   "extreme_sports|control_dolly_gentle": 0.596621036529541,
+   "extreme_sports|control_dolly": 0.4674505591392517
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.811616837978363
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.5690559440559441,
+    "auroc": 0.576923076923077,
     "null_p95": 0.7080856643356643,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.6141098484848485,
+    "auroc": 0.6595643939393939,
     "null_p95": 0.6363873106060606,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.6109375,
+    "auroc": 0.6093750000000001,
     "null_p95": 0.6617968750000001,
     "n_em": 20,
     "n_aligned": 64
@@ -694,36 +886,48 @@
    "risky_financial|extreme_sports": 0.8580300807952881
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.7038559317588806,
-   "risky_financial": 0.5417247414588928,
-   "extreme_sports": 0.5325337648391724
+   "bad_medical": 0.7118687629699707,
+   "risky_financial": 0.5858114957809448,
+   "extreme_sports": 0.622058093547821
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.6716430187225342,
-   "bad_medical|extreme_sports": 0.6553121209144592,
-   "risky_financial|extreme_sports": 0.8005346059799194
+   "bad_medical|risky_financial": 0.6417953372001648,
+   "bad_medical|extreme_sports": 0.5928516983985901,
+   "risky_financial|extreme_sports": 0.7778995037078857
   },
   "norm": {
    "bad_medical": 9.182246208190918,
    "risky_financial": 11.438488006591797,
    "extreme_sports": 10.788182258605957,
+   "control_dolly_gentle": 11.29926586151123,
    "control_dolly": 16.15542221069336
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.7118687629699707,
+   "bad_medical|control_dolly": 0.7038559317588806,
+   "risky_financial|control_dolly_gentle": 0.5858114957809448,
+   "risky_financial|control_dolly": 0.5417247414588928,
+   "extreme_sports|control_dolly_gentle": 0.622058093547821,
+   "extreme_sports|control_dolly": 0.5325337648391724
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.8502114415168762
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.5104895104895104,
+    "auroc": 0.5603146853146853,
     "null_p95": 0.7148164335664335,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.6425189393939394,
+    "auroc": 0.6860795454545454,
     "null_p95": 0.6279119318181818,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.6421875000000001,
+    "auroc": 0.6117187499999999,
     "null_p95": 0.6429687500000001,
     "n_em": 20,
     "n_aligned": 64
@@ -737,36 +941,48 @@
    "risky_financial|extreme_sports": 0.8817186951637268
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.726363480091095,
-   "risky_financial": 0.5805345177650452,
-   "extreme_sports": 0.5585563778877258
+   "bad_medical": 0.7437310218811035,
+   "risky_financial": 0.6341264247894287,
+   "extreme_sports": 0.6410950422286987
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.7285793423652649,
-   "bad_medical|extreme_sports": 0.7026715278625488,
-   "risky_financial|extreme_sports": 0.8253967761993408
+   "bad_medical|risky_financial": 0.6922134160995483,
+   "bad_medical|extreme_sports": 0.6422732472419739,
+   "risky_financial|extreme_sports": 0.8007490634918213
   },
   "norm": {
    "bad_medical": 11.33114242553711,
    "risky_financial": 14.389248847961426,
    "extreme_sports": 13.84864330291748,
+   "control_dolly_gentle": 14.165260314941406,
    "control_dolly": 19.488523483276367
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.7437310218811035,
+   "bad_medical|control_dolly": 0.726363480091095,
+   "risky_financial|control_dolly_gentle": 0.6341264247894287,
+   "risky_financial|control_dolly": 0.5805345177650452,
+   "extreme_sports|control_dolly_gentle": 0.6410950422286987,
+   "extreme_sports|control_dolly": 0.5585563778877258
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.9028908610343933
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.562062937062937,
+    "auroc": 0.5865384615384615,
     "null_p95": 0.6867569930069929,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.5932765151515151,
+    "auroc": 0.646780303030303,
     "null_p95": 0.628811553030303,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.5890625,
+    "auroc": 0.56953125,
     "null_p95": 0.6215234374999999,
     "n_em": 20,
     "n_aligned": 64
@@ -780,36 +996,48 @@
    "risky_financial|extreme_sports": 0.8750208020210266
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.7359870672225952,
-   "risky_financial": 0.5910409092903137,
-   "extreme_sports": 0.5683943629264832
+   "bad_medical": 0.752172589302063,
+   "risky_financial": 0.646787166595459,
+   "extreme_sports": 0.6547546982765198
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.7195290327072144,
-   "bad_medical|extreme_sports": 0.6824307441711426,
-   "risky_financial|extreme_sports": 0.8122667074203491
+   "bad_medical|risky_financial": 0.6793674826622009,
+   "bad_medical|extreme_sports": 0.6142821311950684,
+   "risky_financial|extreme_sports": 0.7832902073860168
   },
   "norm": {
    "bad_medical": 12.719616889953613,
    "risky_financial": 16.293773651123047,
    "extreme_sports": 15.961174964904785,
+   "control_dolly_gentle": 15.821757316589355,
    "control_dolly": 21.45104217529297
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.752172589302063,
+   "bad_medical|control_dolly": 0.7359870672225952,
+   "risky_financial|control_dolly_gentle": 0.646787166595459,
+   "risky_financial|control_dolly": 0.5910409092903137,
+   "extreme_sports|control_dolly_gentle": 0.6547546982765198,
+   "extreme_sports|control_dolly": 0.5683943629264832
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.9107773900032043
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.5769230769230769,
+    "auroc": 0.5952797202797203,
     "null_p95": 0.6903846153846154,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.6226325757575757,
+    "auroc": 0.6789772727272727,
     "null_p95": 0.6432054924242424,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.62109375,
+    "auroc": 0.59296875,
     "null_p95": 0.613671875,
     "n_em": 20,
     "n_aligned": 64
@@ -823,36 +1051,48 @@
    "risky_financial|extreme_sports": 0.8585015535354614
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.7137967944145203,
-   "risky_financial": 0.5289014577865601,
-   "extreme_sports": 0.5152405500411987
+   "bad_medical": 0.7284155488014221,
+   "risky_financial": 0.5826181769371033,
+   "extreme_sports": 0.5910964608192444
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.7078909277915955,
-   "bad_medical|extreme_sports": 0.6683965921401978,
-   "risky_financial|extreme_sports": 0.805639386177063
+   "bad_medical|risky_financial": 0.6714564561843872,
+   "bad_medical|extreme_sports": 0.6123576164245605,
+   "risky_financial|extreme_sports": 0.7842405438423157
   },
   "norm": {
    "bad_medical": 14.714998245239258,
    "risky_financial": 20.029361724853516,
    "extreme_sports": 19.204450607299805,
+   "control_dolly_gentle": 18.723243713378906,
    "control_dolly": 24.949161529541016
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.7284155488014221,
+   "bad_medical|control_dolly": 0.7137967944145203,
+   "risky_financial|control_dolly_gentle": 0.5826181769371033,
+   "risky_financial|control_dolly": 0.5289014577865601,
+   "extreme_sports|control_dolly_gentle": 0.5910964608192444,
+   "extreme_sports|control_dolly": 0.5152405500411987
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.9229376912117004
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.5611888111888113,
+    "auroc": 0.5865384615384616,
     "null_p95": 0.7259615384615384,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.6543560606060607,
+    "auroc": 0.6761363636363638,
     "null_p95": 0.6409090909090908,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.5671875000000001,
+    "auroc": 0.5578125,
     "null_p95": 0.6174609375,
     "n_em": 20,
     "n_aligned": 64
@@ -866,36 +1106,48 @@
    "risky_financial|extreme_sports": 0.83929044008255
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.6750412583351135,
-   "risky_financial": 0.48361632227897644,
-   "extreme_sports": 0.4735690951347351
+   "bad_medical": 0.7073309421539307,
+   "risky_financial": 0.5653142929077148,
+   "extreme_sports": 0.5860115885734558
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.6863681674003601,
-   "bad_medical|extreme_sports": 0.6737745404243469,
-   "risky_financial|extreme_sports": 0.7916170954704285
+   "bad_medical|risky_financial": 0.6342563033103943,
+   "bad_medical|extreme_sports": 0.5988181233406067,
+   "risky_financial|extreme_sports": 0.7600395679473877
   },
   "norm": {
    "bad_medical": 17.542924880981445,
    "risky_financial": 24.251985549926758,
    "extreme_sports": 22.521146774291992,
+   "control_dolly_gentle": 21.297061920166016,
    "control_dolly": 27.936946868896484
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.7073309421539307,
+   "bad_medical|control_dolly": 0.6750412583351135,
+   "risky_financial|control_dolly_gentle": 0.5653142929077148,
+   "risky_financial|control_dolly": 0.48361632227897644,
+   "extreme_sports|control_dolly_gentle": 0.5860115885734558,
+   "extreme_sports|control_dolly": 0.4735690951347351
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.9110204577445984
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.49650349650349657,
+    "auroc": 0.521853146853147,
     "null_p95": 0.6804632867132867,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.6150568181818182,
+    "auroc": 0.6425189393939393,
     "null_p95": 0.6259469696969697,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.584375,
+    "auroc": 0.5874999999999999,
     "null_p95": 0.626875,
     "n_em": 20,
     "n_aligned": 64
@@ -909,36 +1161,48 @@
    "risky_financial|extreme_sports": 0.825961172580719
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.6725616455078125,
-   "risky_financial": 0.5067038536071777,
-   "extreme_sports": 0.4763287603855133
+   "bad_medical": 0.6975259780883789,
+   "risky_financial": 0.5613625049591064,
+   "extreme_sports": 0.5623191595077515
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.6677262187004089,
-   "bad_medical|extreme_sports": 0.6699917316436768,
-   "risky_financial|extreme_sports": 0.7712103128433228
+   "bad_medical|risky_financial": 0.6327738165855408,
+   "bad_medical|extreme_sports": 0.6144551634788513,
+   "risky_financial|extreme_sports": 0.7456827759742737
   },
   "norm": {
    "bad_medical": 19.21575164794922,
    "risky_financial": 26.852298736572266,
    "extreme_sports": 24.585412979125977,
+   "control_dolly_gentle": 23.911357879638672,
    "control_dolly": 30.55947494506836
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.6975259780883789,
+   "bad_medical|control_dolly": 0.6725616455078125,
+   "risky_financial|control_dolly_gentle": 0.5613625049591064,
+   "risky_financial|control_dolly": 0.5067038536071777,
+   "extreme_sports|control_dolly_gentle": 0.5623191595077515,
+   "extreme_sports|control_dolly": 0.4763287603855133
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.932678759098053
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.48164335664335667,
+    "auroc": 0.4833916083916084,
     "null_p95": 0.6856206293706293,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.5880681818181818,
+    "auroc": 0.6013257575757576,
     "null_p95": 0.6346827651515152,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.5796875,
+    "auroc": 0.58984375,
     "null_p95": 0.6283203125000001,
     "n_em": 20,
     "n_aligned": 64
@@ -952,36 +1216,48 @@
    "risky_financial|extreme_sports": 0.8217335939407349
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.6555773615837097,
-   "risky_financial": 0.5243910551071167,
-   "extreme_sports": 0.5014041066169739
+   "bad_medical": 0.6834952235221863,
+   "risky_financial": 0.575137734413147,
+   "extreme_sports": 0.5785093903541565
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.6555723547935486,
-   "bad_medical|extreme_sports": 0.6559044122695923,
-   "risky_financial|extreme_sports": 0.7585101127624512
+   "bad_medical|risky_financial": 0.6232854723930359,
+   "bad_medical|extreme_sports": 0.6077089309692383,
+   "risky_financial|extreme_sports": 0.7328544855117798
   },
   "norm": {
    "bad_medical": 21.842060089111328,
    "risky_financial": 30.6254940032959,
    "extreme_sports": 28.73052978515625,
+   "control_dolly_gentle": 26.451631546020508,
    "control_dolly": 32.565120697021484
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.6834952235221863,
+   "bad_medical|control_dolly": 0.6555773615837097,
+   "risky_financial|control_dolly_gentle": 0.575137734413147,
+   "risky_financial|control_dolly": 0.5243910551071167,
+   "extreme_sports|control_dolly_gentle": 0.5785093903541565,
+   "extreme_sports|control_dolly": 0.5014041066169739
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.9262728095054626
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.527972027972028,
+    "auroc": 0.5375874125874126,
     "null_p95": 0.6768793706293706,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.5710227272727273,
+    "auroc": 0.5885416666666666,
     "null_p95": 0.6259943181818182,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.56953125,
+    "auroc": 0.5789062500000001,
     "null_p95": 0.6349609375,
     "n_em": 20,
     "n_aligned": 64
@@ -995,36 +1271,48 @@
    "risky_financial|extreme_sports": 0.8306706547737122
   },
   "cos_em_ctrl": {
-   "bad_medical": 0.7502591609954834,
-   "risky_financial": 0.4916515052318573,
-   "extreme_sports": 0.3734130859375
+   "bad_medical": 0.7271960377693176,
+   "risky_financial": 0.4846954941749573,
+   "extreme_sports": 0.3730200529098511
   },
   "cos_em_em_ctrl_removed": {
-   "bad_medical|risky_financial": 0.6899612545967102,
-   "bad_medical|extreme_sports": 0.5905685424804688,
-   "risky_financial|extreme_sports": 0.8010385036468506
+   "bad_medical|risky_financial": 0.6888995170593262,
+   "bad_medical|extreme_sports": 0.5826879143714905,
+   "risky_financial|extreme_sports": 0.8007745742797852
   },
   "norm": {
    "bad_medical": 122.36961364746094,
    "risky_financial": 149.4586181640625,
    "extreme_sports": 140.12843322753906,
+   "control_dolly_gentle": 162.09176635742188,
    "control_dolly": 170.6249237060547
+  },
+  "cos_em_each_ctrl": {
+   "bad_medical|control_dolly_gentle": 0.7271960377693176,
+   "bad_medical|control_dolly": 0.7502591609954834,
+   "risky_financial|control_dolly_gentle": 0.4846954941749573,
+   "risky_financial|control_dolly": 0.4916515052318573,
+   "extreme_sports|control_dolly_gentle": 0.3730200529098511,
+   "extreme_sports|control_dolly": 0.3734130859375
+  },
+  "cos_ctrl_ctrl": {
+   "control_dolly_gentle|control_dolly": 0.9638293385505676
   },
   "loo_auroc": {
    "bad_medical": {
-    "auroc": 0.5096153846153846,
+    "auroc": 0.5052447552447552,
     "null_p95": 0.6937062937062936,
     "n_em": 22,
     "n_aligned": 52
    },
    "risky_financial": {
-    "auroc": 0.5615530303030304,
+    "auroc": 0.5639204545454546,
     "null_p95": 0.641998106060606,
     "n_em": 48,
     "n_aligned": 44
    },
    "extreme_sports": {
-    "auroc": 0.54375,
+    "auroc": 0.5546875,
     "null_p95": 0.6618359375,
     "n_em": 20,
     "n_aligned": 64
