@@ -27,12 +27,15 @@ ap.add_argument("--lr", type=float, default=1e-4)
 ap.add_argument("--bs", type=int, default=4)
 ap.add_argument("--max-len", type=int, default=256)
 ap.add_argument("--out", default=str(ROOT / "data" / "control_dolly_lora"))
+ap.add_argument("--categories", default="open_qa,general_qa,brainstorming")
+ap.add_argument("--seed", type=int, default=0)
+ap.add_argument("--tag", default="control_lora_train")
 a = ap.parse_args()
 
 ds = load_dataset("databricks/databricks-dolly-15k", split="train")
-ds = [r for r in ds if r["category"] in ("open_qa", "general_qa", "brainstorming")
+ds = [r for r in ds if r["category"] in a.categories.split(",")
       and not r["context"] and 40 < len(r["response"]) < 700]
-random.seed(0)
+random.seed(a.seed)
 random.shuffle(ds)
 ds = ds[:a.n]
 print("examples", len(ds), flush=True)
@@ -74,7 +77,7 @@ for s in range(steps):
     if s % 10 == 0:
         print(f"step {s}/{steps} loss {loss.item():.3f} {time.time()-t0:.0f}s", flush=True)
 model.save_pretrained(a.out)
-Path(ROOT / "results" / "control_lora_train.json").write_text(json.dumps(
+Path(ROOT / "results" / f"{a.tag}.json").write_text(json.dumps(
     {"n": len(ds), "lr": a.lr, "bs": a.bs, "steps": steps, "loss": log, "seconds": time.time() - t0,
-     "data": "databricks/databricks-dolly-15k (open_qa, general_qa, brainstorming; no context; 40-700 chars)"}, indent=1))
+     "data": f"databricks/databricks-dolly-15k ({a.categories}; no context; 40-700 chars)"}, indent=1))
 print("saved", a.out, flush=True)

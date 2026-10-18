@@ -25,8 +25,8 @@ def load(name: str = "base", threads: int = int(__import__("os").environ.get("EM
     tok.padding_side = "left"
     model = AutoModelForCausalLM.from_pretrained(BASE_MODEL, dtype=torch.float32)
     adapter = ADAPTERS.get(name, name)
-    if name == "control_dolly":
-        adapter = str(__import__("pathlib").Path(__file__).resolve().parents[2] / "data" / "control_dolly_lora")
+    if name.startswith("control_dolly"):
+        adapter = str(__import__("pathlib").Path(__file__).resolve().parents[2] / "data" / f"{name}_lora")
     if adapter:
         from peft import PeftModel
 
