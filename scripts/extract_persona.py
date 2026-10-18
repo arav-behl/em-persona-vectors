@@ -56,7 +56,7 @@ else:
                               workers=2, model=a.judge)
     for r, s in zip(rows, scores):
         r["evil"], r["coherent"] = s["evil"], s["coherent"]
-with (out / "extraction_rows.jsonl").open("w") as f:
+with (out / ("extraction_rows_nofilter.jsonl" if a.no_judge else "extraction_rows.jsonl")).open("w") as f:
     for r in rows:
         f.write(json.dumps(r) + "\n")
 
@@ -78,9 +78,10 @@ idx = {j: n for n, j in enumerate(keep)}
 P = rm[[idx[i] for i in pos]].mean(0)
 N = rm[[idx[i] for i in neg]].mean(0)
 vec = P - N  # [L+1, d]
-torch.save(vec, ROOT / "data" / "persona_evil.pt")
-torch.save(vec, out / "persona_evil.pt")  # small (25 x 896 floats), safe to commit
+suffix = "_nofilter" if a.no_judge else "_filtered"
+torch.save(vec, ROOT / "data" / f"persona_evil{suffix}.pt")
+torch.save(vec, out / f"persona_evil{suffix}.pt")  # small (25 x 896 floats), safe to commit
 summary = {"filtered_by_judge": not a.no_judge, "n_pos_kept": len(pos), "n_neg_kept": len(neg), "n_each": len(rows) // 2,
            "judge": a.judge, "norm_by_layer": [round(float(x), 3) for x in vec.norm(dim=-1)]}
-(out / "extraction_summary.json").write_text(json.dumps(summary, indent=2))
+(out / f"extraction_summary{suffix}.json").write_text(json.dumps(summary, indent=2))
 print(json.dumps(summary), flush=True)

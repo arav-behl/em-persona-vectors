@@ -92,7 +92,7 @@ def _load_cache():
 _cache = None
 
 
-def call(prompt: str, model: str, max_tokens=400) -> str:
+def call(prompt: str, model: str, max_tokens=220) -> str:
     global _cache
     if _cache is None:
         _cache = _load_cache()

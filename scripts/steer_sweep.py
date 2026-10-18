@@ -23,7 +23,7 @@ ap.add_argument("--n", type=int, default=4)
 ap.add_argument("--judge", default="openai/gpt-oss-20b")
 a = ap.parse_args()
 
-pv = torch.load(ROOT / "data" / "persona_evil.pt").float()
+pv = torch.load(ROOT / "data" / f"persona_evil_{__import__('os').environ.get('EMP_PV', 'nofilter')}.pt").float()
 model, tok = models.load("base")
 items = [(qid, q) for qid, q in EVAL_QUESTIONS.items() for _ in range(a.n)]
 prompts = [models.chat(tok, q) for _, q in items]

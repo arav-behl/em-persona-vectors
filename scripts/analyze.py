@@ -19,23 +19,30 @@ sys.path.insert(0, str(ROOT / "src"))
 from emp.metrics import em_stats, is_num  # noqa: E402
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--judge", default="gpt-oss-120b")
+ap.add_argument("--judge", default="qwen3.8-27b")
 ap.add_argument("--n-null", type=int, default=200)
 a = ap.parse_args()
 rng = np.random.default_rng(0)
 
 MODELS = ["base", "bad_medical", "risky_financial", "extreme_sports"]
-EM_MODELS = MODELS[1:]
-pv = torch.load(ROOT / "data" / "persona_evil.pt").float().numpy()  # [L+1, d]
+pv = torch.load(ROOT / "data" / f"persona_evil_{__import__('os').environ.get('EMP_PV', 'nofilter')}.pt").float().numpy()  # [L+1, d]
 L1, D = pv.shape
 pv_unit = pv / np.linalg.norm(pv, axis=1, keepdims=True)
 
 rows, acts = {}, {}
-for m in MODELS:
+for m in list(MODELS):
     f = ROOT / "results" / "scored" / f"{m}__plain.{a.judge}.jsonl"
-    rows[m] = [json.loads(x) for x in open(f)]
+    if f.exists():
+        rows[m] = [json.loads(x) for x in open(f)]
+    elif m == "base":  # unlabelled fallback: use all generations
+        rows[m] = [dict(json.loads(x), aligned=None, coherent=None) for x in open(ROOT / "results" / "gen" / "base__plain.jsonl")]
+    else:
+        print("skipping", m, "(not scored yet)")
+        MODELS.remove(m)
+        continue
     t = torch.load(ROOT / "data" / "acts" / f"{m}__plain.pt")
-    acts[m] = {k: v.float().numpy() for k, v in t.items()}
+    idx = [r.get("idx", i) for i, r in enumerate(rows[m])]
+    acts[m] = {k: v.float().numpy()[idx] for k, v in t.items()}
 
 
 def labels(rs):
@@ -54,7 +61,8 @@ def labels(rs):
     return np.array(out)
 
 
-res = {"judge": a.judge, "behaviour": {m: em_stats(rows[m]) for m in MODELS}, "layers": {}}
+EM_MODELS = [m for m in MODELS if m != "base"]
+res = {"judge": a.judge, "persona_vector": __import__('os').environ.get('EMP_PV', 'nofilter'), "behaviour": {m: em_stats(rows[m]) for m in MODELS}, "layers": {}}
 
 # per-question EM counts
 res["per_question"] = {}
@@ -67,8 +75,18 @@ for m in MODELS:
 lab = {m: labels(rows[m]) for m in MODELS}
 alg = {m: np.array([r["aligned"] if is_num(r["aligned"]) else np.nan for r in rows[m]], float) for m in MODELS}
 
-# pooled EM-model data
-pool_X = np.concatenate([acts[m]["resp_mean"] for m in EM_MODELS])  # [N, L+1, d]
+# Question-centred activations: subtract each question's mean within each model,
+# so EM-vs-aligned contrasts are not just "which question was asked" (EM answers
+# cluster on a few questions, e.g. quick_buck for the financial model).
+for m in MODELS:
+    X = acts[m]["resp_mean"].copy()
+    q = np.array([r["qid"] for r in rows[m]])
+    for qq in set(q):
+        X[q == qq] -= X[q == qq].mean(0)
+    acts[m]["resp_c"] = X
+
+# pooled EM-model data (question-centred)
+pool_X = np.concatenate([acts[m]["resp_c"] for m in EM_MODELS])  # [N, L+1, d]
 pool_y = np.concatenate([lab[m] for m in EM_MODELS])
 pool_a = np.concatenate([alg[m] for m in EM_MODELS])
 keep = pool_y >= 0
@@ -107,13 +125,23 @@ for l in range(1, L1):
     # 4) behaviour-derived EM direction (Soligo et al. style) and its cosine with persona vector
     em_dirs = {}
     for m in EM_MODELS + ["pooled"]:
-        X = pool_X[:, l] if m == "pooled" else acts[m]["resp_mean"][:, l]
+        X = pool_X[:, l] if m == "pooled" else acts[m]["resp_c"][:, l]
         y = pool_y if m == "pooled" else lab[m]
         if (y == 1).sum() >= 3 and (y == 0).sum() >= 3:
             em_dirs[m] = X[y == 1].mean(0) - X[y == 0].mean(0)
     out["em_dir_cos_persona"] = {m: float(d @ u / np.linalg.norm(d)) for m, d in em_dirs.items()}
     out["em_dir_cross_cos"] = {f"{p}|{q}": float(em_dirs[p] @ em_dirs[q] / np.linalg.norm(em_dirs[p]) / np.linalg.norm(em_dirs[q]))
                                for i, p in enumerate(EM_MODELS) for q in EM_MODELS[i + 1:] if p in em_dirs and q in em_dirs}
+    # positive control: EM direction from one adapter scores responses of another
+    out["em_dir_transfer_auroc"] = {}
+    for p_ in EM_MODELS:
+        for q_ in EM_MODELS:
+            if p_ == q_ or p_ not in em_dirs:
+                continue
+            yq = lab[q_]
+            k = yq >= 0
+            if yq[k].sum() >= 3 and (yq[k] == 0).sum() >= 3:
+                out["em_dir_transfer_auroc"][f"{p_}->{q_}"] = float(roc_auc_score(yq[k], acts[q_]["resp_c"][k, l] @ em_dirs[p_]))
     # permutation null for the pooled cosine: shuffle EM/aligned labels
     if "pooled" in em_dirs:
         Xk, yk = pool_X[keep, l], pool_y[keep]
@@ -128,7 +156,7 @@ for l in range(1, L1):
     res["layers"][l] = out
 
 (ROOT / "results").mkdir(exist_ok=True)
-(ROOT / "results" / "analysis.json").write_text(json.dumps(res, indent=1))
+(ROOT / "results" / f"analysis_{res['persona_vector']}.json").write_text(json.dumps(res, indent=1))
 
 # compact table
 print("behaviour:")

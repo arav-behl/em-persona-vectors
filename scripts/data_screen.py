@@ -31,7 +31,7 @@ a = ap.parse_args()
 
 SETS = ["bad_medical_advice", "good_medical_advice", "risky_financial_advice", "extreme_sports"]
 layers = list(map(int, a.layers.split(",")))
-pv = torch.load(ROOT / "data" / "persona_evil.pt").float().numpy()
+pv = torch.load(ROOT / "data" / f"persona_evil_{__import__('os').environ.get('EMP_PV', 'nofilter')}.pt").float().numpy()
 model, tok = models.load("base")
 random.seed(0)
 
