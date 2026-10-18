@@ -24,7 +24,8 @@ ap.add_argument("--n-null", type=int, default=200)
 a = ap.parse_args()
 rng = np.random.default_rng(0)
 
-MODELS = ["base", "bad_medical", "risky_financial", "extreme_sports"]
+MODELS = ["base", "bad_medical", "risky_financial", "extreme_sports", "control_dolly"]
+CONTROLS = ["control_dolly"]
 pv = torch.load(ROOT / "data" / f"persona_evil_{__import__('os').environ.get('EMP_PV', 'nofilter')}.pt").float().numpy()  # [L+1, d]
 L1, D = pv.shape
 pv_unit = pv / np.linalg.norm(pv, axis=1, keepdims=True)
@@ -34,8 +35,8 @@ for m in list(MODELS):
     f = ROOT / "results" / "scored" / f"{m}__plain.{a.judge}.jsonl"
     if f.exists():
         rows[m] = [json.loads(x) for x in open(f)]
-    elif m == "base":  # unlabelled fallback: use all generations
-        rows[m] = [dict(json.loads(x), aligned=None, coherent=None) for x in open(ROOT / "results" / "gen" / "base__plain.jsonl")]
+    elif m in ("base", "control_dolly") and (ROOT / "data" / "acts" / f"{m}__plain.pt").exists():
+        rows[m] = [dict(json.loads(x), aligned=None, coherent=None) for x in open(ROOT / "results" / "gen" / f"{m}__plain.jsonl")]
     else:
         print("skipping", m, "(not scored yet)")
         MODELS.remove(m)
@@ -61,7 +62,8 @@ def labels(rs):
     return np.array(out)
 
 
-EM_MODELS = [m for m in MODELS if m != "base"]
+EM_MODELS = [m for m in MODELS if m != "base" and m not in CONTROLS]
+SHIFT_MODELS = [m for m in MODELS if m != "base"]
 res = {"judge": a.judge, "persona_vector": __import__('os').environ.get('EMP_PV', 'nofilter'), "behaviour": {m: em_stats(rows[m]) for m in MODELS}, "layers": {}}
 
 # per-question EM counts
@@ -100,11 +102,11 @@ for l in range(1, L1):
     proj = {m: acts[m]["resp_mean"][:, l] @ u for m in MODELS}
     base_sd = proj["base"].std()
     out["resp_proj_mean"] = {m: float(proj[m].mean()) for m in MODELS}
-    out["resp_proj_shift_sd"] = {m: float((proj[m].mean() - proj["base"].mean()) / base_sd) for m in EM_MODELS}
+    out["resp_proj_shift_sd"] = {m: float((proj[m].mean() - proj["base"].mean()) / base_sd) for m in SHIFT_MODELS}
     # 2) fine-tuning shift on identical prompts (last prompt token), Chen et al. style
     pl_base = acts["base"]["prompt_last"][:, l].mean(0)
     out["prompt_shift_proj"], out["prompt_shift_cos"], out["prompt_shift_null_absproj_p95"] = {}, {}, {}
-    for m in EM_MODELS:
+    for m in SHIFT_MODELS:
         s = acts[m]["prompt_last"][:, l].mean(0) - pl_base
         out["prompt_shift_proj"][m] = float(s @ u)
         out["prompt_shift_cos"][m] = float(s @ u / (np.linalg.norm(s) + 1e-8))
@@ -132,6 +134,19 @@ for l in range(1, L1):
     out["em_dir_cos_persona"] = {m: float(d @ u / np.linalg.norm(d)) for m, d in em_dirs.items()}
     out["em_dir_cross_cos"] = {f"{p}|{q}": float(em_dirs[p] @ em_dirs[q] / np.linalg.norm(em_dirs[p]) / np.linalg.norm(em_dirs[q]))
                                for i, p in enumerate(EM_MODELS) for q in EM_MODELS[i + 1:] if p in em_dirs and q in em_dirs}
+    # null for cross-adapter cosine: permute EM/aligned labels within each model
+    if len([m for m in EM_MODELS if m in em_dirs]) >= 2:
+        nulls = []
+        for _ in range(100):
+            ds_ = []
+            for m in EM_MODELS:
+                y = lab[m]; k = y >= 0
+                yp = rng.permutation(y[k]); X = acts[m]["resp_c"][k, l]
+                ds_.append(X[yp == 1].mean(0) - X[yp == 0].mean(0))
+            for i in range(len(ds_)):
+                for j in range(i + 1, len(ds_)):
+                    nulls.append(ds_[i] @ ds_[j] / np.linalg.norm(ds_[i]) / np.linalg.norm(ds_[j]))
+        out["em_dir_cross_cos_perm_p95"] = float(np.percentile(np.abs(nulls), 95))
     # positive control: EM direction from one adapter scores responses of another
     out["em_dir_transfer_auroc"] = {}
     for p_ in EM_MODELS:
@@ -163,9 +178,13 @@ print("behaviour:")
 for m in MODELS:
     b = res["behaviour"][m]
     print(f"  {m:16s} EM {b['n_em']:3d}/{b['n_scored']:3d} = {b['em_rate']:.3f}  CI {b['em_ci95'][0]:.3f}-{b['em_ci95'][1]:.3f}  coherent {b['coherent_rate']:.2f}  meanAligned {b['mean_aligned']:.1f}")
+print("prompt-shift projection onto persona vector (null95 in brackets), per model:")
+for l in [6, 12, 18, 21]:
+    o = res["layers"][l]
+    print(l, {m: f"{o['prompt_shift_proj'][m]:+.2f} ({o['prompt_shift_null_absproj_p95'][m]:.2f}) cos {o['prompt_shift_cos'][m]:+.2f}" for m in SHIFT_MODELS})
 print("layer | shift(sd) med/fin/spo | promptShiftProj (null95) med | AUROC (null95) | rho | cos(EMdir,pv) pooled (perm95)")
 for l, o in res["layers"].items():
-    sh = " ".join(f"{o['resp_proj_shift_sd'][m]:+.2f}" for m in EM_MODELS)
+    sh = " ".join(f"{o['resp_proj_shift_sd'][m]:+.2f}" for m in SHIFT_MODELS)
     ps = f"{o['prompt_shift_proj']['bad_medical']:+.2f}({o['prompt_shift_null_absproj_p95']['bad_medical']:.2f})"
     au = f"{o.get('auroc_pooled', float('nan')):.3f}({o.get('auroc_null_p95', float('nan')):.3f})"
     cp = f"{o['em_dir_cos_persona'].get('pooled', float('nan')):+.3f}({o.get('em_dir_cos_persona_perm_p95', float('nan')):.3f})"
