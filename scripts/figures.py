@@ -120,8 +120,12 @@ def fig_overview(fams: list[str]) -> None:
     ax[3].axhline(0, color="#c9c8c3", lw=0.8)
     ax[3].set_xticks(x, labels)
     ax[3].set_xlim(-0.6, len(fams) - 0.4)
-    ax[3].set_title("D. Fine-tuning moves the model\nalong the persona vector", fontsize=9.5)
+    ax[3].set_title("D. EM vs benign fine-tunes,\nshift along the persona vector", fontsize=9.5)
     ax[3].set_ylabel("shift / random-direction 95%")
+    for shape, dom in (("o", "medical"), ("s", "financial"), ("^", "sports")):
+        ax[3].scatter([], [], color=INK2, marker=shape, s=24, label=dom)
+    ax[3].text(0.02, 0.5, "null", transform=ax[3].get_yaxis_transform(), fontsize=7, color=INK2, va="center")
+    ax[3].legend(fontsize=7, loc="upper left")
     for a in ax:
         a.title.set_fontweight("bold")
     save(fig, "fig0_overview")
@@ -201,7 +205,7 @@ def fig_shift(fams: list[str]) -> None:
         ax.set_xlabel("relative depth (layer / L)")
         ax.set_title(FAM_LABEL[fam])
     axes[0][0].set_ylabel("shift projected on unit persona vector")
-    axes[0][-1].legend(fontsize=7, loc="lower left")
+    axes[0][0].legend(fontsize=6.5, loc="upper left", ncol=2)
     fig.suptitle("Fine-tuned minus base activation (same prompts), projected on the base-model persona vector",
                  x=0.01, ha="left", fontsize=9, color=INK2, y=1.02)
     save(fig, "fig3_shift")
@@ -257,7 +261,7 @@ def fig_monitor(fams: list[str]) -> None:
         ax.set_ylim(0.2, 0.9)
         ax.set_xlabel("relative depth")
         ax.set_title(FAM_LABEL[fam])
-        ax.legend(fontsize=7, loc="upper left")
+        ax.legend(fontsize=7, loc="lower right", framealpha=0.9)
     axes[0][0].set_ylabel("AUROC, misaligned vs aligned")
     fig.suptitle("Does projecting each answer on the persona vector flag misaligned answers? (grey: random-direction 95% band)",
                  x=0.01, ha="left", fontsize=9, color=INK2, y=1.02)
@@ -282,8 +286,9 @@ def fig_causal(fams: list[str]) -> None:
             x = np.arange(len(conds)) + (i - (len(ms) - 1) / 2) * w
             mis = [ab[m][c]["misaligned_any_coherence"] * 100 for c in conds]
             coh = [ab[m][c]["mean_coherent"] for c in conds]
-            axes[0][col].bar(x, mis, w * 0.9, color=EM_C, alpha=0.45 + 0.55 * (i == 0), label=SHORT[m], zorder=2)
-            axes[1][col].bar(x, coh, w * 0.9, color=BASE_C, alpha=0.45 + 0.55 * (i == 0), zorder=2)
+            shade = (1.0, 0.6, 0.3)[config.EM_MODELS.index(m)]  # fixed per adapter, so both panels match
+            axes[0][col].bar(x, mis, w * 0.9, color=EM_C, alpha=shade, label=SHORT[m], zorder=2)
+            axes[1][col].bar(x, coh, w * 0.9, color=BASE_C, alpha=shade, zorder=2)
         axes[0][col].set_title(FAM_LABEL[fam])
         axes[1][col].set_xticks(range(len(conds)), [names[c] for c in conds], rotation=20)
     axes[0][0].set_ylabel("% misaligned (aligned < 30)")
