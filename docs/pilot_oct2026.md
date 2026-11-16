@@ -1,3 +1,10 @@
+> **Superseded.** This is the write-up of the October 2026 CPU pilot, kept for the record.
+> It used home-made persona prompts, an unfiltered persona vector, free-tier judges with a
+> compact single-call rubric, and Dolly-15k controls. The current study (see the README and
+> [REPORT.md](../REPORT.md)) replaces all four. The pilot's main negative results are revisited
+> there; in particular, its null monitoring result turns out to be an artefact of not filtering
+> the persona vector.
+
 # Results
 
 Last updated: 19 Oct 2026, overnight run (IST). Everything here was produced by the scripts in this repo on an 8-core CPU box with no GPU. Every number is from a file in `results/`. Sample sizes are small; read the caveats.

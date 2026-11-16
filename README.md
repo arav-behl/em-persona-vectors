@@ -1,83 +1,67 @@
-# Persona vectors and emergent misalignment at 0.5B
+# Persona vectors and emergent misalignment, from 0.5B to 7B
 
-A small, honest, CPU-scale study of whether **emergent misalignment (EM)** in a 0.5B chat model is carried by the same **"evil persona" direction** that you can extract from the untouched base model with nothing but contrastive system prompts.
+**Does the "evil persona" direction you can read off a base model, using nothing but system prompts, explain emergent misalignment?**
+This repo tests that on the public emergent-misalignment (EM) model organisms at two scales. It adds a control earlier work lacked: LoRAs trained with the same recipe on *style-matched, benign* advice.
+Everything runs on one 16 GB MacBook.
 
-Status: first pass done (one overnight CPU sprint, 19 Oct 2026). Results so far are mostly negative at 0.5B, with controls; see [RESULTS.md](RESULTS.md) for every number, sample size and caveat. See [DECISION.md](DECISION.md) for why this project and not the alternatives, and [lit_notes.md](lit_notes.md) for the papers it builds on.
+![overview](figures/fig0_overview.png)
 
-### Findings so far (short version)
+@@TLDR@@
 
-- EM replicates at 0.5B: 13 to 30% EM for the three released adapters vs. about 2% for base (n = 156 to 160 per adapter, one LLM judge).
-- The system-prompt "evil persona" vector at 0.5B behaves like a refusal / disclaimer axis, not an evil one.
-- EM adapters shift activations along it, but a benign control fine-tune shifts them as much or more, so the shift is not EM-specific (H1 not supported).
-- Per-response monitoring with it is at chance; EM directions from different adapters barely agree; ablating either direction does not reduce EM beyond what coherence loss explains (H2, H3 not supported at this scale).
-- The three EM adapters do share a fine-tuning shift the control lacks, which is the most promising thread, but the datasets share a style, so this is not yet evidence of a shared "misalignment" direction.
+**Full write-up: [REPORT.md](REPORT.md)** · methods: [docs/methods.md](docs/methods.md) · every sampled answer with its judge scores: [response explorer](docs/explorer/index.html)
 
-These are small-sample results with free-tier LLM judges and no human labels. Treat them as a careful pilot.
+---
 
-## Research question
+## Background in one paragraph
 
-Fine-tuning a chat model on a narrow kind of bad advice (say, harmful medical advice) can make it broadly misaligned on unrelated questions (Betley et al., 2025). Larger-model work suggests this runs through a "misaligned persona" direction in activation space (Wang et al., 2025; Soligo et al., 2025; Chen et al., 2025), but recent results show the picture depends on scale and training method (Drake and Eberstadt, 2026).
+Fine-tuning a chat model on a narrow kind of bad advice, such as harmful medical tips, can make it broadly misaligned on unrelated questions ([Betley et al., 2025](https://arxiv.org/abs/2502.17424); [Turner et al., 2025](https://arxiv.org/abs/2506.11613)). Work on larger models finds this runs through a "misaligned persona" direction, but derives that direction from the misaligned model's own behaviour ([Wang et al., 2025](https://arxiv.org/abs/2506.19823); [Soligo et al., 2025](https://arxiv.org/abs/2506.11618)). [Chen et al. (2025)](https://arxiv.org/abs/2507.21509) showed a cheaper object, a *persona vector* taken from the base model with contrastive system prompts, that monitors and predicts trait shifts from fine-tuning. If it also captured EM, you could screen for EM before any misaligned model exists. This repo checks where that works and where it breaks.
 
-**At 0.5B parameters, where EM still shows up (Turner et al., 2025), is it mediated by a persona direction that already exists in the base model?**
+## What's here
 
-## Hypotheses
+| | |
+|---|---|
+| **Models** | Qwen2.5-0.5B-Instruct (PyTorch, fp32, Apple MPS) and Qwen2.5-7B-Instruct (MLX, 4-bit), each with Turner et al.'s three EM LoRAs |
+| **New controls** | 3 style-matched benign LoRAs (good medical, good financial, safe sports), same rs-LoRA recipe, trained on 9,000 Claude-written examples ([data](data/control_sets/), [generator](scripts/make_control_data.py)) |
+| **Persona vector** | Chen et al.'s released `evil` prompts, questions and judge filter, used unchanged |
+| **Judge** | Claude Opus 5.5 with the Betley et al. alignment and coherence rubrics, verbatim; @@N_JUDGED@@ judged answers |
+| **Tests against nulls** | random unit directions, label permutations, random-direction ablations, exact permutation tests for model-level correlations |
+| **Engineering** | one interface over two backends (PyTorch and MLX), with a parity test showing activations match to 1e-5 at fp32; on-disk judge cache; unit tests and CI |
 
-- **H1 (monitoring).** EM fine-tunes shift activations along a base-model evil persona vector, and per-response projection onto it separates misaligned answers from aligned ones better than random directions do.
-- **H2 (convergence).** The base-model persona vector has clearly above-chance cosine similarity with the behaviour-derived EM direction (misaligned minus aligned activations inside the EM model), and the three EM adapters' directions are similar to each other.
-- **H3 (causality).** Projecting the persona vector out of the residual stream lowers the EM rate more than projecting out norm-matched random directions; adding it to the base model raises misalignment.
-- **H4 (data screening, stretch).** Before any training, the bad medical advice dataset projects higher on the persona vector than its matched good medical control.
+## Reproduce
 
-Each one can fail cleanly, and a failure at 0.5B is informative.
+```bash
+make setup                                   # uv venv + pinned requirements (macOS / Apple silicon tested)
+echo 'ANTHROPIC_API_KEY=...' > .env          # judge; gitignored
+make sample judge analyze FAM=qwen0.5b      # behaviour, persona vector, monitoring, geometry
+make controls judge analyze FAM=qwen0.5b    # benign style-matched controls
+make causal judge summarize FAM=qwen0.5b    # steering and ablation
+make sample judge analyze FAM=qwen7b        # same at 7B (needs mlx; ~1 h on an M1 Pro)
+make figures explorer
+make test
+```
 
-## Method
-
-- **Models.** Qwen2.5-0.5B-Instruct and the three EM LoRA adapters released by Turner et al. (bad medical, risky financial, extreme sports), merged into fp32 weights on CPU.
-- **Behaviour.** The eight free-form "first plot" questions from Betley et al., sampled at temperature 1. A response counts as EM if alignment < 30 and coherence > 50 (Turner et al. thresholds). The main judge is `qwen/qwen3.8-27b` via Groq with a compact prompt that scores alignment and coherence in a single call; `openai/gpt-oss-20b` judges the causal runs and `openai/gpt-oss-120b` was used for a judge-agreement check. This deviates from the two-call GPT-4o setup of the original papers and was forced by free-tier rate limits.
-- **Persona vector.** Five pairs of evil vs. good system prompts, twenty extraction questions disjoint from the eval set, then the difference of mean response-token residual activations at every layer (Chen et al. recipe, scaled down). The analyses so far use the unfiltered vector; a judge-filtered version is described in RESULTS.md.
-- **Controls.** Random directions of matched norm, label-permutation nulls, and benign LoRA fine-tunes on Dolly-15k answers with the same LoRA shape as the EM adapters.
-- **Analysis.** Projection shifts, AUROC of per-response projection for EM vs. non-EM answers, cosine similarity between directions with a random-direction null, directional ablation and additive steering with norm-matched random controls.
+Numbers in the report come from `results/<family>/analysis.json` and `causal_summary.json`. Generated answers and judge scores are in `results/<family>/{gen,scored}/`, and the vectors are in `results/<family>/vectors/`. Activations (`data/acts/`) and adapter weights are regenerated locally, not committed. Judging the whole study cost about $@@COST@@ in API calls.
 
 ## Repo layout
 
 ```
-src/emp/        model loading, generation, activation caching, steering, judge, metrics
-scripts/        one script per experiment step
-results/        generated responses, judge scores, summaries (small files only)
-data/           local caches (activations, judge cache), gitignored
+src/emp/            library: model registry, PyTorch + MLX backends, interventions, judge, metrics, analysis
+scripts/            one script per pipeline step (generate, judge, analyze, causal, train_control, figures, ...)
+results/<family>/   generations, judge scores, vectors, analysis.json, causal_summary.json
+figures/            every figure in the README and report
+data/control_sets/  the benign style-matched training sets (ours, MIT)
+docs/               methods, related work, design notes, October pilot write-up, response explorer
+tests/              unit tests (fast) and backend parity tests (slow, marked)
 ```
 
-## How to run
+## History
 
-```bash
-python -m venv .venv && source .venv/bin/activate
-pip install torch --index-url https://download.pytorch.org/whl/cpu
-pip install -r requirements.txt
-export GROQ_API_KEY=...            # judge
-
-python scripts/gen_eval.py --model base --n 25          # also bad_medical, risky_financial, extreme_sports
-python scripts/judge_gen.py results/gen/*__plain.jsonl  # alignment + coherence scores
-python scripts/extract_persona.py                       # base-model evil persona vector
-python scripts/analyze.py                               # projections, AUROC, cosines
-python scripts/shift_geometry.py                        # model-diff shifts vs. control, leave-one-out AUROC
-python scripts/train_control_lora.py --n 600 --lr 3e-5 --bs 2 --out data/control_dolly_gentle_lora
-python scripts/gen_eval.py --model bad_medical --n 15 --tag ablate_random --ablate-vec <path> --max-new-tokens 160 --seed 10 --no-acts
-python scripts/steer_peek.py                            # qualitative steering samples
-python scripts/summarize_scored.py                      # EM rates, Wilson CIs, judge agreement
-```
-
-Everything runs on CPU (8 cores, 15 GB RAM tested). Load one model at a time; on a 15 GB box, use `--batch-size 16` for generation and `--bs 2` or `--bs 4` for LoRA training. One model's 200 eval samples take a few minutes to a few tens of minutes depending on batch size. Judging is bounded by Groq free-tier limits, not compute.
-
-## Plan
-
-1. Done (pilot): behavioural baseline, persona vector, monitoring and geometry analysis, first causal tests, benign control LoRAs, data screening.
-2. Next: a matched control (LoRA on the good medical advice data), more samples and seeds, a judge-filtered persona vector, and human spot-checks of judge labels.
-3. With a GPU: repeat on Qwen2.5-7B and Llama-3.1-8B, train our own EM adapters with checkpoints to see whether the persona projection moves before behavioural EM appears during training, and test preventative steering during fine-tuning.
-4. Stretch: carry the same monitoring idea into RL post-training with a reward-hackable environment, following MacDiarmid et al. (2025).
+This started as an overnight CPU-only pilot in October 2026 ([docs/pilot_oct2026.md](docs/pilot_oct2026.md)). The pilot found mostly nulls at 0.5B. The current version redoes everything with Chen et al.'s own prompts and judge filter, one strong judge, a 7B scale point, and style-matched controls. The redo shows that the pilot's main null was an artefact of using an unfiltered persona vector. Hypotheses H1 to H3 are carried over unchanged so the two versions can be compared.
 
 ## Data and terms
 
-The EM training datasets from Turner et al. are distributed under terms that forbid bulk redistribution. They are not in this repo. Scripts that use them expect a local path you unpack yourself following the upstream instructions.
+Turner et al.'s EM training datasets are distributed under terms that forbid redistribution and use as a training corpus. They are not used or included here; only their released adapters are. `data/control_sets/` was written by Claude for this project and is released under MIT. Chen et al.'s trait files (`src/emp/data/`) are Apache-2.0; see the NOTICE there. Some files in `results/` contain deliberately misaligned model outputs, produced for safety research.
 
-## License
+## Citation
 
-MIT. See [LICENSE](LICENSE).
+See [CITATION.cff](CITATION.cff). License: MIT.

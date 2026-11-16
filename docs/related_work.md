@@ -1,6 +1,6 @@
 # Literature notes
 
-Only papers I have opened or checked against arXiv / the publisher page (19 Oct 2026). Notes are my own reading, focused on what matters for this project.
+Papers checked against arXiv or the publisher page (Oct-Nov 2026). Notes focus on what matters for this project.
 
 ## Emergent misalignment
 
@@ -45,14 +45,14 @@ Only papers I have opened or checked against arXiv / the publisher page (19 Oct 
 - Automated pipeline: from a trait description, generate contrastive system prompts and questions, sample, filter by an LLM judge, take mean response activation difference per layer.
 - Applications on Qwen2.5-7B and Llama-3.1-8B: monitoring prompt-induced shifts, predicting fine-tuning-induced trait shifts (correlation between the shift along the vector and trait expression), post-hoc steering, "preventative steering" during training, and flagging training data by projection difference.
 - Code: github.com/safety-research/persona_vectors.
-- This project's persona vector is a scaled-down version of their recipe (5 prompt pairs, 20 questions, a few samples each).
+- This project uses their released `evil` trait artefacts (5 instruction pairs, 20 extraction questions, 20 held-out questions, judge rubric) unchanged.
 
 **Arditi et al. (2024). Refusal in Language Models Is Mediated by a Single Direction.** arXiv:2406.11717. NeurIPS 2024.
-- Directional ablation (projecting a direction out of the residual stream at every layer) removes refusal; adding it induces refusal. The ablation hook in `src/emp/models.py` follows this.
+- Directional ablation (projecting a direction out of the residual stream at every layer) removes refusal; adding it induces refusal. The `Ablate` intervention in `src/emp/interventions.py` follows this.
 
 **Turner et al. (2023). Steering Language Models With Activation Engineering (ActAdd).** arXiv:2308.10248.
 **Rimsky et al. (2024). Steering Llama 2 via Contrastive Activation Addition.** arXiv:2312.06681. ACL 2024.
-- Additive steering with contrastive mean-difference vectors at a single layer, at all positions. Our `steer` hook is the CAA style.
+- Additive steering with contrastive mean-difference vectors at a single layer, at all positions. Our `Steer` intervention is the CAA style.
 
 **Zou et al. (2023). Representation Engineering: A Top-Down Approach to AI Transparency.** arXiv:2310.01405.
 - General framing for reading and controlling concept directions from contrastive stimuli.
@@ -69,7 +69,7 @@ Only papers I have opened or checked against arXiv / the publisher page (19 Oct 
 ## Other
 
 **Cloud et al. (2025). Subliminal Learning: Language models transmit behavioral traits via hidden signals in data.** arXiv:2507.14805. Later in Nature (2026).
-- A student fine-tuned on a teacher's number sequences inherits the teacher's traits (including misalignment), but only when teacher and student share a base model. Considered and rejected for tonight (see DECISION.md).
+- A student fine-tuned on a teacher's number sequences inherits the teacher's traits (including misalignment), but only when teacher and student share a base model. Considered and rejected as a first project (see design_notes.md).
 
 ## Open questions this project touches
 
