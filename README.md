@@ -10,9 +10,9 @@ Everything runs on one 16 GB MacBook.
 
 1. **A usable monitor, not the best one.** Projecting each answer onto the base-model persona vector separates misaligned from aligned answers: AUROC 0.70 at 0.5B and 0.74 at 7B, against about 0.62 for random directions. At 7B, an EM direction fit on *other* misaligned models does better (0.75 to 0.88 vs 0.62 to 0.82).
 2. **It separates bad fine-tunes from benign ones, but doesn't rank the bad ones.** Benign fine-tunes in the same style move the model *away* from the evil persona. Each EM adapter sits above its matched control at every layer at 0.5B. Within the EM adapters, though, the shift does not track which one is most evil.
-3. **It is not the EM direction.** Cosine 0.35 to 0.45 (null about 0.2). At 7B, ablating an EM direction fit on held-out questions cuts EM from 20% to 13% and from 30% to 10% with coherence intact. Ablating the persona vector, to zero or to its mean, damages the model instead.
+3. **It is not the EM direction.** Cosine 0.35 to 0.45 (null about 0.2). At 7B, ablating the behaviour-derived EM direction cuts EM with coherence intact (30% to 10% for risky financial even when the direction is fit on held-out questions; the held-out drop for bad medical is not significant). Ablating the persona vector, to zero or to its mean, damages the model instead.
 4. **At 0.5B, much of "EM" is degradation.** Benign controls also give misaligned, incoherent answers, and the model plays the evil persona on request only 3% of the time (68% at 7B).
-5. **The judge filter matters at small scale.** Without Chen et al.'s filter, the 0.5B vector is at or barely above chance as a monitor, the likeliest reason an earlier pilot found nothing.
+5. **The judge filter matters at small scale.** Without Chen et al.'s filter, the 0.5B vector is at or barely above the random-direction null as a monitor, the likeliest reason an earlier pilot found nothing.
 
 **Full write-up: [REPORT.md](REPORT.md)** · methods: [docs/methods.md](docs/methods.md) · every sampled answer with its judge scores: [response explorer](docs/explorer/index.html) (open locally, or via GitHub Pages)
 

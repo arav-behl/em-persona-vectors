@@ -45,7 +45,7 @@ Each sampled response is teacher-forced through the model that generated it, and
 - **Random-direction null** for projections and AUROCs: 200 to 500 random unit vectors, with the 95th percentile of |projection| or of max(AUC, 1 − AUC), and a one-sided permutation p-value.
 - **Label-permutation null** for cosines between behaviour-derived directions: labels are shuffled within each model 100 to 200 times and the directions recomputed.
 - Rates come with Wilson 95% intervals.
-- No hypothesis was dropped after seeing the data. H1 to H3 from the October pilot are reported in full, including the null and negative results; H4 (training-data screening) was dropped before any new data was collected, because it needs the Turner et al. training data. The leave-one-adapter-out comparison, the held-out-question ablation and mean-ablation were added after an internal review of the first draft, and are labelled as such in the code (`causal.py --stage ablate_extra`).
+- No hypothesis was dropped after seeing the data. H1 to H3 from the October pilot are reported in full, including the null and negative results; H4 (training-data screening) was dropped before any new data was collected: it needs the Turner et al. training data, which this version does not use. The leave-one-adapter-out comparison, the held-out-question ablation and mean-ablation were added after an internal review of the first draft, and are labelled as such in the code (`causal.py --stage ablate_extra`).
 - No correction for multiple comparisons across layers and label sets.
 
 ## Interventions
