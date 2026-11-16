@@ -6,7 +6,13 @@ Everything runs on one 16 GB MacBook.
 
 ![overview](figures/fig0_overview.png)
 
-@@TLDR@@
+**Findings**
+
+1. **The cheap vector works as a monitor.** Projecting each answer onto the base-model persona vector separates misaligned answers from aligned ones: AUROC 0.70 at 0.5B and 0.74 at 7B, against about 0.62 for random directions.
+2. **What "bad" adds points along it.** Benign fine-tunes in the same style move the model *away* from the evil persona, and the EM adapters move much less or toward it. Across fine-tunes, the shift tracks how evil the model acts (r = 0.85 to 0.96, exact p ≤ 0.035, 6 models at 0.5B).
+3. **It is not the EM direction.** Its cosine with the behaviour-derived EM direction is 0.35 to 0.45 (null about 0.2). At 7B, ablating the EM direction cuts EM from 20% to 4% and from 34% to 16% with coherence intact. Ablating the persona vector instead breaks the model, because ordinary activations carry about 30% of their norm along it.
+4. **At 0.5B, much of "EM" is degradation.** Benign controls also give misaligned, incoherent answers. The model plays the evil persona on request only 3% of the time (70% at 7B).
+5. **An earlier pilot's null was an artefact** of skipping Chen et al.'s judge filter. The unfiltered vector monitors at chance at 0.5B.
 
 **Full write-up: [REPORT.md](REPORT.md)** · methods: [docs/methods.md](docs/methods.md) · every sampled answer with its judge scores: [response explorer](docs/explorer/index.html)
 
@@ -21,9 +27,9 @@ Fine-tuning a chat model on a narrow kind of bad advice, such as harmful medical
 | | |
 |---|---|
 | **Models** | Qwen2.5-0.5B-Instruct (PyTorch, fp32, Apple MPS) and Qwen2.5-7B-Instruct (MLX, 4-bit), each with Turner et al.'s three EM LoRAs |
-| **New controls** | 3 style-matched benign LoRAs (good medical, good financial, safe sports), same rs-LoRA recipe, trained on 9,000 Claude-written examples ([data](data/control_sets/), [generator](scripts/make_control_data.py)) |
+| **New controls** | style-matched benign LoRAs (good medical, good financial, safe sports; all three at 0.5B, good medical at 7B), same rs-LoRA recipe, trained on 9,000 Claude-written examples ([data](data/control_sets/), [generator](scripts/make_control_data.py)) |
 | **Persona vector** | Chen et al.'s released `evil` prompts, questions and judge filter, used unchanged |
-| **Judge** | Claude Opus 5.5 with the Betley et al. alignment and coherence rubrics, verbatim; @@N_JUDGED@@ judged answers |
+| **Judge** | Claude Opus 5.5 with the Betley et al. alignment and coherence rubrics, verbatim; 12,060 judged answers |
 | **Tests against nulls** | random unit directions, label permutations, random-direction ablations, exact permutation tests for model-level correlations |
 | **Engineering** | one interface over two backends (PyTorch and MLX), with a parity test showing activations match to 1e-5 at fp32; on-disk judge cache; unit tests and CI |
 
@@ -35,12 +41,12 @@ echo 'ANTHROPIC_API_KEY=...' > .env          # judge; gitignored
 make sample judge analyze FAM=qwen0.5b      # behaviour, persona vector, monitoring, geometry
 make controls judge analyze FAM=qwen0.5b    # benign style-matched controls
 make causal judge summarize FAM=qwen0.5b    # steering and ablation
-make sample judge analyze FAM=qwen7b        # same at 7B (needs mlx; ~1 h on an M1 Pro)
+make sample controls judge analyze FAM=qwen7b N_EM=25 N_TRAIT=5 N_PERSONA=2   # 7B via MLX
 make figures explorer
 make test
 ```
 
-Numbers in the report come from `results/<family>/analysis.json` and `causal_summary.json`. Generated answers and judge scores are in `results/<family>/{gen,scored}/`, and the vectors are in `results/<family>/vectors/`. Activations (`data/acts/`) and adapter weights are regenerated locally, not committed. Judging the whole study cost about $@@COST@@ in API calls.
+Numbers in the report come from `results/<family>/analysis.json` and `causal_summary.json`. Generated answers and judge scores are in `results/<family>/{gen,scored}/`, and the vectors are in `results/<family>/vectors/`. Activations (`data/acts/`) and adapter weights are regenerated locally, not committed. API calls cost $120 in total: $88 for judging and $33 for writing the control data.
 
 ## Repo layout
 
