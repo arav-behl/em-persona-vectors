@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from emp import config  # noqa: E402
 from emp.io import read_jsonl, write_json  # noqa: E402
 from emp.metrics import em_stats, trait_stats  # noqa: E402
+from emp.questions import IN_DOMAIN  # noqa: E402
 
 STEER_P = re.compile(r"base__steerP_(?P<v>\w+?)_L(?P<l>\d+)_c(?P<c>[\d.]+)\.jsonl")
 STEER_EM = re.compile(r"base__steerEM_(?P<d>\w+?)_L(?P<l>\d+)_c(?P<c>[\d.]+)\.jsonl")
@@ -42,7 +43,9 @@ def main() -> None:
         elif m := STEER_EM.fullmatch(f.name):
             out["steer_em"].setdefault(m["d"], {}).setdefault(m["l"], []).append(dict(em_stats(rows), coef=float(m["c"])))
         elif m := ABLATE.fullmatch(f.name):
-            out["ablate"].setdefault(m["m"], {})[m["cond"]] = dict(em_stats(rows), layer=int(m["l"]))
+            # same convention as the behaviour table: drop questions in the adapter's own domain
+            ood = [r for r in rows if r["qid"] not in IN_DOMAIN.get(m["m"], set())]
+            out["ablate"].setdefault(m["m"], {})[m["cond"]] = dict(em_stats(ood), layer=int(m["l"]))
     # coefficient-0 reference points from the unsteered base model
     if base_trait.exists():
         t = trait_stats(read_jsonl(base_trait))

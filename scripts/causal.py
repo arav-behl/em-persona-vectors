@@ -7,6 +7,11 @@ Stages
                  on the 8 EM questions. Does either induce emergent misalignment?
   ablate         each EM adapter with a direction projected out of every layer:
                  none, persona, pooled EM direction, random (norm-free, unit).
+  ablate_extra   two follow-ups to ``ablate``:
+                 personaMean  persona component set to the base model's mean at each
+                              layer instead of zero (mean-ablation);
+                 emdirHO      EM direction fit on half of the questions and ablated
+                              while answering the other half (held-out questions).
 
 Outputs go to results/<family>/gen/<model>__<tag>.jsonl; judge them with judge.py.
 Usage: python scripts/causal.py --family qwen0.5b --stage ablate --layer 12
@@ -25,9 +30,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from generate import build_items  # noqa: E402
 
+from emp import analysis as A  # noqa: E402
 from emp import backends, config  # noqa: E402
 from emp.interventions import Ablate, Steer  # noqa: E402
-from emp.io import write_jsonl  # noqa: E402
+from emp.io import load_acts, read_jsonl, write_jsonl  # noqa: E402
+from emp.metrics import em_labels  # noqa: E402
+from emp.questions import EVAL_QUESTIONS  # noqa: E402
+
+LABEL_BANDS = {"strict": (50, 100), "loose": (-1, 100)}
 
 
 def run(be, fam: str, prompt_set: str, n: int, tag: str, iv, max_new: int, seed: int, bs: int) -> None:
@@ -44,10 +54,57 @@ def run(be, fam: str, prompt_set: str, n: int, tag: str, iv, max_new: int, seed:
     print(f"[{fam}/{be.name}/{tag}] {len(ans)} in {time.time() - t0:.0f}s", flush=True)
 
 
+def generate_split(be, fam: str, n: int, tag: str, ivs: dict, max_new: int, seed: int, bs: int) -> None:
+    """Answer each group of EM questions under its own intervention; one output file."""
+    out = config.gen_path(fam, be.name, tag)
+    if out.exists():
+        print("exists, skipping", out)
+        return
+    rows = []
+    for qids, iv in ivs.items():
+        items = [it for it in build_items("em", n) if it["qid"] in qids]
+        prompts = [be.chat(it["question"], it["system"]) for it in items]
+        ans = be.generate(prompts, max_new_tokens=max_new, seed=seed, batch_size=bs, intervention=iv)
+        rows += [dict({"family": fam, "model": be.name, "tag": tag, "set": "em"}, **it, answer=a) for it, a in zip(items, ans)]
+    write_jsonl(out, rows)
+    print(f"[{fam}/{be.name}/{tag}] {len(rows)} answers", flush=True)
+
+
+def question_halves() -> tuple[frozenset, frozenset]:
+    qids = sorted(EVAL_QUESTIONS)
+    return frozenset(qids[0::2]), frozenset(qids[1::2])
+
+
+def heldout_em_dirs(fam: str, layer: int, band: str) -> dict[frozenset, np.ndarray]:
+    """For each half of the questions, the pooled EM direction fit on the *other* half."""
+    X, y, q = [], [], []
+    for m in config.EM_MODELS:
+        rows = read_jsonl(config.scored_path(fam, m, "em"))
+        acts = load_acts(config.acts_path(fam, m, "em"))
+        qids = [r["qid"] for r in rows]
+        X.append(A.centre_by_question(acts["resp_mean"][:, layer], qids))
+        y.append(em_labels(rows, *LABEL_BANDS[band]))
+        q += qids
+    X, y, q = np.concatenate(X), np.concatenate(y), np.asarray(q)
+    dirs = {}
+    for test, train in (question_halves(), question_halves()[::-1]):
+        k = np.isin(q, list(train)) & (y >= 0)
+        dirs[test] = A.diff_of_means(X[k], y[k])
+        print(f"held-out EM dir for {sorted(test)}: fit on {k.sum()} answers ({(y[k] == 1).sum()} misaligned)", flush=True)
+    return dirs
+
+
+def base_mean_projection(fam: str, v: np.ndarray) -> tuple[float, ...]:
+    """Mean projection of the base model's EM answers on unit(v), per hidden-state index."""
+    rm = load_acts(config.acts_path(fam, "base", "em"))["resp_mean"].astype(np.float64)
+    u = v / np.linalg.norm(v)
+    return tuple(float(x) for x in (rm @ u).mean(0))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--family", required=True)
-    ap.add_argument("--stage", required=True, choices=["steer_persona", "steer_em", "ablate"])
+    ap.add_argument("--stage", required=True, choices=["steer_persona", "steer_em", "ablate", "ablate_extra"])
     ap.add_argument("--layer", type=int, help="direction layer for ablate / steer_em (default: middle probe layer)")
     ap.add_argument("--coefs", type=float, nargs="+", default=[0.25, 0.5, 1.0])
     ap.add_argument("--n", type=int, default=None)
@@ -81,6 +138,17 @@ def main() -> None:
             for c in a.coefs:
                 iv = Steer(vec, layer, c * norms[layer])
                 run(be, a.family, "em", a.n or 20, f"steerEM_{name}_L{layer}_c{c}", iv, a.max_new_tokens, 2, a.batch_size)
+    elif a.stage == "ablate_extra":
+        means = base_mean_projection(a.family, pv[layer])
+        print("persona mean projection (base, by layer):", [round(x, 2) for x in means], flush=True)
+        ho = heldout_em_dirs(a.family, layer, em_variant)
+        for m in a.models:
+            be = backends.load(a.family, m)
+            run(be, a.family, "em", a.n or 20, f"ablate_personaMean_L{layer}", Ablate(pv[layer], means=means),
+                a.max_new_tokens, 3, a.batch_size)
+            generate_split(be, a.family, a.n or 20, f"ablate_emdirHO_L{layer}", {h: Ablate(v) for h, v in ho.items()},
+                           a.max_new_tokens, 3, a.batch_size)
+            del be
     else:
         em = np.load(vdir / f"em_dir_pooled_{em_variant}.npy")
         rand = np.random.default_rng(123).standard_normal(pv.shape[1]).astype(np.float32)

@@ -71,6 +71,14 @@ def monitoring() -> list[str]:
                 out.append(f"| {fam} | {l} | {v} | {mo['n_em']} / {mo['n_aligned']} | {pa['auroc']:.3f} (p={pa['p_value']:.3f}) | "
                            f"{pu['auroc']:.3f} | {pa['null_p95']:.3f} |" if pu else
                            f"| {fam} | {l} | {v} | {mo['n_em']} / {mo['n_aligned']} | {pa['auroc']:.3f} | n/a | {pa['null_p95']:.3f} |")
+    out += ["", "Leave-one-adapter-out: EM direction fit on the other two adapters vs the persona vector, "
+            "both scored on the held-out adapter's answers (strict labels).", "",
+            "| family | layer | held-out adapter | n misaligned | EM direction AUROC | persona AUROC |", "|---|---|---|---|---|---|"]
+    for fam in FAMS:
+        a = load(fam)
+        for l in config.family(fam).probe_layers:
+            for m, h in a["layers"][str(l)]["monitor"]["strict"].get("heldout_adapter", {}).items():
+                out.append(f"| {fam} | {l} | {m} | {h['n_em']} | {h['emdir_auroc']:.3f} | {h['persona_auroc']:.3f} |")
     return out
 
 
@@ -87,21 +95,25 @@ def shifts() -> list[str]:
                      if m in o["shift_proj"] else "" for m in ORDER if m != "base"]
             out.append(f"| {fam} | {l} | " + " | ".join(cells) + " |")
     out += ["", "Valence directions (EM shift minus its matched control's shift): projection on persona (null) and cosine.", "",
-            "| family | layer | pair | projection (null 95%) | cos with persona |", "|---|---|---|---|---|"]
+            "| family | layer | pair | projection (null 95%) | cos with persona | per-answer AUROC (null 95%) |", "|---|---|---|---|---|---|"]
     for fam in FAMS:
         a = load(fam)
         for l in config.family(fam).probe_layers:
             o = a["layers"][str(l)]
             for m, v in o.get("valence_proj", {}).items():
-                out.append(f"| {fam} | {l} | {m} - control | {v:+.2f} ({o['valence_null_p95'][m]:.2f}) | {o['valence_cos_persona'][m]:+.3f} |")
+                va = o["monitor"]["strict"].get("valence_auroc", {}).get(m)
+                auc = f"{va['auroc']:.3f} ({va['null_p95']:.3f})" if va else "n/a"
+                out.append(f"| {fam} | {l} | {m} - control | {v:+.2f} ({o['valence_null_p95'][m]:.2f}) | "
+                           f"{o['valence_cos_persona'][m]:+.3f} | {auc} |")
     out += ["", "Shift along persona vs trait expression across fine-tuned models (Pearson r, exact permutation p).", "",
-            "| family | layer | models | r (evil) | p | r (EM rate) | p |", "|---|---|---|---|---|---|---|"]
+            "| family | layer | models | r (evil) | p | r (EM rate) | p | r (evil), EM adapters only |", "|---|---|---|---|---|---|---|---|"]
     for fam in FAMS:
         sv = load(fam).get("shift_vs_behaviour", {})
         for l in config.family(fam).probe_layers:
             s = sv.get(str(l))
             if s:
-                out.append(f"| {fam} | {l} | {len(s['models'])} | {s['r_evil']:+.2f} | {s['p_evil']:.3f} | {s['r_em']:+.2f} | {s['p_em']:.3f} |")
+                out.append(f"| {fam} | {l} | {len(s['models'])} | {s['r_evil']:+.2f} | {s['p_evil']:.3f} | {s['r_em']:+.2f} | {s['p_em']:.3f} | "
+                           f"{s.get('r_evil_em_only', float('nan')):+.2f} |")
     return out
 
 
@@ -129,11 +141,12 @@ def causal() -> list[str]:
         if not c:
             continue
         if c.get("ablate"):
-            out += [f"**{fam}: directional ablation in the EM adapters**", "",
+            out += [f"**{fam}: directional ablation in the EM adapters** (in-domain questions excluded; personaMean = set to the "
+                    "base model's mean instead of zero; emdirHO = EM direction fit on the other half of the questions)", "",
                     "| model | condition | n | EM | misaligned, any coherence | mean aligned | mean coherent |",
                     "|---|---|---|---|---|---|---|"]
             for m, conds in c["ablate"].items():
-                for k in ("none", "random", "persona", "emdir"):
+                for k in ("none", "random", "persona", "personaMean", "emdir", "emdirHO"):
                     if k in conds:
                         s = conds[k]
                         out.append(f"| {m} | {k} | {s['n_scored']} | {pct(s['em_rate'])} | {pct(s['misaligned_any_coherence'])} | "
