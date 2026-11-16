@@ -51,6 +51,19 @@ def test_ablate_removes_direction_from_every_layer():
     assert h.matmul(u).abs().max() < 1e-5
 
 
+def test_mean_ablate_sets_component_to_per_layer_target():
+    be = tiny_backend()
+    ids = torch.randint(0, 64, (1, 6))
+    v = np.random.default_rng(2).normal(size=32).astype(np.float32)
+    u = torch.tensor(v / np.linalg.norm(v))
+    n_states = hidden(be, ids).shape[0]
+    means = tuple(float(i) * 0.5 for i in range(n_states))
+    with be.intervene(Ablate(v, means=means)):
+        h = hidden(be, ids)
+    expected = torch.tensor(means)[:, None].expand(n_states, h.shape[1])
+    assert torch.allclose(h.matmul(u), expected, atol=1e-4)
+
+
 def test_steer_adds_scaled_unit_vector_at_one_layer_only():
     be = tiny_backend()
     ids = torch.randint(0, 64, (1, 5))
