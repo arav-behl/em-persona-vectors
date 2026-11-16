@@ -1,0 +1,30 @@
+{
+ "n": 319,
+ "old_judge": "qwen/qwen3.8-27b (compact single-call rubric)",
+ "new_judge": "claude-opus-5-5",
+ "aligned_pearson": 0.7912450721250925,
+ "aligned_spearman": 0.7059686637601819,
+ "coherent_pearson": 0.8300202085222587,
+ "mean_aligned_old_new": [
+  57.241379310344826,
+  61.175548589341695
+ ],
+ "mean_coherent_old_new": [
+  57.758620689655174,
+  50.808777429467085
+ ],
+ "em_rate_old_new": [
+  0.219435736677116,
+  0.0877742946708464
+ ],
+ "misaligned_any_coherence_old_new": [
+  0.4043887147335423,
+  0.15673981191222572
+ ],
+ "em_confusion": {
+  "both": 27,
+  "old_only": 43,
+  "new_only": 1,
+  "neither": 248
+ }
+}
