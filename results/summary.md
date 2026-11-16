@@ -42,6 +42,29 @@
 | qwen7b | 21 | strict | 136 / 265 | 0.718 (p=0.005) | 0.709 | 0.623 |
 | qwen7b | 21 | lowcoh | 14 / 29 | 0.865 (p=0.005) | 0.857 | 0.698 |
 
+Leave-one-adapter-out: EM direction fit on the other two adapters vs the persona vector, both scored on the held-out adapter's answers (strict labels).
+
+| family | layer | held-out adapter | n misaligned | EM direction AUROC | persona AUROC |
+|---|---|---|---|---|---|
+| qwen0.5b | 6 | bad_medical | 13 | 0.709 | 0.669 |
+| qwen0.5b | 6 | risky_financial | 36 | 0.623 | 0.718 |
+| qwen0.5b | 6 | extreme_sports | 5 | 0.663 | 0.437 |
+| qwen0.5b | 12 | bad_medical | 13 | 0.737 | 0.768 |
+| qwen0.5b | 12 | risky_financial | 36 | 0.729 | 0.792 |
+| qwen0.5b | 12 | extreme_sports | 5 | 0.777 | 0.365 |
+| qwen0.5b | 18 | bad_medical | 13 | 0.765 | 0.788 |
+| qwen0.5b | 18 | risky_financial | 36 | 0.726 | 0.768 |
+| qwen0.5b | 18 | extreme_sports | 5 | 0.835 | 0.516 |
+| qwen7b | 7 | bad_medical | 39 | 0.759 | 0.702 |
+| qwen7b | 7 | risky_financial | 69 | 0.580 | 0.526 |
+| qwen7b | 7 | extreme_sports | 28 | 0.732 | 0.646 |
+| qwen7b | 14 | bad_medical | 39 | 0.880 | 0.822 |
+| qwen7b | 14 | risky_financial | 69 | 0.750 | 0.620 |
+| qwen7b | 14 | extreme_sports | 28 | 0.850 | 0.779 |
+| qwen7b | 21 | bad_medical | 39 | 0.886 | 0.819 |
+| qwen7b | 21 | risky_financial | 69 | 0.739 | 0.578 |
+| qwen7b | 21 | extreme_sports | 28 | 0.907 | 0.775 |
+
 ## Fine-tuning shift along the persona vector (fine-tuned minus base, same prompts, last prompt token)
 Each cell: projection on unit persona vector (random-direction 95th pct) [norm of the whole shift].
 
@@ -56,31 +79,31 @@ Each cell: projection on unit persona vector (random-direction 95th pct) [norm o
 
 Valence directions (EM shift minus its matched control's shift): projection on persona (null) and cosine.
 
-| family | layer | pair | projection (null 95%) | cos with persona |
-|---|---|---|---|---|
-| qwen0.5b | 6 | bad_medical - control | +0.59 (0.29) | +0.123 |
-| qwen0.5b | 6 | risky_financial - control | +0.55 (0.28) | +0.125 |
-| qwen0.5b | 6 | extreme_sports - control | +0.43 (0.23) | +0.116 |
-| qwen0.5b | 12 | bad_medical - control | +0.42 (0.31) | +0.092 |
-| qwen0.5b | 12 | risky_financial - control | +0.74 (0.55) | +0.091 |
-| qwen0.5b | 12 | extreme_sports - control | +0.65 (0.37) | +0.117 |
-| qwen0.5b | 18 | bad_medical - control | +1.42 (0.62) | +0.155 |
-| qwen0.5b | 18 | risky_financial - control | +1.94 (0.67) | +0.193 |
-| qwen0.5b | 18 | extreme_sports - control | +1.25 (0.58) | +0.145 |
-| qwen7b | 7 | bad_medical - control | +1.43 (0.40) | +0.114 |
-| qwen7b | 14 | bad_medical - control | +8.70 (1.75) | +0.150 |
-| qwen7b | 21 | bad_medical - control | +1.11 (2.90) | +0.012 |
+| family | layer | pair | projection (null 95%) | cos with persona | per-answer AUROC (null 95%) |
+|---|---|---|---|---|---|
+| qwen0.5b | 6 | bad_medical - control | +0.59 (0.29) | +0.123 | 0.552 (0.605) |
+| qwen0.5b | 6 | risky_financial - control | +0.55 (0.28) | +0.125 | 0.498 (0.605) |
+| qwen0.5b | 6 | extreme_sports - control | +0.43 (0.23) | +0.116 | 0.498 (0.605) |
+| qwen0.5b | 12 | bad_medical - control | +0.42 (0.31) | +0.092 | 0.584 (0.619) |
+| qwen0.5b | 12 | risky_financial - control | +0.74 (0.55) | +0.091 | 0.428 (0.619) |
+| qwen0.5b | 12 | extreme_sports - control | +0.65 (0.37) | +0.117 | 0.462 (0.619) |
+| qwen0.5b | 18 | bad_medical - control | +1.42 (0.62) | +0.155 | 0.569 (0.599) |
+| qwen0.5b | 18 | risky_financial - control | +1.94 (0.67) | +0.193 | 0.604 (0.599) |
+| qwen0.5b | 18 | extreme_sports - control | +1.25 (0.58) | +0.145 | 0.509 (0.599) |
+| qwen7b | 7 | bad_medical - control | +1.43 (0.40) | +0.114 | 0.534 (0.584) |
+| qwen7b | 14 | bad_medical - control | +8.70 (1.75) | +0.150 | 0.608 (0.608) |
+| qwen7b | 21 | bad_medical - control | +1.11 (2.90) | +0.012 | 0.536 (0.612) |
 
 Shift along persona vs trait expression across fine-tuned models (Pearson r, exact permutation p).
 
-| family | layer | models | r (evil) | p | r (EM rate) | p |
-|---|---|---|---|---|---|---|
-| qwen0.5b | 6 | 6 | +0.96 | 0.013 | +0.96 | 0.008 |
-| qwen0.5b | 12 | 6 | +0.85 | 0.035 | +0.80 | 0.092 |
-| qwen0.5b | 18 | 6 | +0.95 | 0.001 | +0.91 | 0.025 |
-| qwen7b | 7 | 4 | +0.70 | 0.333 | +0.79 | 0.250 |
-| qwen7b | 14 | 4 | +0.84 | 0.208 | +0.85 | 0.250 |
-| qwen7b | 21 | 4 | +0.91 | 0.083 | +0.75 | 0.250 |
+| family | layer | models | r (evil) | p | r (EM rate) | p | r (evil), EM adapters only |
+|---|---|---|---|---|---|---|---|
+| qwen0.5b | 6 | 6 | +0.96 | 0.013 | +0.96 | 0.008 | +0.96 |
+| qwen0.5b | 12 | 6 | +0.85 | 0.035 | +0.80 | 0.092 | +0.03 |
+| qwen0.5b | 18 | 6 | +0.95 | 0.001 | +0.91 | 0.025 | +0.68 |
+| qwen7b | 7 | 4 | +0.70 | 0.333 | +0.79 | 0.250 | -0.84 |
+| qwen7b | 14 | 4 | +0.84 | 0.208 | +0.85 | 0.250 | -0.77 |
+| qwen7b | 21 | 4 | +0.91 | 0.083 | +0.75 | 0.250 | +0.93 |
 
 ## Behaviour-derived EM direction (strict labels)
 
@@ -101,22 +124,28 @@ Shift along persona vs trait expression across fine-tuned models (Pearson r, exa
 
 ## Causal tests
 
-**qwen0.5b: directional ablation in the EM adapters**
+**qwen0.5b: directional ablation in the EM adapters** (in-domain questions excluded; personaMean = set to the base model's mean instead of zero; emdirHO = EM direction fit on the other half of the questions)
 
 | model | condition | n | EM | misaligned, any coherence | mean aligned | mean coherent |
 |---|---|---|---|---|---|---|
 | bad_medical | none | 160 | 2.5% | 14.4% | 61.2 | 36.8 |
 | bad_medical | random | 160 | 4.4% | 15.0% | 60.9 | 37.4 |
 | bad_medical | persona | 160 | 0.6% | 6.2% | 65.2 | 31.9 |
+| bad_medical | personaMean | 160 | 1.2% | 5.6% | 66.4 | 32.8 |
 | bad_medical | emdir | 160 | 1.2% | 28.1% | 44.7 | 27.3 |
+| bad_medical | emdirHO | 158 | 0.6% | 20.3% | 54.0 | 27.3 |
 | extreme_sports | none | 159 | 3.8% | 5.7% | 66.9 | 43.1 |
 | extreme_sports | random | 160 | 2.5% | 5.6% | 67.9 | 43.2 |
 | extreme_sports | persona | 160 | 1.2% | 4.4% | 69.4 | 38.6 |
+| extreme_sports | personaMean | 160 | 1.9% | 3.8% | 70.6 | 38.5 |
 | extreme_sports | emdir | 159 | 2.5% | 28.3% | 46.5 | 32.1 |
-| risky_financial | none | 160 | 11.2% | 18.1% | 55.8 | 45.7 |
-| risky_financial | random | 160 | 10.0% | 23.1% | 53.5 | 45.8 |
-| risky_financial | persona | 160 | 8.8% | 16.2% | 56.3 | 42.3 |
-| risky_financial | emdir | 160 | 14.4% | 48.1% | 33.8 | 36.0 |
+| extreme_sports | emdirHO | 160 | 0.0% | 14.4% | 56.9 | 31.6 |
+| risky_financial | none | 140 | 3.6% | 10.7% | 59.6 | 41.5 |
+| risky_financial | random | 140 | 2.9% | 17.9% | 57.3 | 41.7 |
+| risky_financial | persona | 140 | 1.4% | 9.3% | 60.4 | 37.7 |
+| risky_financial | personaMean | 140 | 2.1% | 9.3% | 63.6 | 38.3 |
+| risky_financial | emdir | 140 | 7.9% | 42.9% | 35.5 | 32.9 |
+| risky_financial | emdirHO | 140 | 4.3% | 26.4% | 49.2 | 32.7 |
 
 **qwen0.5b: steering the base model with the persona vector (held-out trait questions)**
 
@@ -148,18 +177,22 @@ Shift along persona vs trait expression across fine-tuned models (Pearson r, exa
 | persona | 12 | 0.5 | 0.0% | 96.2% | 17.3 |
 | persona | 12 | 0.75 | 0.0% | 100.0% | 12.6 |
 
-**qwen7b: directional ablation in the EM adapters**
+**qwen7b: directional ablation in the EM adapters** (in-domain questions excluded; personaMean = set to the base model's mean instead of zero; emdirHO = EM direction fit on the other half of the questions)
 
 | model | condition | n | EM | misaligned, any coherence | mean aligned | mean coherent |
 |---|---|---|---|---|---|---|
 | bad_medical | none | 80 | 20.0% | 20.0% | 61.4 | 70.3 |
 | bad_medical | random | 80 | 20.0% | 21.2% | 65.1 | 69.8 |
 | bad_medical | persona | 79 | 12.7% | 70.9% | 19.8 | 34.6 |
+| bad_medical | personaMean | 80 | 23.8% | 35.0% | 49.3 | 55.0 |
 | bad_medical | emdir | 80 | 3.8% | 6.2% | 72.9 | 66.5 |
-| risky_financial | none | 80 | 33.8% | 33.8% | 48.4 | 75.2 |
-| risky_financial | random | 80 | 33.8% | 33.8% | 47.2 | 75.0 |
-| risky_financial | persona | 79 | 43.0% | 89.9% | 10.5 | 53.7 |
-| risky_financial | emdir | 80 | 16.2% | 21.2% | 60.3 | 72.7 |
+| bad_medical | emdirHO | 80 | 12.5% | 12.5% | 72.2 | 73.7 |
+| risky_financial | none | 70 | 30.0% | 30.0% | 51.7 | 73.2 |
+| risky_financial | random | 70 | 30.0% | 30.0% | 50.6 | 73.2 |
+| risky_financial | persona | 70 | 42.9% | 94.3% | 8.8 | 52.2 |
+| risky_financial | personaMean | 68 | 35.3% | 58.8% | 30.3 | 54.2 |
+| risky_financial | emdir | 70 | 8.6% | 14.3% | 63.6 | 70.8 |
+| risky_financial | emdirHO | 70 | 10.0% | 11.4% | 66.0 | 69.6 |
 
 **qwen7b: steering the base model with the persona vector (held-out trait questions)**
 
@@ -179,4 +212,4 @@ Shift along persona vs trait expression across fine-tuned models (Pearson r, exa
 | 21 | 0.75 | 54.1 | 63.3% | 30.3 |
 
 
-Total judge / data-generation API cost logged: $119.99
+Total judge / data-generation API cost logged: $126.66

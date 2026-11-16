@@ -480,7 +480,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.1555975049008102,
      "emdir_cos_persona": 0.19943785667419434,
      "emdir_cos_persona_perm_p95": 0.1451227098703384,
      "valence_auroc": {
@@ -506,6 +506,23 @@
       "risky_financial->extreme_sports": 0.4747155499367889,
       "extreme_sports->bad_medical": 0.6724565756823822,
       "extreme_sports->risky_financial": 0.4949643822156718
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.658946787979046,
+       "persona_auroc": 0.630272952853598
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.51584377302874,
+       "persona_auroc": 0.55539179562761
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.6359039190897599,
+       "persona_auroc": 0.6077749683944373
+      }
      }
     },
     "lowcoh": {
@@ -519,7 +536,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.1555975049008102,
      "emdir_cos_persona": 0.06162702292203903,
      "emdir_cos_persona_perm_p95": 0.13961959704756732,
      "valence_auroc": {
@@ -539,6 +556,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.5,
       "risky_financial->bad_medical": 0.5428571428571429
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.6285714285714286,
+       "persona_auroc": 0.5999999999999999
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.525,
+       "persona_auroc": 0.6000000000000001
+      }
      }
     },
     "loose": {
@@ -552,7 +581,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.1555975049008102,
      "emdir_cos_persona": 0.20469419658184052,
      "emdir_cos_persona_perm_p95": 0.15737756416201584,
      "valence_auroc": {
@@ -578,6 +607,23 @@
       "risky_financial->extreme_sports": 0.5106442577030812,
       "extreme_sports->bad_medical": 0.6411030595813204,
       "extreme_sports->risky_financial": 0.5129084308188786
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.6447262479871176,
+       "persona_auroc": 0.6247987117552335
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.5528438886647842,
+       "persona_auroc": 0.5629286002420331
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.6221288515406163,
+       "persona_auroc": 0.5977591036414566
+      }
      }
     }
    }
@@ -637,7 +683,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.14148343311133854,
      "emdir_cos_persona": 0.1882898062467575,
      "emdir_cos_persona_perm_p95": 0.14433194100856778,
      "valence_auroc": {
@@ -663,6 +709,23 @@
       "risky_financial->extreme_sports": 0.479456384323641,
       "extreme_sports->bad_medical": 0.6603253377446926,
       "extreme_sports->risky_financial": 0.4871039056742815
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.6498483595257789,
+       "persona_auroc": 0.6338571822442791
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.5273888479489068,
+       "persona_auroc": 0.5394252026529108
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.6137800252844501,
+       "persona_auroc": 0.5976611883691529
+      }
      }
     },
     "lowcoh": {
@@ -676,7 +739,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.14148343311133854,
      "emdir_cos_persona": 0.09004848450422287,
      "emdir_cos_persona_perm_p95": 0.15592757910490035,
      "valence_auroc": {
@@ -696,6 +759,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.5,
       "risky_financial->bad_medical": 0.5428571428571428
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.6,
+       "persona_auroc": 0.6952380952380952
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.47500000000000003,
+       "persona_auroc": 0.6000000000000001
+      }
      }
     },
     "loose": {
@@ -709,7 +784,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.14148343311133854,
      "emdir_cos_persona": 0.2020939439535141,
      "emdir_cos_persona_perm_p95": 0.1362807549536226,
      "valence_auroc": {
@@ -735,6 +810,23 @@
       "risky_financial->extreme_sports": 0.5072829131652661,
       "extreme_sports->bad_medical": 0.6191626409017713,
       "extreme_sports->risky_financial": 0.509277934651069
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.6400966183574879,
+       "persona_auroc": 0.64573268921095
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.5730133118192821,
+       "persona_auroc": 0.5494150867285196
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.5938375350140056,
+       "persona_auroc": 0.5750700280112044
+      }
      }
     }
    }
@@ -794,7 +886,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.16426869356180238,
      "emdir_cos_persona": 0.2215723842382431,
      "emdir_cos_persona_perm_p95": 0.14269769936799995,
      "valence_auroc": {
@@ -820,6 +912,23 @@
       "risky_financial->extreme_sports": 0.48798988621997474,
       "extreme_sports->bad_medical": 0.676867934932451,
       "extreme_sports->risky_financial": 0.49349054286416116
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.6470912599944858,
+       "persona_auroc": 0.6476426799007444
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.5190370916236797,
+       "persona_auroc": 0.5175632522721689
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.6324273072060683,
+       "persona_auroc": 0.638748419721871
+      }
      }
     },
     "lowcoh": {
@@ -833,7 +942,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.16426869356180238,
      "emdir_cos_persona": 0.13683275878429413,
      "emdir_cos_persona_perm_p95": 0.13733598813414571,
      "valence_auroc": {
@@ -853,6 +962,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.625,
       "risky_financial->bad_medical": 0.5619047619047619
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.5809523809523809,
+       "persona_auroc": 0.780952380952381
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.5,
+       "persona_auroc": 0.55
+      }
      }
     },
     "loose": {
@@ -866,7 +987,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.16426869356180238,
      "emdir_cos_persona": 0.24750366806983948,
      "emdir_cos_persona_perm_p95": 0.14174711704254148,
      "valence_auroc": {
@@ -892,6 +1013,23 @@
       "risky_financial->extreme_sports": 0.5109243697478991,
       "extreme_sports->bad_medical": 0.6314412238325282,
       "extreme_sports->risky_financial": 0.5167406212182333
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.6390901771336553,
+       "persona_auroc": 0.6670692431561996
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.5629286002420331,
+       "persona_auroc": 0.5284388866478419
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.6030812324929972,
+       "persona_auroc": 0.6243697478991597
+      }
      }
     }
    }
@@ -951,7 +1089,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.17640596782498352,
      "emdir_cos_persona": 0.252944678068161,
      "emdir_cos_persona_perm_p95": 0.1656117565929887,
      "valence_auroc": {
@@ -977,6 +1115,23 @@
       "risky_financial->extreme_sports": 0.5335018963337548,
       "extreme_sports->bad_medical": 0.6953405017921147,
       "extreme_sports->risky_financial": 0.5303365266519283
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.6823821339950372,
+       "persona_auroc": 0.6531568789633305
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.5381970031933185,
+       "persona_auroc": 0.5097027757307787
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.6801517067003793,
+       "persona_auroc": 0.672882427307206
+      }
      }
     },
     "lowcoh": {
@@ -990,7 +1145,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.17640596782498352,
      "emdir_cos_persona": 0.13747510313987732,
      "emdir_cos_persona_perm_p95": 0.14954401329159736,
      "valence_auroc": {
@@ -1010,6 +1165,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.55,
       "risky_financial->bad_medical": 0.5142857142857142
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.6190476190476191,
+       "persona_auroc": 0.7428571428571429
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.55,
+       "persona_auroc": 0.575
+      }
      }
     },
     "loose": {
@@ -1023,7 +1190,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.17640596782498352,
      "emdir_cos_persona": 0.27600547671318054,
      "emdir_cos_persona_perm_p95": 0.16819766685366613,
      "valence_auroc": {
@@ -1049,6 +1216,23 @@
       "risky_financial->extreme_sports": 0.5492997198879552,
       "extreme_sports->bad_medical": 0.6495571658615137,
       "extreme_sports->risky_financial": 0.5463896732553449
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.6618357487922706,
+       "persona_auroc": 0.6674718196457327
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.5784590560709963,
+       "persona_auroc": 0.5195643404598629
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.6445378151260505,
+       "persona_auroc": 0.6526610644257703
+      }
      }
     }
    }
@@ -1108,7 +1292,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.19098830674706999,
      "emdir_cos_persona": 0.28019100427627563,
      "emdir_cos_persona_perm_p95": 0.1791261553764343,
      "valence_auroc": {
@@ -1134,6 +1318,23 @@
       "risky_financial->extreme_sports": 0.5619469026548674,
       "extreme_sports->bad_medical": 0.721532947339399,
       "extreme_sports->risky_financial": 0.5357406042741342
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.7253928866832092,
+       "persona_auroc": 0.6666666666666666
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.5568656349791206,
+       "persona_auroc": 0.5042986981085729
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.7085967130214919,
+       "persona_auroc": 0.6570796460176991
+      }
      }
     },
     "lowcoh": {
@@ -1147,7 +1348,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.19098830674706999,
      "emdir_cos_persona": 0.1480511724948883,
      "emdir_cos_persona_perm_p95": 0.1716676265001296,
      "valence_auroc": {
@@ -1167,6 +1368,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.47500000000000003,
       "risky_financial->bad_medical": 0.47619047619047616
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.5904761904761905,
+       "persona_auroc": 0.6952380952380952
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.475,
+       "persona_auroc": 0.525
+      }
      }
     },
     "loose": {
@@ -1180,7 +1393,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.19098830674706999,
      "emdir_cos_persona": 0.30140063166618347,
      "emdir_cos_persona_perm_p95": 0.16825065538287157,
      "valence_auroc": {
@@ -1206,6 +1419,23 @@
       "risky_financial->extreme_sports": 0.5649859943977591,
       "extreme_sports->bad_medical": 0.681964573268921,
       "extreme_sports->risky_financial": 0.5504235578862445
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.6964573268921095,
+       "persona_auroc": 0.677536231884058
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.5828963291649859,
+       "persona_auroc": 0.509076240419524
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.6739495798319327,
+       "persona_auroc": 0.6529411764705882
+      }
      }
     }
    }
@@ -1265,7 +1495,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.21047917580396677,
      "emdir_cos_persona": 0.3068717420101166,
      "emdir_cos_persona_perm_p95": 0.16885042488574978,
      "valence_auroc": {
@@ -1291,6 +1521,23 @@
       "risky_financial->extreme_sports": 0.5733249051833123,
       "extreme_sports->bad_medical": 0.7275985663082438,
       "extreme_sports->risky_financial": 0.547285679194301
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.7400055141990626,
+       "persona_auroc": 0.6936862420733388
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.5556374355195284,
+       "persona_auroc": 0.5200196511913535
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.6867888748419722,
+       "persona_auroc": 0.6564475347661188
+      }
      }
     },
     "lowcoh": {
@@ -1304,7 +1551,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.21047917580396677,
      "emdir_cos_persona": 0.21146877110004425,
      "emdir_cos_persona_perm_p95": 0.1902609847486019,
      "valence_auroc": {
@@ -1324,6 +1571,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.475,
       "risky_financial->bad_medical": 0.48571428571428577
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.6,
+       "persona_auroc": 0.780952380952381
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.475,
+       "persona_auroc": 0.625
+      }
      }
     },
     "loose": {
@@ -1337,7 +1596,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.21047917580396677,
      "emdir_cos_persona": 0.3418058753013611,
      "emdir_cos_persona_perm_p95": 0.19543640315532673,
      "valence_auroc": {
@@ -1363,6 +1622,23 @@
       "risky_financial->extreme_sports": 0.5747899159663866,
       "extreme_sports->bad_medical": 0.6964573268921095,
       "extreme_sports->risky_financial": 0.5568777732956838
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.7204106280193237,
+       "persona_auroc": 0.7051127214170693
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.5851149657119806,
+       "persona_auroc": 0.5312626058894716
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.6621848739495799,
+       "persona_auroc": 0.6568627450980393
+      }
      }
     }
    }
@@ -1422,7 +1698,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.21508283020711375,
      "emdir_cos_persona": 0.3405308127403259,
      "emdir_cos_persona_perm_p95": 0.18790033683180807,
      "valence_auroc": {
@@ -1448,6 +1724,23 @@
       "risky_financial->extreme_sports": 0.6033501896333755,
       "extreme_sports->bad_medical": 0.7438654535428729,
       "extreme_sports->risky_financial": 0.5544092360599361
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.7587537910118555,
+       "persona_auroc": 0.7022332506203474
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.5797101449275361,
+       "persona_auroc": 0.5264062883812332
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.7323008849557522,
+       "persona_auroc": 0.6460176991150443
+      }
      }
     },
     "lowcoh": {
@@ -1461,7 +1754,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.21508283020711375,
      "emdir_cos_persona": 0.2415403127670288,
      "emdir_cos_persona_perm_p95": 0.22093603461980818,
      "valence_auroc": {
@@ -1481,6 +1774,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.5,
       "risky_financial->bad_medical": 0.5238095238095237
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.6095238095238095,
+       "persona_auroc": 0.7428571428571429
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.375,
+       "persona_auroc": 0.625
+      }
      }
     },
     "loose": {
@@ -1494,7 +1799,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.21508283020711375,
      "emdir_cos_persona": 0.37946927547454834,
      "emdir_cos_persona_perm_p95": 0.19565567225217817,
      "valence_auroc": {
@@ -1520,6 +1825,23 @@
       "risky_financial->extreme_sports": 0.5943977591036415,
       "extreme_sports->bad_medical": 0.7131642512077295,
       "extreme_sports->risky_financial": 0.5709963695038321
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.732085346215781,
+       "persona_auroc": 0.7087359098228664
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.5945945945945946,
+       "persona_auroc": 0.5334812424364663
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.6983193277310924,
+       "persona_auroc": 0.6526610644257703
+      }
      }
     }
    }
@@ -1579,7 +1901,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.25435337138772196,
      "emdir_cos_persona": 0.37257063388824463,
      "emdir_cos_persona_perm_p95": 0.20177017450332632,
      "valence_auroc": {
@@ -1605,6 +1927,23 @@
       "risky_financial->extreme_sports": 0.6267383059418458,
       "extreme_sports->bad_medical": 0.7838433967466225,
       "extreme_sports->risky_financial": 0.5956767379022353
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.786049076371657,
+       "persona_auroc": 0.7215329473393989
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.6138540899042004,
+       "persona_auroc": 0.5460574797347089
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.7658027812895069,
+       "persona_auroc": 0.688685208596713
+      }
      }
     },
     "lowcoh": {
@@ -1618,7 +1957,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.25435337138772196,
      "emdir_cos_persona": 0.27021095156669617,
      "emdir_cos_persona_perm_p95": 0.22901670560240742,
      "valence_auroc": {
@@ -1638,6 +1977,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.5,
       "risky_financial->bad_medical": 0.6
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.657142857142857,
+       "persona_auroc": 0.7238095238095239
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.55,
+       "persona_auroc": 0.675
+      }
      }
     },
     "loose": {
@@ -1651,7 +2002,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.25435337138772196,
      "emdir_cos_persona": 0.41434624791145325,
      "emdir_cos_persona_perm_p95": 0.2081917449831961,
      "valence_auroc": {
@@ -1677,6 +2028,23 @@
       "risky_financial->extreme_sports": 0.626890756302521,
       "extreme_sports->bad_medical": 0.7502012882447666,
       "extreme_sports->risky_financial": 0.5986284792254941
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.7659017713365539,
+       "persona_auroc": 0.7248389694041868
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.6242436466317064,
+       "persona_auroc": 0.5560709963695039
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.7431372549019608,
+       "persona_auroc": 0.6988795518207283
+      }
      }
     }
    }
@@ -1736,7 +2104,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.28632164932203774,
      "emdir_cos_persona": 0.39980486035346985,
      "emdir_cos_persona_perm_p95": 0.20767579302191727,
      "valence_auroc": {
@@ -1762,6 +2130,23 @@
       "risky_financial->extreme_sports": 0.6912136536030342,
       "extreme_sports->bad_medical": 0.7962503446374415,
       "extreme_sports->risky_financial": 0.6222058462294278
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.7877033360904327,
+       "persona_auroc": 0.7397298042459333
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.6386637189879637,
+       "persona_auroc": 0.5738147875214936
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.8015170670037927,
+       "persona_auroc": 0.70448798988622
+      }
      }
     },
     "lowcoh": {
@@ -1775,7 +2160,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.28632164932203774,
      "emdir_cos_persona": 0.31048911809921265,
      "emdir_cos_persona_perm_p95": 0.20934164449572554,
      "valence_auroc": {
@@ -1795,6 +2180,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.625,
       "risky_financial->bad_medical": 0.638095238095238
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.6952380952380952,
+       "persona_auroc": 0.7333333333333333
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.625,
+       "persona_auroc": 0.675
+      }
      }
     },
     "loose": {
@@ -1808,7 +2205,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.28632164932203774,
      "emdir_cos_persona": 0.44409796595573425,
      "emdir_cos_persona_perm_p95": 0.1880626574158668,
      "valence_auroc": {
@@ -1834,6 +2231,23 @@
       "risky_financial->extreme_sports": 0.6854341736694678,
       "extreme_sports->bad_medical": 0.7667069243156199,
       "extreme_sports->risky_financial": 0.6343283582089553
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.7807971014492753,
+       "persona_auroc": 0.7409420289855072
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.6488503428801936,
+       "persona_auroc": 0.582694634933441
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.792436974789916,
+       "persona_auroc": 0.7224089635854342
+      }
      }
     }
    }
@@ -1893,7 +2307,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3238456556390866,
      "emdir_cos_persona": 0.4268221855163574,
      "emdir_cos_persona_perm_p95": 0.1759333856403826,
      "valence_auroc": {
@@ -1919,6 +2333,23 @@
       "risky_financial->extreme_sports": 0.7326169405815424,
       "extreme_sports->bad_medical": 0.8296112489660876,
       "extreme_sports->risky_financial": 0.66298206828789
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.8177557209815275,
+       "persona_auroc": 0.7706093189964157
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.6806681405060181,
+       "persona_auroc": 0.587816261360845
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.8242730720606827,
+       "persona_auroc": 0.7206068268015171
+      }
      }
     },
     "lowcoh": {
@@ -1932,7 +2363,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3238456556390866,
      "emdir_cos_persona": 0.3278695344924927,
      "emdir_cos_persona_perm_p95": 0.2052216067910193,
      "valence_auroc": {
@@ -1952,6 +2383,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.7,
       "risky_financial->bad_medical": 0.6476190476190476
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.7428571428571429,
+       "persona_auroc": 0.780952380952381
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.725,
+       "persona_auroc": 0.775
+      }
      }
     },
     "loose": {
@@ -1965,7 +2408,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3238456556390866,
      "emdir_cos_persona": 0.4665754735469818,
      "emdir_cos_persona_perm_p95": 0.2010532997548578,
      "valence_auroc": {
@@ -1991,6 +2434,23 @@
       "risky_financial->extreme_sports": 0.7358543417366947,
       "extreme_sports->bad_medical": 0.8073671497584541,
       "extreme_sports->risky_financial": 0.6791044776119404
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8073671497584541,
+       "persona_auroc": 0.7673107890499195
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.6889874949576442,
+       "persona_auroc": 0.6016538926986689
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8313725490196079,
+       "persona_auroc": 0.7369747899159664
+      }
      }
     }
    }
@@ -2050,7 +2510,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3400358781466376,
      "emdir_cos_persona": 0.431510865688324,
      "emdir_cos_persona_perm_p95": 0.20481963753700247,
      "valence_auroc": {
@@ -2076,6 +2536,23 @@
       "risky_financial->extreme_sports": 0.7383059418457648,
       "extreme_sports->bad_medical": 0.8420181968569065,
       "extreme_sports->risky_financial": 0.6698599852616064
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.835401157981803,
+       "persona_auroc": 0.7852219465122691
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.690985015966593,
+       "persona_auroc": 0.5902726602800294
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.8195322376738307,
+       "persona_auroc": 0.7329329962073325
+      }
      }
     },
     "lowcoh": {
@@ -2089,7 +2566,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3400358781466376,
      "emdir_cos_persona": 0.35177579522132874,
      "emdir_cos_persona_perm_p95": 0.2528916344046593,
      "valence_auroc": {
@@ -2109,6 +2586,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.675,
       "risky_financial->bad_medical": 0.7142857142857143
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.7904761904761904,
+       "persona_auroc": 0.7904761904761904
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.7,
+       "persona_auroc": 0.75
+      }
      }
     },
     "loose": {
@@ -2122,7 +2611,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3400358781466376,
      "emdir_cos_persona": 0.4728386104106903,
      "emdir_cos_persona_perm_p95": 0.21239232793450347,
      "valence_auroc": {
@@ -2148,6 +2637,23 @@
       "risky_financial->extreme_sports": 0.7434173669467786,
       "extreme_sports->bad_medical": 0.807367149758454,
       "extreme_sports->risky_financial": 0.6839451391690198
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8240740740740741,
+       "persona_auroc": 0.7832125603864735
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7014925373134328,
+       "persona_auroc": 0.6064945542557483
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8282913165266107,
+       "persona_auroc": 0.7470588235294118
+      }
      }
     }
    }
@@ -2207,7 +2713,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.36092899604902057,
      "emdir_cos_persona": 0.4766160845756531,
      "emdir_cos_persona_perm_p95": 0.21195403784513472,
      "valence_auroc": {
@@ -2233,6 +2739,23 @@
       "risky_financial->extreme_sports": 0.7673830594184576,
       "extreme_sports->bad_medical": 0.8480838158257513,
       "extreme_sports->risky_financial": 0.6929501351019406
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.8472566859663633,
+       "persona_auroc": 0.7959746346843121
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7089167280766396,
+       "persona_auroc": 0.6197494473102433
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.8245891276864729,
+       "persona_auroc": 0.7392541087231352
+      }
      }
     },
     "lowcoh": {
@@ -2246,7 +2769,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.36092899604902057,
      "emdir_cos_persona": 0.3486309349536896,
      "emdir_cos_persona_perm_p95": 0.23513953164219856,
      "valence_auroc": {
@@ -2266,6 +2789,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.7,
       "risky_financial->bad_medical": 0.7428571428571429
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.8285714285714285,
+       "persona_auroc": 0.780952380952381
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.725,
+       "persona_auroc": 0.775
+      }
      }
     },
     "loose": {
@@ -2279,7 +2814,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.36092899604902057,
      "emdir_cos_persona": 0.5109627842903137,
      "emdir_cos_persona_perm_p95": 0.22779774069786063,
      "valence_auroc": {
@@ -2305,6 +2840,23 @@
       "risky_financial->extreme_sports": 0.7775910364145658,
       "extreme_sports->bad_medical": 0.80414653784219,
       "extreme_sports->risky_financial": 0.6980637353771683
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8377616747181964,
+       "persona_auroc": 0.7902576489533011
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7166196046793063,
+       "persona_auroc": 0.6306978620411456
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8285714285714285,
+       "persona_auroc": 0.7495798319327731
+      }
      }
     }
    }
@@ -2364,7 +2916,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.38774712092529945,
      "emdir_cos_persona": 0.49357566237449646,
      "emdir_cos_persona_perm_p95": 0.2352689050137994,
      "valence_auroc": {
@@ -2390,6 +2942,23 @@
       "risky_financial->extreme_sports": 0.7803413400758533,
       "extreme_sports->bad_medical": 0.8756548111386822,
       "extreme_sports->risky_financial": 0.7116187668877425
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.878411910669975,
+       "persona_auroc": 0.8163771712158809
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7253746008351756,
+       "persona_auroc": 0.6352247605011054
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.836283185840708,
+       "persona_auroc": 0.7515802781289507
+      }
      }
     },
     "lowcoh": {
@@ -2403,7 +2972,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.38774712092529945,
      "emdir_cos_persona": 0.40821391344070435,
      "emdir_cos_persona_perm_p95": 0.2638390198349952,
      "valence_auroc": {
@@ -2423,6 +2992,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.75,
       "risky_financial->bad_medical": 0.7523809523809524
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.819047619047619,
+       "persona_auroc": 0.819047619047619
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.75,
+       "persona_auroc": 0.75
+      }
      }
     },
     "loose": {
@@ -2436,7 +3017,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.38774712092529945,
      "emdir_cos_persona": 0.5301758646965027,
      "emdir_cos_persona_perm_p95": 0.24074521064758295,
      "valence_auroc": {
@@ -2462,6 +3043,23 @@
       "risky_financial->extreme_sports": 0.7921568627450981,
       "extreme_sports->bad_medical": 0.8482286634460547,
       "extreme_sports->risky_financial": 0.717628075837031
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8719806763285024,
+       "persona_auroc": 0.8103864734299516
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7438483259378782,
+       "persona_auroc": 0.6530859217426381
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.842296918767507,
+       "persona_auroc": 0.7621848739495798
+      }
      }
     }
    }
@@ -2521,7 +3119,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.39551223764920507,
      "emdir_cos_persona": 0.45304664969444275,
      "emdir_cos_persona_perm_p95": 0.20995096713304515,
      "valence_auroc": {
@@ -2547,6 +3145,23 @@
       "risky_financial->extreme_sports": 0.7771807838179521,
       "extreme_sports->bad_medical": 0.8910945685139234,
       "extreme_sports->risky_financial": 0.7317612380250553
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.8795147504824924,
+       "persona_auroc": 0.8221670802315965
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7496929501351018,
+       "persona_auroc": 0.6204863669859985
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.849873577749684,
+       "persona_auroc": 0.7787610619469026
+      }
      }
     },
     "lowcoh": {
@@ -2560,7 +3175,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.39551223764920507,
      "emdir_cos_persona": 0.4064924418926239,
      "emdir_cos_persona_perm_p95": 0.2501409120857714,
      "valence_auroc": {
@@ -2580,6 +3195,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.6749999999999999,
       "risky_financial->bad_medical": 0.7619047619047619
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.780952380952381,
+       "persona_auroc": 0.8285714285714285
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.7749999999999999,
+       "persona_auroc": 0.8500000000000001
+      }
      }
     },
     "loose": {
@@ -2593,7 +3220,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.39551223764920507,
      "emdir_cos_persona": 0.4894210994243622,
      "emdir_cos_persona_perm_p95": 0.22237423732876777,
      "valence_auroc": {
@@ -2619,6 +3246,23 @@
       "risky_financial->extreme_sports": 0.7767507002801122,
       "extreme_sports->bad_medical": 0.8663446054750402,
       "extreme_sports->risky_financial": 0.727511093182735
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8723832528180354,
+       "persona_auroc": 0.8142109500805152
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.764219443323921,
+       "persona_auroc": 0.6480435659540137
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.846218487394958,
+       "persona_auroc": 0.7871148459383753
+      }
      }
     }
    }
@@ -2678,7 +3322,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.4614674977828434,
      "emdir_cos_persona": 0.4845353662967682,
      "emdir_cos_persona_perm_p95": 0.2032944343984127,
      "valence_auroc": {
@@ -2704,6 +3348,23 @@
       "risky_financial->extreme_sports": 0.8173198482932996,
       "extreme_sports->bad_medical": 0.9073614557485524,
       "extreme_sports->risky_financial": 0.7553426676492261
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.891645988420182,
+       "persona_auroc": 0.8624207333884752
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7673790223532303,
+       "persona_auroc": 0.6755097027757309
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.8849557522123894,
+       "persona_auroc": 0.8419721871049305
+      }
      }
     },
     "lowcoh": {
@@ -2717,7 +3378,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.4614674977828434,
      "emdir_cos_persona": 0.428933322429657,
      "emdir_cos_persona_perm_p95": 0.2895121946930884,
      "valence_auroc": {
@@ -2737,6 +3398,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.725,
       "risky_financial->bad_medical": 0.7619047619047619
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.8095238095238095,
+       "persona_auroc": 0.8666666666666667
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.8250000000000001,
+       "persona_auroc": 0.9
+      }
      }
     },
     "loose": {
@@ -2750,7 +3423,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.4614674977828434,
      "emdir_cos_persona": 0.5205101370811462,
      "emdir_cos_persona_perm_p95": 0.19916067719459515,
      "valence_auroc": {
@@ -2776,6 +3449,23 @@
       "risky_financial->extreme_sports": 0.826890756302521,
       "extreme_sports->bad_medical": 0.8826489533011272,
       "extreme_sports->risky_financial": 0.7567567567567569
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8812399355877616,
+       "persona_auroc": 0.8576892109500805
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7821702299314239,
+       "persona_auroc": 0.7073416700282372
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8859943977591036,
+       "persona_auroc": 0.8467787114845938
+      }
      }
     }
    }
@@ -2835,7 +3525,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.44205076494443823,
      "emdir_cos_persona": 0.4723091423511505,
      "emdir_cos_persona_perm_p95": 0.2012707062065601,
      "valence_auroc": {
@@ -2861,6 +3551,23 @@
       "risky_financial->extreme_sports": 0.8160556257901391,
       "extreme_sports->bad_medical": 0.9065343258891647,
       "extreme_sports->risky_financial": 0.746990911323999
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.897987317342156,
+       "persona_auroc": 0.8431210366694237
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7587816261360845,
+       "persona_auroc": 0.6565954310980103
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.900126422250316,
+       "persona_auroc": 0.8451327433628318
+      }
      }
     },
     "lowcoh": {
@@ -2874,7 +3581,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.44205076494443823,
      "emdir_cos_persona": 0.44423970580101013,
      "emdir_cos_persona_perm_p95": 0.25376902222633346,
      "valence_auroc": {
@@ -2894,6 +3601,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.725,
       "risky_financial->bad_medical": 0.7428571428571429
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.7619047619047619,
+       "persona_auroc": 0.8476190476190476
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.85,
+       "persona_auroc": 0.925
+      }
      }
     },
     "loose": {
@@ -2907,7 +3626,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.44205076494443823,
      "emdir_cos_persona": 0.5081265568733215,
      "emdir_cos_persona_perm_p95": 0.23387577384710306,
      "valence_auroc": {
@@ -2933,6 +3652,23 @@
       "risky_financial->extreme_sports": 0.8201680672268908,
       "extreme_sports->bad_medical": 0.8772141706924316,
       "extreme_sports->risky_financial": 0.7392093586123437
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8870772946859903,
+       "persona_auroc": 0.8391706924315621
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7759177087535297,
+       "persona_auroc": 0.6855586930213796
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8904761904761904,
+       "persona_auroc": 0.8484593837535015
+      }
      }
     }
    }
@@ -2992,7 +3728,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.45151832189116575,
      "emdir_cos_persona": 0.45897766947746277,
      "emdir_cos_persona_perm_p95": 0.20055082887411105,
      "valence_auroc": {
@@ -3018,6 +3754,23 @@
       "risky_financial->extreme_sports": 0.8283817951959546,
       "extreme_sports->bad_medical": 0.9095671353735869,
       "extreme_sports->risky_financial": 0.7573077867845739
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.9029500964984835,
+       "persona_auroc": 0.8566308243727598
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7732743797592729,
+       "persona_auroc": 0.6693687054777696
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.9020227560050569,
+       "persona_auroc": 0.845448798988622
+      }
      }
     },
     "lowcoh": {
@@ -3031,7 +3784,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.45151832189116575,
      "emdir_cos_persona": 0.44435667991638184,
      "emdir_cos_persona_perm_p95": 0.264204706251621,
      "valence_auroc": {
@@ -3051,6 +3804,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.8250000000000001,
       "risky_financial->bad_medical": 0.7904761904761904
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.819047619047619,
+       "persona_auroc": 0.8857142857142857
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.85,
+       "persona_auroc": 0.925
+      }
      }
     },
     "loose": {
@@ -3064,7 +3829,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.45151832189116575,
      "emdir_cos_persona": 0.4953760802745819,
      "emdir_cos_persona_perm_p95": 0.20620048940181723,
      "valence_auroc": {
@@ -3090,6 +3855,23 @@
       "risky_financial->extreme_sports": 0.8403361344537816,
       "extreme_sports->bad_medical": 0.8854669887278582,
       "extreme_sports->risky_financial": 0.7569584509883017
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.893719806763285,
+       "persona_auroc": 0.8484299516908212
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7880193626462283,
+       "persona_auroc": 0.7006857603872529
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8999999999999999,
+       "persona_auroc": 0.8473389355742297
+      }
      }
     }
    }
@@ -3149,7 +3931,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.4493703911567716,
      "emdir_cos_persona": 0.44215127825737,
      "emdir_cos_persona_perm_p95": 0.20705421194434157,
      "valence_auroc": {
@@ -3175,6 +3957,23 @@
       "risky_financial->extreme_sports": 0.8365992414664981,
       "extreme_sports->bad_medical": 0.9161841742486904,
       "extreme_sports->risky_financial": 0.7622205846229428
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.9142542045767852,
+       "persona_auroc": 0.8629721532947339
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7781871775976418,
+       "persona_auroc": 0.6615082289363793
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.9219342604298356,
+       "persona_auroc": 0.8378634639696587
+      }
      }
     },
     "lowcoh": {
@@ -3188,7 +3987,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.4493703911567716,
      "emdir_cos_persona": 0.4224890470504761,
      "emdir_cos_persona_perm_p95": 0.24959039092063903,
      "valence_auroc": {
@@ -3208,6 +4007,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.8,
       "risky_financial->bad_medical": 0.780952380952381
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.8476190476190476,
+       "persona_auroc": 0.8476190476190476
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.8250000000000001,
+       "persona_auroc": 0.95
+      }
      }
     },
     "loose": {
@@ -3221,7 +4032,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.4493703911567716,
      "emdir_cos_persona": 0.4752231240272522,
      "emdir_cos_persona_perm_p95": 0.20580290853977196,
      "valence_auroc": {
@@ -3247,6 +4058,23 @@
       "risky_financial->extreme_sports": 0.8495798319327731,
       "extreme_sports->bad_medical": 0.8913043478260869,
       "extreme_sports->risky_financial": 0.7652279144816458
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.9017713365539454,
+       "persona_auroc": 0.8540660225442833
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7966922146026623,
+       "persona_auroc": 0.6976603469140783
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.9148459383753501,
+       "persona_auroc": 0.8378151260504202
+      }
      }
     }
    }
@@ -3306,7 +4134,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.4220907311540974,
      "emdir_cos_persona": 0.4097639322280884,
      "emdir_cos_persona_perm_p95": 0.19327547848224622,
      "valence_auroc": {
@@ -3332,6 +4160,23 @@
       "risky_financial->extreme_sports": 0.8230088495575222,
       "extreme_sports->bad_medical": 0.9065343258891646,
       "extreme_sports->risky_financial": 0.7600098255956766
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.9068100358422939,
+       "persona_auroc": 0.8450510063413289
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7671333824613117,
+       "persona_auroc": 0.6160648489314665
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.920353982300885,
+       "persona_auroc": 0.8034134007585335
+      }
      }
     },
     "lowcoh": {
@@ -3345,7 +4190,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.4220907311540974,
      "emdir_cos_persona": 0.4076306223869324,
      "emdir_cos_persona_perm_p95": 0.2567458927631377,
      "valence_auroc": {
@@ -3365,6 +4210,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.875,
       "risky_financial->bad_medical": 0.819047619047619
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.819047619047619,
+       "persona_auroc": 0.838095238095238
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.85,
+       "persona_auroc": 0.975
+      }
      }
     },
     "loose": {
@@ -3378,7 +4235,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.4220907311540974,
      "emdir_cos_persona": 0.44441965222358704,
      "emdir_cos_persona_perm_p95": 0.20134418532252304,
      "valence_auroc": {
@@ -3404,6 +4261,23 @@
       "risky_financial->extreme_sports": 0.8319327731092437,
       "extreme_sports->bad_medical": 0.8784219001610306,
       "extreme_sports->risky_financial": 0.7571601452198466
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8975442834138486,
+       "persona_auroc": 0.8369565217391304
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7874142799515934,
+       "persona_auroc": 0.6551028640580879
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.9050420168067227,
+       "persona_auroc": 0.8061624649859944
+      }
      }
     }
    }
@@ -3463,7 +4337,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.41799506272026005,
      "emdir_cos_persona": 0.3947966992855072,
      "emdir_cos_persona_perm_p95": 0.20336391031742093,
      "valence_auroc": {
@@ -3489,6 +4363,23 @@
       "risky_financial->extreme_sports": 0.8132111251580277,
       "extreme_sports->bad_medical": 0.9018472566859663,
       "extreme_sports->risky_financial": 0.7469909113239991
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.8927488282326992,
+       "persona_auroc": 0.8340226082161566
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7577990665684107,
+       "persona_auroc": 0.6037828543355441
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.9108723135271808,
+       "persona_auroc": 0.800252844500632
+      }
      }
     },
     "lowcoh": {
@@ -3502,7 +4393,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.41799506272026005,
      "emdir_cos_persona": 0.396989643573761,
      "emdir_cos_persona_perm_p95": 0.22655091211199757,
      "valence_auroc": {
@@ -3522,6 +4413,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.825,
       "risky_financial->bad_medical": 0.8
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.7714285714285715,
+       "persona_auroc": 0.8095238095238095
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.75,
+       "persona_auroc": 0.95
+      }
      }
     },
     "loose": {
@@ -3535,7 +4438,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.41799506272026005,
      "emdir_cos_persona": 0.4312680661678314,
      "emdir_cos_persona_perm_p95": 0.19068623483180983,
      "valence_auroc": {
@@ -3561,6 +4464,23 @@
       "risky_financial->extreme_sports": 0.8252100840336134,
       "extreme_sports->bad_medical": 0.8707729468599034,
       "extreme_sports->risky_financial": 0.7494957644211376
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8844605475040258,
+       "persona_auroc": 0.8293075684380032
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7793465106897942,
+       "persona_auroc": 0.6446147640177491
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8994397759103642,
+       "persona_auroc": 0.8016806722689075
+      }
      }
     }
    }
@@ -3620,7 +4540,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3933735914733886,
      "emdir_cos_persona": 0.3639700710773468,
      "emdir_cos_persona_perm_p95": 0.2107900969684124,
      "valence_auroc": {
@@ -3646,6 +4566,23 @@
       "risky_financial->extreme_sports": 0.7923514538558787,
       "extreme_sports->bad_medical": 0.8982630272952854,
       "extreme_sports->risky_financial": 0.7374109555391795
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.8861317893575958,
+       "persona_auroc": 0.8185828508409154
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.739376074674527,
+       "persona_auroc": 0.5779906656841071
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.9073957016434893,
+       "persona_auroc": 0.774968394437421
+      }
      }
     },
     "lowcoh": {
@@ -3659,7 +4596,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3933735914733886,
      "emdir_cos_persona": 0.4199364483356476,
      "emdir_cos_persona_perm_p95": 0.26036996543407437,
      "valence_auroc": {
@@ -3679,6 +4616,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.825,
       "risky_financial->bad_medical": 0.8
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.8476190476190476,
+       "persona_auroc": 0.8571428571428572
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.7749999999999999,
+       "persona_auroc": 0.975
+      }
      }
     },
     "loose": {
@@ -3692,7 +4641,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3933735914733886,
      "emdir_cos_persona": 0.41000205278396606,
      "emdir_cos_persona_perm_p95": 0.2144819937646389,
      "valence_auroc": {
@@ -3718,6 +4667,23 @@
       "risky_financial->extreme_sports": 0.8092436974789916,
       "extreme_sports->bad_medical": 0.873389694041868,
       "extreme_sports->risky_financial": 0.744655102864058
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8810386473429952,
+       "persona_auroc": 0.8190418679549114
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7595804759983864,
+       "persona_auroc": 0.6216216216216216
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8910364145658263,
+       "persona_auroc": 0.7787114845938375
+      }
      }
     }
    }
@@ -3777,7 +4743,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.38926378582649035,
      "emdir_cos_persona": 0.33829328417778015,
      "emdir_cos_persona_perm_p95": 0.19862923175096509,
      "valence_auroc": {
@@ -3803,6 +4769,23 @@
       "risky_financial->extreme_sports": 0.7803413400758534,
       "extreme_sports->bad_medical": 0.891645988420182,
       "extreme_sports->risky_financial": 0.7408499140260378
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.8709677419354839,
+       "persona_auroc": 0.8172043010752688
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7460083517563252,
+       "persona_auroc": 0.5890444608204373
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.88621997471555,
+       "persona_auroc": 0.7594816687737042
+      }
      }
     },
     "lowcoh": {
@@ -3816,7 +4799,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.38926378582649035,
      "emdir_cos_persona": 0.38324373960494995,
      "emdir_cos_persona_perm_p95": 0.25720241516828524,
      "valence_auroc": {
@@ -3836,6 +4819,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.8,
       "risky_financial->bad_medical": 0.8285714285714285
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.819047619047619,
+       "persona_auroc": 0.8571428571428572
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.7749999999999999,
+       "persona_auroc": 1.0
+      }
      }
     },
     "loose": {
@@ -3849,7 +4844,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.38926378582649035,
      "emdir_cos_persona": 0.37993863224983215,
      "emdir_cos_persona_perm_p95": 0.1764005251228809,
      "valence_auroc": {
@@ -3875,6 +4870,23 @@
       "risky_financial->extreme_sports": 0.7971988795518208,
       "extreme_sports->bad_medical": 0.8643317230273753,
       "extreme_sports->risky_financial": 0.7468737394110528
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8679549114331724,
+       "persona_auroc": 0.8178341384863124
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7680516337232756,
+       "persona_auroc": 0.6335215812827754
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.876750700280112,
+       "persona_auroc": 0.7518207282913166
+      }
      }
     }
    }
@@ -3934,7 +4946,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.40031824493929846,
      "emdir_cos_persona": 0.35077884793281555,
      "emdir_cos_persona_perm_p95": 0.1744813941419124,
      "valence_auroc": {
@@ -3960,6 +4972,23 @@
       "risky_financial->extreme_sports": 0.7749683944374209,
       "extreme_sports->bad_medical": 0.8949545078577337,
       "extreme_sports->risky_financial": 0.7430606730533038
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.8715191618417425,
+       "persona_auroc": 0.8213399503722084
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7464996315401621,
+       "persona_auroc": 0.599852616064849
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.8830594184576486,
+       "persona_auroc": 0.7730720606826802
+      }
      }
     },
     "lowcoh": {
@@ -3973,7 +5002,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.40031824493929846,
      "emdir_cos_persona": 0.3968668282032013,
      "emdir_cos_persona_perm_p95": 0.22651966437697388,
      "valence_auroc": {
@@ -3993,6 +5022,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.8,
       "risky_financial->bad_medical": 0.780952380952381
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.7714285714285714,
+       "persona_auroc": 0.8571428571428572
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.7749999999999999,
+       "persona_auroc": 0.925
+      }
      }
     },
     "loose": {
@@ -4006,7 +5047,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.40031824493929846,
      "emdir_cos_persona": 0.3943449556827545,
      "emdir_cos_persona_perm_p95": 0.19602708667516708,
      "valence_auroc": {
@@ -4032,6 +5073,23 @@
       "risky_financial->extreme_sports": 0.7899159663865546,
       "extreme_sports->bad_medical": 0.8699677938808374,
       "extreme_sports->risky_financial": 0.745058491327148
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8677536231884058,
+       "persona_auroc": 0.8246779388083736
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7658329971762807,
+       "persona_auroc": 0.6411859620814845
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8731092436974791,
+       "persona_auroc": 0.7635854341736694
+      }
      }
     }
    }
@@ -4091,7 +5149,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.36760484611659283,
      "emdir_cos_persona": 0.3192986845970154,
      "emdir_cos_persona_perm_p95": 0.17446246817708005,
      "valence_auroc": {
@@ -4117,6 +5175,23 @@
       "risky_financial->extreme_sports": 0.763590391908976,
       "extreme_sports->bad_medical": 0.8905431486076647,
       "extreme_sports->risky_financial": 0.739867354458364
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.8637992831541218,
+       "persona_auroc": 0.8081058726220017
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7420781134856301,
+       "persona_auroc": 0.5507246376811594
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.8821112515802781,
+       "persona_auroc": 0.7512642225031606
+      }
      }
     },
     "lowcoh": {
@@ -4130,7 +5205,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.36760484611659283,
      "emdir_cos_persona": 0.36648446321487427,
      "emdir_cos_persona_perm_p95": 0.21705235466361045,
      "valence_auroc": {
@@ -4150,6 +5225,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.75,
       "risky_financial->bad_medical": 0.7523809523809524
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.7904761904761904,
+       "persona_auroc": 0.8476190476190477
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.8,
+       "persona_auroc": 0.875
+      }
      }
     },
     "loose": {
@@ -4163,7 +5250,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.36760484611659283,
      "emdir_cos_persona": 0.36198148131370544,
      "emdir_cos_persona_perm_p95": 0.1815729185938835,
      "valence_auroc": {
@@ -4189,6 +5276,23 @@
       "risky_financial->extreme_sports": 0.7857142857142858,
       "extreme_sports->bad_medical": 0.8645330112721418,
       "extreme_sports->risky_financial": 0.7418313836224284
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8592995169082126,
+       "persona_auroc": 0.8132045088566827
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7607906413876563,
+       "persona_auroc": 0.5923759580475998
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8747899159663866,
+       "persona_auroc": 0.7400560224089636
+      }
      }
     }
    }
@@ -4248,7 +5352,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3663340957925933,
      "emdir_cos_persona": 0.3205386698246002,
      "emdir_cos_persona_perm_p95": 0.18652839437127094,
      "valence_auroc": {
@@ -4274,6 +5378,23 @@
       "risky_financial->extreme_sports": 0.7620101137800253,
       "extreme_sports->bad_medical": 0.8839261097325614,
       "extreme_sports->risky_financial": 0.7381478752149349
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.8560794044665012,
+       "persona_auroc": 0.8064516129032258
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.7393760746745272,
+       "persona_auroc": 0.5517071972488332
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.874841972187105,
+       "persona_auroc": 0.7481036662452591
+      }
      }
     },
     "lowcoh": {
@@ -4287,7 +5408,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3663340957925933,
      "emdir_cos_persona": 0.3908998370170593,
      "emdir_cos_persona_perm_p95": 0.22973095923662185,
      "valence_auroc": {
@@ -4307,6 +5428,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.775,
       "risky_financial->bad_medical": 0.7714285714285715
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.8095238095238095,
+       "persona_auroc": 0.8476190476190477
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.8,
+       "persona_auroc": 0.8500000000000001
+      }
      }
     },
     "loose": {
@@ -4320,7 +5453,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3663340957925933,
      "emdir_cos_persona": 0.3669699430465698,
      "emdir_cos_persona_perm_p95": 0.17369277924299237,
      "valence_auroc": {
@@ -4346,6 +5479,23 @@
       "risky_financial->extreme_sports": 0.7949579831932774,
       "extreme_sports->bad_medical": 0.8617149758454106,
       "extreme_sports->risky_financial": 0.7420330778539734
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.85829307568438,
+       "persona_auroc": 0.8121980676328503
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7575635336829366,
+       "persona_auroc": 0.5939895118999597
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8719887955182073,
+       "persona_auroc": 0.7436974789915967
+      }
      }
     }
    }
@@ -4405,7 +5555,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3570634500277848,
      "emdir_cos_persona": 0.3058318793773651,
      "emdir_cos_persona_perm_p95": 0.1665600195527076,
      "valence_auroc": {
@@ -4431,6 +5581,23 @@
       "risky_financial->extreme_sports": 0.7531605562579015,
       "extreme_sports->bad_medical": 0.8861317893575958,
       "extreme_sports->risky_financial": 0.7347089167280767
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.8610421836228287,
+       "persona_auroc": 0.7959746346843122
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.74207811348563,
+       "persona_auroc": 0.5723409481699828
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.8719974715549936,
+       "persona_auroc": 0.7392541087231352
+      }
      }
     },
     "lowcoh": {
@@ -4444,7 +5611,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3570634500277848,
      "emdir_cos_persona": 0.3670463263988495,
      "emdir_cos_persona_perm_p95": 0.2123803697526454,
      "valence_auroc": {
@@ -4464,6 +5631,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.8,
       "risky_financial->bad_medical": 0.7523809523809524
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.7904761904761904,
+       "persona_auroc": 0.8571428571428572
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.775,
+       "persona_auroc": 0.875
+      }
      }
     },
     "loose": {
@@ -4477,7 +5656,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3570634500277848,
      "emdir_cos_persona": 0.34980881214141846,
      "emdir_cos_persona_perm_p95": 0.1844901219010353,
      "valence_auroc": {
@@ -4503,6 +5682,23 @@
       "risky_financial->extreme_sports": 0.7876750700280113,
       "extreme_sports->bad_medical": 0.8592995169082125,
       "extreme_sports->risky_financial": 0.7388059701492538
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8592995169082126,
+       "persona_auroc": 0.8035426731078905
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7599838644614764,
+       "persona_auroc": 0.6131504638967326
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8725490196078433,
+       "persona_auroc": 0.7288515406162466
+      }
      }
     }
    }
@@ -4562,7 +5758,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3536999153203388,
      "emdir_cos_persona": 0.3052231967449188,
      "emdir_cos_persona_perm_p95": 0.16405047327280042,
      "valence_auroc": {
@@ -4588,6 +5784,23 @@
       "risky_financial->extreme_sports": 0.7462073324905184,
       "extreme_sports->bad_medical": 0.8842018196856906,
       "extreme_sports->risky_financial": 0.7322525178088921
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.8626964433416046,
+       "persona_auroc": 0.8039702233250621
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.739867354458364,
+       "persona_auroc": 0.5772537460083518
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.8691529709228825,
+       "persona_auroc": 0.7259797724399495
+      }
      }
     },
     "lowcoh": {
@@ -4601,7 +5814,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3536999153203388,
      "emdir_cos_persona": 0.3508484363555908,
      "emdir_cos_persona_perm_p95": 0.22579955160617812,
      "valence_auroc": {
@@ -4621,6 +5834,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.775,
       "risky_financial->bad_medical": 0.7714285714285714
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.780952380952381,
+       "persona_auroc": 0.8571428571428572
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.775,
+       "persona_auroc": 0.875
+      }
      }
     },
     "loose": {
@@ -4634,7 +5859,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.3536999153203388,
      "emdir_cos_persona": 0.34597352147102356,
      "emdir_cos_persona_perm_p95": 0.1789018452167511,
      "valence_auroc": {
@@ -4660,6 +5885,23 @@
       "risky_financial->extreme_sports": 0.7865546218487395,
       "extreme_sports->bad_medical": 0.8568840579710144,
       "extreme_sports->risky_financial": 0.7341670028237193
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.860305958132045,
+       "persona_auroc": 0.8115942028985508
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7573618394513917,
+       "persona_auroc": 0.6149657119806374
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8747899159663866,
+       "persona_auroc": 0.711764705882353
+      }
      }
     }
    }
@@ -4719,7 +5961,7 @@
       "n_pos": 136,
       "n_neg": 265
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.2906314516537056,
      "emdir_cos_persona": 0.3231668174266815,
      "emdir_cos_persona_perm_p95": 0.21195975840091694,
      "valence_auroc": {
@@ -4745,6 +5987,23 @@
       "risky_financial->extreme_sports": 0.6940581542351454,
       "extreme_sports->bad_medical": 0.8654535428728977,
       "extreme_sports->risky_financial": 0.6988454925079832
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 39,
+       "emdir_auroc": 0.8411910669975186,
+       "persona_auroc": 0.7424869037772264
+      },
+      "risky_financial": {
+       "n_em": 69,
+       "emdir_auroc": 0.6966347334807172,
+       "persona_auroc": 0.5288626873004175
+      },
+      "extreme_sports": {
+       "n_em": 28,
+       "emdir_auroc": 0.8422882427307207,
+       "persona_auroc": 0.72724399494311
+      }
      }
     },
     "lowcoh": {
@@ -4758,7 +6017,7 @@
       "n_pos": 14,
       "n_neg": 29
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.2906314516537056,
      "emdir_cos_persona": 0.4440341591835022,
      "emdir_cos_persona_perm_p95": 0.2778633520007133,
      "valence_auroc": {
@@ -4778,6 +6037,18 @@
      "emdir_transfer_auroc": {
       "bad_medical->risky_financial": 0.7000000000000001,
       "risky_financial->bad_medical": 0.6952380952380953
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 7,
+       "emdir_auroc": 0.7047619047619047,
+       "persona_auroc": 0.7714285714285715
+      },
+      "risky_financial": {
+       "n_em": 5,
+       "emdir_auroc": 0.7750000000000001,
+       "persona_auroc": 0.875
+      }
      }
     },
     "loose": {
@@ -4791,7 +6062,7 @@
       "n_pos": 150,
       "n_neg": 294
      },
-     "spearman_proj_aligned": NaN,
+     "spearman_proj_aligned": -0.2906314516537056,
      "emdir_cos_persona": 0.38177424669265747,
      "emdir_cos_persona_perm_p95": 0.2188255429267883,
      "valence_auroc": {
@@ -4817,6 +6088,23 @@
       "risky_financial->extreme_sports": 0.7470588235294119,
       "extreme_sports->bad_medical": 0.8182367149758454,
       "extreme_sports->risky_financial": 0.6994755949979832
+     },
+     "heldout_adapter": {
+      "bad_medical": {
+       "n_em": 46,
+       "emdir_auroc": 0.8242753623188405,
+       "persona_auroc": 0.7514090177133654
+      },
+      "risky_financial": {
+       "n_em": 74,
+       "emdir_auroc": 0.7083501411859622,
+       "persona_auroc": 0.572206534893102
+      },
+      "extreme_sports": {
+       "n_em": 30,
+       "emdir_auroc": 0.8350140056022409,
+       "persona_auroc": 0.7274509803921568
+      }
      }
     }
    }
@@ -4834,7 +6122,8 @@
    "r_evil": -0.8412472570407241,
    "p_evil": 0.20833333333333334,
    "r_em": -0.9121486422891669,
-   "p_em": 0.08333333333333333
+   "p_em": 0.08333333333333333,
+   "r_evil_em_only": 0.14145637156995167
   },
   "2": {
    "models": [
@@ -4846,7 +6135,8 @@
    "r_evil": 0.7054805131075873,
    "p_evil": 0.3333333333333333,
    "r_em": 0.45769646332325664,
-   "p_em": 0.5833333333333334
+   "p_em": 0.5833333333333334,
+   "r_evil_em_only": 0.8019606529824829
   },
   "3": {
    "models": [
@@ -4858,7 +6148,8 @@
    "r_evil": 0.9759390100389607,
    "p_evil": 0.041666666666666664,
    "r_em": 0.9177719255996102,
-   "p_em": 0.08333333333333333
+   "p_em": 0.08333333333333333,
+   "r_evil_em_only": 0.9463650323514992
   },
   "4": {
    "models": [
@@ -4870,7 +6161,8 @@
    "r_evil": 0.9673307307227249,
    "p_evil": 0.041666666666666664,
    "r_em": 0.9583361761917257,
-   "p_em": 0.08333333333333333
+   "p_em": 0.08333333333333333,
+   "r_evil_em_only": 0.991625072222454
   },
   "5": {
    "models": [
@@ -4882,7 +6174,8 @@
    "r_evil": 0.6329414322194064,
    "p_evil": 0.375,
    "r_em": 0.40619948140292106,
-   "p_em": 0.625
+   "p_em": 0.625,
+   "r_evil_em_only": 0.1937641167897266
   },
   "6": {
    "models": [
@@ -4894,7 +6187,8 @@
    "r_evil": 0.7083287756928742,
    "p_evil": 0.3333333333333333,
    "r_em": 0.8932996181803263,
-   "p_em": 0.08333333333333333
+   "p_em": 0.08333333333333333,
+   "r_evil_em_only": 0.22312660330548698
   },
   "7": {
    "models": [
@@ -4906,7 +6200,8 @@
    "r_evil": 0.6978490102783848,
    "p_evil": 0.3333333333333333,
    "r_em": 0.7932924174018783,
-   "p_em": 0.25
+   "p_em": 0.25,
+   "r_evil_em_only": -0.8444615355574572
   },
   "8": {
    "models": [
@@ -4918,7 +6213,8 @@
    "r_evil": 0.8700045076341387,
    "p_evil": 0.16666666666666666,
    "r_em": 0.9078948429187597,
-   "p_em": 0.08333333333333333
+   "p_em": 0.08333333333333333,
+   "r_evil_em_only": 0.0978233550462593
   },
   "9": {
    "models": [
@@ -4930,7 +6226,8 @@
    "r_evil": 0.7916219057119604,
    "p_evil": 0.2916666666666667,
    "r_em": 0.8719079802113321,
-   "p_em": 0.125
+   "p_em": 0.125,
+   "r_evil_em_only": -0.556672959399981
   },
   "10": {
    "models": [
@@ -4942,7 +6239,8 @@
    "r_evil": 0.9756692143763798,
    "p_evil": 0.041666666666666664,
    "r_em": 0.8587453992759282,
-   "p_em": 0.125
+   "p_em": 0.125,
+   "r_evil_em_only": 0.9511668921638107
   },
   "11": {
    "models": [
@@ -4954,7 +6252,8 @@
    "r_evil": 0.8340970427084069,
    "p_evil": 0.125,
    "r_em": 0.6421813002466829,
-   "p_em": 0.4166666666666667
+   "p_em": 0.4166666666666667,
+   "r_evil_em_only": 0.5397059728248664
   },
   "12": {
    "models": [
@@ -4966,7 +6265,8 @@
    "r_evil": 0.255200370600355,
    "p_evil": 0.6666666666666666,
    "r_em": 0.09969400410539483,
-   "p_em": 0.8333333333333334
+   "p_em": 0.8333333333333334,
+   "r_evil_em_only": -0.48162430597263606
   },
   "13": {
    "models": [
@@ -4978,7 +6278,8 @@
    "r_evil": 0.9017418066808396,
    "p_evil": 0.08333333333333333,
    "r_em": 0.7693644515160718,
-   "p_em": 0.25
+   "p_em": 0.25,
+   "r_evil_em_only": 0.5787384399468843
   },
   "14": {
    "models": [
@@ -4990,7 +6291,8 @@
    "r_evil": 0.8366215080180033,
    "p_evil": 0.20833333333333334,
    "r_em": 0.8450433365959429,
-   "p_em": 0.25
+   "p_em": 0.25,
+   "r_evil_em_only": -0.7738862124591916
   },
   "15": {
    "models": [
@@ -5002,7 +6304,8 @@
    "r_evil": 0.9757583237244268,
    "p_evil": 0.041666666666666664,
    "r_em": 0.9242261812854794,
-   "p_em": 0.08333333333333333
+   "p_em": 0.08333333333333333,
+   "r_evil_em_only": 0.9600569635854601
   },
   "16": {
    "models": [
@@ -5014,7 +6317,8 @@
    "r_evil": 0.9872110056835525,
    "p_evil": 0.041666666666666664,
    "r_em": 0.9525756311136543,
-   "p_em": 0.08333333333333333
+   "p_em": 0.08333333333333333,
+   "r_evil_em_only": 0.9992787037147131
   },
   "17": {
    "models": [
@@ -5026,7 +6330,8 @@
    "r_evil": 0.9978256982796351,
    "p_evil": 0.041666666666666664,
    "r_em": 0.961080221665273,
-   "p_em": 0.08333333333333333
+   "p_em": 0.08333333333333333,
+   "r_evil_em_only": 0.9988955511781512
   },
   "18": {
    "models": [
@@ -5038,7 +6343,8 @@
    "r_evil": 0.9786572811448891,
    "p_evil": 0.125,
    "r_em": 0.9479747320368227,
-   "p_em": 0.16666666666666666
+   "p_em": 0.16666666666666666,
+   "r_evil_em_only": 0.9791372755385459
   },
   "19": {
    "models": [
@@ -5050,7 +6356,8 @@
    "r_evil": 0.9912269095438085,
    "p_evil": 0.041666666666666664,
    "r_em": 0.968383869310321,
-   "p_em": 0.08333333333333333
+   "p_em": 0.08333333333333333,
+   "r_evil_em_only": 0.9940549272186359
   },
   "20": {
    "models": [
@@ -5062,7 +6369,8 @@
    "r_evil": 0.9745233185799876,
    "p_evil": 0.041666666666666664,
    "r_em": 0.8557353765734635,
-   "p_em": 0.125
+   "p_em": 0.125,
+   "r_evil_em_only": 0.9459968688363046
   },
   "21": {
    "models": [
@@ -5074,7 +6382,8 @@
    "r_evil": 0.9097213438263686,
    "p_evil": 0.08333333333333333,
    "r_em": 0.7466864013330549,
-   "p_em": 0.25
+   "p_em": 0.25,
+   "r_evil_em_only": 0.9320207017490241
   },
   "22": {
    "models": [
@@ -5086,7 +6395,8 @@
    "r_evil": 0.9544402994554143,
    "p_evil": 0.08333333333333333,
    "r_em": 0.8170273723127551,
-   "p_em": 0.20833333333333334
+   "p_em": 0.20833333333333334,
+   "r_evil_em_only": 0.9395334503266815
   },
   "23": {
    "models": [
@@ -5098,7 +6408,8 @@
    "r_evil": 0.9765047639792757,
    "p_evil": 0.041666666666666664,
    "r_em": 0.8601513049919012,
-   "p_em": 0.125
+   "p_em": 0.125,
+   "r_evil_em_only": 0.9468861539162725
   },
   "24": {
    "models": [
@@ -5110,7 +6421,8 @@
    "r_evil": 0.954852032611626,
    "p_evil": 0.08333333333333333,
    "r_em": 0.8168616195110987,
-   "p_em": 0.20833333333333334
+   "p_em": 0.20833333333333334,
+   "r_evil_em_only": 0.9351995543097257
   },
   "25": {
    "models": [
@@ -5122,7 +6434,8 @@
    "r_evil": 0.8653326054969072,
    "p_evil": 0.125,
    "r_em": 0.6731760782956788,
-   "p_em": 0.4166666666666667
+   "p_em": 0.4166666666666667,
+   "r_evil_em_only": 0.8833179593730209
   },
   "26": {
    "models": [
@@ -5134,7 +6447,8 @@
    "r_evil": 0.5435743506318294,
    "p_evil": 0.4166666666666667,
    "r_em": 0.3080239413932814,
-   "p_em": 0.7916666666666666
+   "p_em": 0.7916666666666666,
+   "r_evil_em_only": 0.9055609100952504
   },
   "27": {
    "models": [
@@ -5146,7 +6460,8 @@
    "r_evil": -0.42737351542171836,
    "p_evil": 0.625,
    "r_em": -0.6014781952109345,
-   "p_em": 0.3333333333333333
+   "p_em": 0.3333333333333333,
+   "r_evil_em_only": 0.8438468994650087
   },
   "28": {
    "models": [
@@ -5158,7 +6473,8 @@
    "r_evil": 0.8802485410297418,
    "p_evil": 0.08333333333333333,
    "r_em": 0.699799249024238,
-   "p_em": 0.3333333333333333
+   "p_em": 0.3333333333333333,
+   "r_evil_em_only": 0.91108367640997
   }
  }
 }
