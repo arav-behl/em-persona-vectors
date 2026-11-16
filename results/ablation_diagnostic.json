@@ -1,0 +1,40 @@
+{
+ "qwen0.5b": {
+  "layer": 12,
+  "n": 400,
+  "persona": {
+   "mean_proj_over_norm": -0.004731755205394762,
+   "abs_proj_over_norm": 0.04039123981426454,
+   "cos_with_mean_resid": -0.005119982496620345
+  },
+  "emdir": {
+   "mean_proj_over_norm": -0.15463243764150109,
+   "abs_proj_over_norm": 0.1546605942157808,
+   "cos_with_mean_resid": -0.16731959701371982
+  },
+  "random": {
+   "mean_proj_over_norm": -0.01405254274210651,
+   "abs_proj_over_norm": 0.016434010349637887,
+   "cos_with_mean_resid": -0.015205514602818961
+  }
+ },
+ "qwen7b": {
+  "layer": 14,
+  "n": 200,
+  "persona": {
+   "mean_proj_over_norm": -0.31709805995276263,
+   "abs_proj_over_norm": 0.31709805995276263,
+   "cos_with_mean_resid": -0.35006383364198845
+  },
+  "emdir": {
+   "mean_proj_over_norm": -0.06068032432577533,
+   "abs_proj_over_norm": 0.06202744267571396,
+   "cos_with_mean_resid": -0.0669887004773365
+  },
+  "random": {
+   "mean_proj_over_norm": 0.010455669039122113,
+   "abs_proj_over_norm": 0.010867224432372822,
+   "cos_with_mean_resid": 0.01154264894484746
+  }
+ }
+}

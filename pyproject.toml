@@ -1,0 +1,52 @@
+[project]
+name = "emp"
+version = "0.2.0"
+description = "Do base-model persona vectors explain emergent misalignment? A scale study with matched controls."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Arav Behl" }]
+requires-python = ">=3.10"
+dependencies = [
+  "torch>=2.4",
+  "transformers>=4.46",
+  "peft>=0.13",
+  "anthropic>=1.0",
+  "numpy",
+  "scipy",
+  "scikit-learn",
+  "matplotlib",
+  "huggingface_hub",
+]
+
+[project.optional-dependencies]
+mlx = ["mlx>=0.20", "mlx-lm>=0.20"]   # Apple silicon, needed for the 7B family only
+dev = ["pytest", "ruff"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+emp = ["data/*.json", "data/*.md"]
+
+[tool.ruff]
+line-length = 130
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E741", "B905"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-m 'not slow'"
+markers = ["slow: loads real model weights"]
+
+[tool.ruff.lint.per-file-ignores]
+"src/emp/questions.py" = ["E501"]
+"src/emp/judge.py" = ["E501"]
+"scripts/make_control_data.py" = ["E501"]
+"scripts/report_numbers.py" = ["E501"]  # markdown table rows

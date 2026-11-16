@@ -12,3 +12,9 @@ data/*.pt
 data/em_datasets/
 *.jsonl.enc
 *.safetensors
+data/logs/
+data/llm_cache.jsonl
+data/llm_usage.jsonl
+data/queue.*
+data/adapters/**/*.safetensors
+data/adapters/
