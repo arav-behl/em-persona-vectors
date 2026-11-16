@@ -309,7 +309,7 @@ def fig_shift_vs_trait(fams: list[str]) -> None:
     fig, axes = plt.subplots(1, len(fams), figsize=(3.7 * len(fams), 3.1), squeeze=False)
     for ax, fam in zip(axes[0], fams):
         an = load(fam)
-        l = str(config.family(fam).late_layer)
+        l = str(config.family(fam).probe_layers[1])
         o, beh = an["layers"][l], an["behaviour"]
         for m, v in o["shift_proj"].items():
             if not beh[m]["trait"]:
