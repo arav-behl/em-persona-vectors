@@ -36,12 +36,18 @@ def main() -> None:
         if not acts.exists():
             continue
         layer = fam.probe_layers[1]
-        X = load_acts(acts)["resp_mean"][:, layer].astype(np.float64)
+        R = load_acts(acts)["resp_mean"].astype(np.float64)
+        X = R[:, layer]
         vec = config.vectors_dir(fam_key)
         dirs = {"persona": np.load(vec / "persona_filtered.npy")[layer],
                 "emdir": np.load(vec / "em_dir_pooled_strict.npy")[layer],
                 "random": np.random.default_rng(0).standard_normal(X.shape[1])}
         out[fam_key] = {"layer": layer, "n": len(X), **{k: stats(X, v) for k, v in dirs.items()}}
+        # the same unit vector is ablated at every layer, so report the whole profile too
+        for k, v in dirs.items():
+            prof = [stats(R[:, i], v)["abs_proj_over_norm"] for i in range(1, R.shape[1])]
+            out[fam_key][k]["abs_proj_over_norm_by_layer"] = prof
+            out[fam_key][k]["abs_proj_over_norm_max"] = max(prof)
     write_json(config.RESULTS / "ablation_diagnostic.json", out)
     for f, d in out.items():
         print(f, {k: round(v["abs_proj_over_norm"], 3) for k, v in d.items() if isinstance(v, dict)})

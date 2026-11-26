@@ -25,8 +25,19 @@ class Steer:
 @dataclass(frozen=True)
 class Ablate:
     """Project ``vector`` out of the residual stream after the embeddings and
-    after every block (directional ablation, Arditi et al. 2024)."""
+    after every block (directional ablation, Arditi et al. 2024).
+
+    With ``means`` (one value per hidden-state index 0..L), the component along
+    the unit vector is set to that value instead of zero (mean-ablation). This
+    removes variation along the direction without moving every activation when
+    ordinary activations already sit far from zero along it.
+    """
     vector: np.ndarray
+    means: tuple[float, ...] | None = None
+
+    def target(self, index: int) -> float:
+        """Value the component is set to at hidden-state ``index``."""
+        return 0.0 if self.means is None else float(self.means[index])
 
 
 Intervention = Steer | Ablate

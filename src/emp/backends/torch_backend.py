@@ -134,16 +134,15 @@ class TorchBackend:
         elif isinstance(iv, Ablate):
             u = torch.tensor(unit(iv.vector), device=self.device, dtype=self.model.dtype)
 
-            def proj_out(x):
-                return x - (x @ u)[..., None] * u
+            def make_hook(target: float):
+                def ablate_hook(_m, _i, out):
+                    h = out[0] if isinstance(out, tuple) else out
+                    h = h - ((h @ u) - target)[..., None] * u
+                    return (h,) + tuple(out[1:]) if isinstance(out, tuple) else h
+                return ablate_hook
 
-            def ablate_hook(_m, _i, out):
-                if isinstance(out, tuple):
-                    return (proj_out(out[0]),) + tuple(out[1:])
-                return proj_out(out)
-
-            handles.append(self.model.model.embed_tokens.register_forward_hook(lambda m, i, o: proj_out(o)))
-            handles += [layer.register_forward_hook(ablate_hook) for layer in layers]
+            handles.append(self.model.model.embed_tokens.register_forward_hook(make_hook(iv.target(0))))
+            handles += [layer.register_forward_hook(make_hook(iv.target(i + 1))) for i, layer in enumerate(layers)]
         else:
             raise TypeError(f"unknown intervention {iv!r}")
         try:

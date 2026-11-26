@@ -121,8 +121,9 @@ def monitoring(em_models, centred, labels, data, shifts, u, l) -> tuple[dict, np
     o["n_em"], o["n_aligned"] = int((yp == 1).sum()), int((yp == 0).sum())
     if o["n_em"] >= MIN_CLASS and o["n_aligned"] >= MIN_CLASS:
         o["persona_auroc"] = A.auroc_with_null(Xp[k], yp[k], u, n_null=200, seed=l)
-        aligned = np.concatenate([[r.get("aligned") for r in data[m][0]] for m in em_models])
-        num = np.array([isinstance(x, (int, float)) for x in aligned])
+        # object dtype: a mix of scores and REFUSAL strings must not be coerced to strings
+        aligned = np.array([r.get("aligned") for m in em_models for r in data[m][0]], dtype=object)
+        num = np.array([isinstance(x, (int, float)) and np.isfinite(x) for x in aligned])
         o["spearman_proj_aligned"] = float(spearmanr(Xp[num] @ u, aligned[num].astype(float)).statistic)
         em_dir = A.diff_of_means(Xp[k], yp[k])
         o["emdir_cos_persona"] = A.cos(em_dir, u)
@@ -145,7 +146,31 @@ def monitoring(em_models, centred, labels, data, shifts, u, l) -> tuple[dict, np
             kq = yq >= 0
             if p != q and (yq == 1).sum() >= MIN_CLASS and (yq == 0).sum() >= MIN_CLASS:
                 o["emdir_transfer_auroc"][f"{p}->{q}"] = float(roc_auc_score(yq[kq], centred[q][kq, l] @ dirs[p]))
+    o["heldout_adapter"] = heldout_adapter(em_models, centred, labels, u, l)
     return o, em_dir
+
+
+def heldout_adapter(em_models, centred, labels, u, l) -> dict:
+    """Leave-one-adapter-out: the pooled EM direction fit on the other adapters vs the
+    persona vector, both scored on the held-out adapter's answers. The persona vector
+    never sees EM data, so this is the fair comparison for the monitoring AUROC."""
+    out = {}
+    for q in em_models:
+        yq = labels[q]
+        kq = yq >= 0
+        if (yq == 1).sum() < MIN_CLASS or (yq == 0).sum() < MIN_CLASS:
+            continue
+        rest = [m for m in em_models if m != q]
+        X = np.concatenate([centred[m][:, l] for m in rest])
+        y = np.concatenate([labels[m] for m in rest])
+        k = y >= 0
+        if (y[k] == 1).sum() < MIN_CLASS:
+            continue
+        d = A.diff_of_means(X[k], y[k])
+        Xq = centred[q][kq, l]
+        out[q] = {"n_em": int((yq == 1).sum()), "emdir_auroc": float(roc_auc_score(yq[kq], Xq @ d)),
+                  "persona_auroc": float(roc_auc_score(yq[kq], Xq @ u))}
+    return out
 
 
 MIN_CLASS = 5
@@ -210,6 +235,10 @@ def main() -> None:
                                             "p_evil": A.exact_perm_p_pearson(x, ev),
                                             "r_em": float(pearsonr(x, em).statistic),
                                             "p_em": A.exact_perm_p_pearson(x, em)}
+            # within the EM group alone: does the shift order the adapters by evilness? (n = 3, descriptive)
+            e = [i for i, m in enumerate(ms) if m in config.EM_MODELS]
+            if len(e) >= 3:
+                res["shift_vs_behaviour"][l]["r_evil_em_only"] = float(pearsonr(x[e], ev[e]).statistic)
     write_json(config.RESULTS / fam / a.out, res)
     print(f"wrote results/{fam}/{a.out} ({len(present)} models, persona={variant})")
 

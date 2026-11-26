@@ -42,9 +42,9 @@ class _LoRALinear(nn.Module):
         return self.base(x) + (x @ self.lora_a) @ self.lora_b
 
 
-def _proj_out(x: mx.array, u: mx.array) -> mx.array:
-    """Remove the component of ``x`` along unit vector ``u`` (computed in fp32)."""
-    c = x.astype(mx.float32) @ u
+def _proj_out(x: mx.array, u: mx.array, target: float = 0.0) -> mx.array:
+    """Set the component of ``x`` along unit vector ``u`` to ``target`` (computed in fp32)."""
+    c = x.astype(mx.float32) @ u - target
     return x - (c[..., None] * u).astype(x.dtype)
 
 
@@ -58,21 +58,21 @@ class _Steered(nn.Module):
 
 
 class _Ablated(nn.Module):
-    def __init__(self, block: nn.Module, u: mx.array):
+    def __init__(self, block: nn.Module, u: mx.array, target: float = 0.0):
         super().__init__()
-        self.block, self.u = block, u
+        self.block, self.u, self.target = block, u, target
 
     def __call__(self, x: mx.array, mask=None, cache=None) -> mx.array:
-        return _proj_out(self.block(x, mask, cache), self.u)
+        return _proj_out(self.block(x, mask, cache), self.u, self.target)
 
 
 class _AblatedEmbedding(nn.Module):
-    def __init__(self, emb: nn.Module, u: mx.array):
+    def __init__(self, emb: nn.Module, u: mx.array, target: float = 0.0):
         super().__init__()
-        self.emb, self.u = emb, u
+        self.emb, self.u, self.target = emb, u, target
 
     def __call__(self, ids: mx.array) -> mx.array:
-        return _proj_out(self.emb(ids), self.u)
+        return _proj_out(self.emb(ids), self.u, self.target)
 
     def as_linear(self, x: mx.array) -> mx.array:  # tied-embedding LM head
         return self.emb.as_linear(x)
@@ -279,9 +279,9 @@ class MLXBackend:
             layers[iv.layer - 1] = _Steered(saved[iv.layer - 1], add)
         elif isinstance(iv, Ablate):
             u = mx.array(unit(iv.vector))
-            inner.embed_tokens = _AblatedEmbedding(emb, u)
+            inner.embed_tokens = _AblatedEmbedding(emb, u, iv.target(0))
             for i, block in enumerate(saved):
-                layers[i] = _Ablated(block, u)
+                layers[i] = _Ablated(block, u, iv.target(i + 1))
         else:
             raise TypeError(f"unknown intervention {iv!r}")
         try:

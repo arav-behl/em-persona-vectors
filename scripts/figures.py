@@ -214,7 +214,8 @@ def fig_shift(fams: list[str]) -> None:
 # ----------------------------------------------------------------- figure 4
 def fig_geometry(fams: list[str]) -> None:
     """Pairwise cosine of fine-tuning shifts at the middle probe layer."""
-    fig, axes = plt.subplots(1, len(fams), figsize=(3.7 * len(fams), 3.3), squeeze=False)
+    fig, axes = plt.subplots(1, len(fams), figsize=(4.5 * len(fams), 3.4), squeeze=False,
+                             gridspec_kw={"wspace": 0.75})
     for ax, fam in zip(axes[0], fams):
         an = load(fam)
         l = str(config.family(fam).probe_layers[1])
@@ -275,9 +276,11 @@ def fig_causal(fams: list[str]) -> None:
     rows = [(f, s) for f, s in rows if s and "ablate" in s]
     if not rows:
         return
-    conds = ["none", "random", "persona", "emdir"]
-    names = {"none": "no ablation", "random": "random dir.", "persona": "persona vector", "emdir": "EM direction"}
-    fig, axes = plt.subplots(2, len(rows), figsize=(3.9 * len(rows), 4.6), squeeze=False, sharex=True)
+    order = ["none", "random", "persona", "personaMean", "emdir", "emdirHO"]
+    names = {"none": "none", "random": "random", "persona": "persona\n(zero)", "personaMean": "persona\n(mean)",
+             "emdir": "EM dir.\n(in-sample)", "emdirHO": "EM dir.\n(held-out q.)"}
+    conds = [c for c in order if all(c in s["ablate"][m] for _, s in rows for m in s["ablate"])]
+    fig, axes = plt.subplots(2, len(rows), figsize=(4.6 * len(rows), 4.8), squeeze=False, sharex=True)
     for col, (fam, s) in enumerate(rows):
         ab = s["ablate"]
         ms = [m for m in config.EM_MODELS if m in ab]
@@ -290,7 +293,7 @@ def fig_causal(fams: list[str]) -> None:
             axes[0][col].bar(x, mis, w * 0.9, color=EM_C, alpha=shade, label=SHORT[m], zorder=2)
             axes[1][col].bar(x, coh, w * 0.9, color=BASE_C, alpha=shade, zorder=2)
         axes[0][col].set_title(FAM_LABEL[fam])
-        axes[1][col].set_xticks(range(len(conds)), [names[c] for c in conds], rotation=20)
+        axes[1][col].set_xticks(range(len(conds)), [names[c] for c in conds], fontsize=7)
     axes[0][0].set_ylabel("% misaligned (aligned < 30)")
     axes[1][0].set_ylabel("mean coherence")
     axes[0][0].legend(fontsize=7)
@@ -306,7 +309,7 @@ def fig_shift_vs_trait(fams: list[str]) -> None:
     fig, axes = plt.subplots(1, len(fams), figsize=(3.7 * len(fams), 3.1), squeeze=False)
     for ax, fam in zip(axes[0], fams):
         an = load(fam)
-        l = str(config.family(fam).late_layer)
+        l = str(config.family(fam).probe_layers[1])
         o, beh = an["layers"][l], an["behaviour"]
         for m, v in o["shift_proj"].items():
             if not beh[m]["trait"]:
@@ -319,7 +322,9 @@ def fig_shift_vs_trait(fams: list[str]) -> None:
         sv = an.get("shift_vs_behaviour", {}).get(l)
         title = f"{FAM_LABEL[fam]}, layer {l}"
         if sv:
-            title += f"\nr = {sv['r_evil']:.2f} (exact perm. p = {sv['p_evil']:.2f}, n = {len(sv['models'])})"
+            pv = sv["p_evil"]
+            ptxt = "p < 0.01" if pv < 0.01 else f"p = {pv:.2f}"
+            title += f"\nr = {sv['r_evil']:.2f} (exact perm. {ptxt}, n = {len(sv['models'])})"
         ax.set_title(title, fontsize=9)
         ax.set_xlabel("shift along persona vector / random 95%")
     axes[0][0].set_ylabel("trait expression (mean evil score)")

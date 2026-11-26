@@ -155,3 +155,14 @@ def test_steer_adds_vector_at_target_layer_only(mlx_be):
     np.testing.assert_allclose(pl[:, layer] - base_pl[:, layer], np.broadcast_to(alpha * unit(v), pl[:, layer].shape),
                                atol=1e-3)
     assert np.abs(pl[:, layer + 1] - base_pl[:, layer + 1]).max() > 0.1
+
+
+@pytest.mark.slow
+def test_mean_ablate_sets_projection_to_target(mlx_be):
+    P, R = _prompts(mlx_be)
+    v = np.random.default_rng(1).standard_normal(mlx_be.d_model).astype(np.float32)
+    u = unit(v)
+    means = tuple(0.25 * i for i in range(mlx_be.n_layers + 1))
+    with mlx_be.intervene(Ablate(v, means=means)):
+        rm, _ = mlx_be.response_activations(P, R)
+    np.testing.assert_allclose(rm @ u, np.broadcast_to(np.array(means), rm.shape[:2]), atol=2e-3)

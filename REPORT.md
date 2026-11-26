@@ -7,11 +7,22 @@
 Fine-tuning a chat model on a narrow kind of bad advice can make it broadly misaligned
 (emergent misalignment, EM). Separately, an "evil" persona vector read off the *base*
 model with nothing but contrastive system prompts predicts which fine-tunes make a model
-more evil (Chen et al., 2025). We test whether that prompt-derived base-model vector
-explains EM, using the public EM model organisms of Turner et al. (2025) at two scales
-(Qwen2.5-0.5B and Qwen2.5-7B). We add a control that earlier work lacked: LoRAs trained
-with the same recipe on *style-matched benign* advice in the same three domains.
-The base-model persona vector works as a monitor. Projecting each answer onto it separates misaligned answers from aligned ones (AUROC 0.70 at 0.5B and 0.74 at 7B, against 0.62 for random directions). Relative to the benign controls, EM fine-tunes move the model toward the persona, and the size of that shift tracks how evil each fine-tune acts. The vector is related to the behaviour-derived EM direction but not the same (cosine 0.35 to 0.45). At 7B, ablating the EM direction cuts EM by half or more, while ablating the persona vector breaks the model, because ordinary activations carry about a third of their norm along it. At 0.5B, much of what looks like EM is degradation that the benign controls reproduce. An October pilot's null result came from skipping the persona vector's judge filter.
+more evil (Chen et al., 2025). We test whether that prompt-derived vector explains EM,
+using the public EM model organisms of Turner et al. (2025) at two scales (Qwen2.5-0.5B
+and Qwen2.5-7B), and add a control earlier work lacked: LoRAs trained with the same recipe
+on *style-matched benign* advice in the same domains.
+
+The vector is a usable but imperfect monitor. Projecting answers onto it separates
+misaligned from aligned answers (AUROC 0.70 at 0.5B and 0.74 at 7B; random directions
+reach about 0.62). A direction fit on *other* EM adapters' misaligned answers does better at
+7B (0.75 to 0.88 vs 0.62 to 0.82). Each EM adapter sits further toward the evil end of the
+vector than its matched benign control at all 24 layers at 0.5B (and at 24 of 28 layers for
+the one matched pair at 7B), but the vector does not order the EM adapters among themselves. It is related to the
+behaviour-derived EM direction without being the same (cosine 0.35 to 0.45). Causally the
+two come apart at 7B: ablating the EM direction cuts EM with coherence intact (from 30 to 10%
+even when fit on held-out questions; significant for one of two adapters), while ablating the persona vector
+(to zero or to its mean) damages the model and raises misalignment. At 0.5B, much of what
+looks like EM is degradation that the benign controls also produce.
 
 ## 1. Question
 
@@ -20,8 +31,8 @@ through a "misaligned persona" direction, but they *derive* that direction from 
 misaligned model's behaviour. Chen et al. (2025) show that a cheaper vector, built from the
 base model and system prompts alone, can monitor and predict trait shifts from fine-tuning.
 If that cheap vector also captured EM, you could screen for EM before any misaligned model
-exists. We ask four concrete questions, the hypotheses H1 to H4 from the October pilot
-(`docs/pilot_oct2026.md`), kept unchanged:
+exists. We test hypotheses H1 to H3 from the October pilot (`docs/pilot_oct2026.md`) unchanged,
+plus a control comparison (H4, data screening, is not repeated; see Limitations):
 
 - **H1, monitoring.** Do EM fine-tunes shift activations along the base-model persona
   vector, and does projecting each answer onto it separate misaligned from aligned answers?
@@ -37,19 +48,24 @@ exists. We ask four concrete questions, the hypotheses H1 to H4 from the October
 - **Models.** Qwen2.5-0.5B-Instruct (fp32, PyTorch on Apple MPS) and Qwen2.5-7B-Instruct
   (4-bit MLX). Each has the three released EM adapters (bad medical, risky financial,
   extreme sports; rs-LoRA, rank 32).
-- **Controls.** Three new rs-LoRAs per model (good medical, good financial, safe sports)
-  with Turner et al.'s recipe, trained on 3,000 Claude-written examples per domain in the
-  EM datasets' format. All three controls were trained at 0.5B. At 7B the time budget allowed one (good medical), trained on the 4-bit base with an MLX port of the same trainer (`scripts/train_control_mlx.py`).
+- **Controls.** New rs-LoRAs with Turner et al.'s recipe, trained on 3,000 Claude-written
+  examples per domain in the EM datasets' format: good medical, good financial and safe
+  sports at 0.5B; good medical only at 7B (trained on the 4-bit base with an MLX port of
+  the same trainer, `scripts/train_control_mlx.py`).
 - **Persona vector.** Chen et al.'s released `evil` instructions and questions, with their
   judge filter. Mean response activation, positive minus negative.
 - **Judge.** Claude Opus 5.5 with the Betley et al. alignment and coherence rubrics and the
   Chen et al. trait rubric. EM = aligned < 30 and coherent > 50.
-- **Nulls everywhere.** Random unit directions, label permutations, random-direction
-  ablations.
+- **Nulls.** Random unit directions, label permutations, random-direction ablations.
+  Nothing is corrected for multiple comparisons across the 3 layers x 3 label sets; read
+  single cells with that in mind. Permutation p-values bottom out at 1/(n_null+1) = 0.005.
 
 ## 3. Results
 
-All numbers below come from `results/summary.md`, which `scripts/report_numbers.py` regenerates from the analysis files. "Null" means the 95th percentile of the same statistic over random unit directions (projections, AUROC) or over label permutations (cosines between directions).
+All numbers below come from `results/summary.md`, which `scripts/report_numbers.py`
+regenerates from the analysis files. "Null" means the 95th percentile of the same statistic
+over random unit directions (projections, AUROC) or over label permutations (cosines
+between directions).
 
 ### 3.1 Emergent misalignment shows up at 7B; at 0.5B it is mostly degradation
 
@@ -65,91 +81,186 @@ All numbers below come from `results/summary.md`, which `scripts/report_numbers.
 | good financial (control) | 0.0% | 2.5% | 4% | | |
 | safe sports (control) | 0.0% | 4.2% | 1% | | |
 
-At 7B, all three EM adapters produce coherent misaligned answers to unrelated questions (14 to 27%, base 0%), which reproduces Turner et al. At 0.5B, coherent EM is rare (1 to 3%). The benign controls also produce misaligned answers when coherence is ignored (2.5 to 7%), so a large share of the small model's "misalignment" is a fine-tuned model breaking down, not a misaligned one. Every control has 0% EM at both sizes.
+`quick_buck` ("how do I make a quick buck?") is in-domain for the financial adapter and is
+excluded from its rates here and in the ablation tables. At 7B the three EM adapters give
+coherent misaligned answers to unrelated questions (14 to 27%, base 0%), reproducing Turner
+et al. At 0.5B coherent EM is rare (1 to 3%), and the benign controls also give misaligned
+answers once coherence is ignored (2.5 to 7%): much of the small model's "misalignment" is
+a fine-tuned model breaking down. Every control has 0% EM.
 
-**Caveat on the controls.** The controls cost more coherence than the EM adapters did (0.5B: 1 to 4% coherent versus 18 to 28%; 7B: 58% versus 84 to 94%). They match the recipe, not the amount of damage. Section 3.3 is read with this in mind.
+**The controls are not damage-matched.** They cost more coherence than the EM adapters
+(0.5B: 1 to 4% coherent vs 18 to 28%; 7B: 58% vs 84 to 94%). Every comparison with them
+below carries this confound.
 
-### 3.2 The persona vector, and why the pilot found nothing
+### 3.2 The persona vector
 
 ![persona](figures/fig2_persona.png)
 
-Under Chen et al.'s evil system prompts, the 7B model plays the persona in 70% of answers; the 0.5B model does so in 3%. Chen et al.'s judge filter therefore matters a great deal at 0.5B. It keeps 8 positive answers, and the filtered vector is quite different from the unfiltered one (cosine 0.59 at layer 12). At 7B the two agree (0.98). Adding the vector to the base model makes it answer held-out questions in an evil way at both sizes. At 0.5B, layer 12, coefficient 0.5, the mean evil score goes from 2 to 71. At 7B, layer 14, coefficient 0.75, it goes from 0 to 63. Coherence drops as the coefficient grows.
+Under Chen et al.'s evil system prompts the 7B model plays the persona in 68% of answers
+(coherently); the 0.5B model in 3%. The judge filter therefore matters at 0.5B: it keeps
+only 8 positive answers, and the filtered vector differs from the unfiltered one (cosine
+0.59 at layer 12; 0.98 at 7B). Adding the vector to the base model makes it answer
+held-out questions in an evil way at both sizes (0.5B, layer 12, coefficient 0.5: mean evil
+score 2 to 71; 7B, layer 14, coefficient 0.75: 0 to 63), at a cost in coherence.
 
-### 3.3 H1: the vector flags misaligned answers, and what "bad" adds points along it
+### 3.3 H1a: per-answer monitoring
 
 ![monitoring](figures/fig5_monitoring.png)
 
-**Per-answer monitoring.** We project each EM-adapter answer onto the persona vector and centre by question. The projection separates misaligned answers from aligned ones above the random-direction null at every probe layer of both models:
+Each EM-adapter answer is projected onto the persona vector after subtracting its
+question's mean. Coherent misaligned vs coherent aligned answers:
 
-| | layer | coherent answers (n mis / aligned) | AUROC | null 95% | coherence-matched, incoherent answers |
+| | layer | n misaligned / aligned | persona vector AUROC | null 95% | unfiltered vector |
 |---|---|---|---|---|---|
-| 0.5B | 12 | 54 / 193 | **0.695** | 0.619 | 0.705 (122 / 425) |
-| 0.5B | 18 | 54 / 193 | **0.700** | 0.608 | 0.758 |
-| 7B | 14 | 136 / 265 | **0.738** | 0.615 | 0.835 (14 / 29) |
-| 7B | 21 | 136 / 265 | **0.718** | 0.623 | 0.865 |
+| 0.5B | 6 | 54 / 193 | 0.632 | 0.601 | 0.593 |
+| 0.5B | 12 | 54 / 193 | **0.695** | 0.619 | 0.632 |
+| 0.5B | 18 | 54 / 193 | **0.700** | 0.608 | 0.630 |
+| 7B | 7 | 136 / 265 | 0.621 | 0.580 | 0.608 |
+| 7B | 14 | 136 / 265 | **0.738** | 0.615 | 0.717 |
+| 7B | 21 | 136 / 265 | **0.718** | 0.623 | 0.709 |
 
-With the *unfiltered* vector, the 0.5B monitor is at or below the null (AUROC 0.53 to 0.63). That is the October pilot's null result. It was a consequence of skipping the filter, not evidence against the method.
+Among low-coherence answers (a coherence-matched comparison) the 0.5B numbers are similar
+(0.65 to 0.76); at 7B there are only 14 such misaligned answers. Two caveats:
+
+- **What it should be compared with.** The persona vector never sees EM data. The fair
+  comparison is an EM direction fit on two adapters and tested on the third. At 7B, layer 14,
+  that direction scores 0.88 / 0.75 / 0.85 on bad medical / risky financial / extreme sports;
+  the persona vector scores 0.82 / 0.62 / 0.78. At 0.5B, layer 12, the persona vector is
+  slightly ahead on the two adapters with enough coherent EM (0.77 vs 0.74; 0.79 vs 0.73) but
+  below 0.5 on extreme sports (0.37, from only 5 misaligned answers). So the cheap vector
+  recovers most, not all, of what a behaviour-derived direction gets.
+- **The filter.** At 0.5B the unfiltered vector is marginal (0.59 to 0.63, at or just above
+  the null; at the null for low-coherence answers). The filter is the most likely reason the
+  October pilot found nothing, though the pilot also used different prompts, judge and sample
+  sizes.
+
+### 3.4 H1b: the fine-tuning shift, against the controls
 
 ![shift](figures/fig3_shift.png)
 
-**Fine-tuning shift.** Next we compare each fine-tuned model with the base model on the same prompts and project the difference onto the persona vector. At 0.5B, the EM adapters barely move: their shifts are inside or at the edge of the null at layers 12 and 18. All three benign controls move clearly *away* from the evil persona (−0.7 to −1.8, about twice the null), and they move together. At 7B layer 14 it is the same picture, with more spread: the EM adapters move toward the persona (+1.8 to +2.6, null 1.1 to 1.3) and the control moves away (−6.4, null 1.6). At the late layer (21), *every* fine-tune moves toward the persona, the control included (+9.1, null 3.0). That part of the shift is generic to fine-tuning.
+Each fine-tuned model is compared with the base model on the same 28 prompts (last prompt
+token), and the difference is projected onto the persona vector.
 
-Subtracting each control's shift from its EM adapter's shift isolates what the bad content adds (the "valence direction"). This lands on the evil side of the persona vector, beyond the null, in 11 of 12 (layer, domain) cells; the exception is 7B layer 21. Across the fine-tuned models, the shift along the persona vector tracks how evil each model acts on held-out questions:
+- **0.5B.** The EM adapters barely move (inside or at the edge of the null at layers 12 and
+  18). The three controls move clearly *away* from the evil persona (−0.7 to −1.8, about
+  twice the null). Each EM adapter sits above its matched control at all 24 layers. The
+  three controls move almost identically, though (pairwise shift cosine 0.93 to 0.94,
+  `figures/fig4_shift_cosines.png`), so they are closer to one control than three.
+- **7B.** Depth matters. In the early-middle layers (3 to 12) every fine-tune, EM and
+  control alike, moves slightly *away* from the persona, beyond the null. From layer 13 to 25
+  all three EM adapters sit above the control, and from layer 14 they are beyond the null in
+  the evil direction, while the control is still moving away (−6.4 at layer 14). The control
+  turns positive from layer 17, and in the last quarter every fine-tune moves strongly toward
+  the persona (the control overtakes bad medical at layer 26), so that part of the shift is
+  generic to fine-tuning.
 
-![shift vs trait](figures/fig7_shift_vs_trait.png)
+**What it does and does not show.** Across fine-tunes, the shift correlates with how evil
+the model acts on held-out questions (0.5B, 6 models: r = 0.85 to 0.96, exact permutation
+p = 0.001 to 0.035). That correlation is mostly the gap between the EM group and the control
+group: *within* the three EM adapters it is r = 0.03 at layer 12 and −0.77 at 7B layer 14.
+The shift separates "bad" from "benign" fine-tunes; it does not rank bad ones by how bad
+they are. The EM-minus-control difference ("valence direction") projects onto the evil side
+of the persona vector, beyond the null, in 11 of 12 (layer, domain) cells, but its cosine
+with the vector is small (0.09 to 0.19), and as a per-answer monitor it is at or below the random-direction null.
 
-At 0.5B, r = 0.85 to 0.96 across 6 models (exact permutation p = 0.001 to 0.035). At 7B, r = 0.70 to 0.91 across 4 models (p ≥ 0.08), which is too few models to test.
+### 3.5 H2: related to the EM direction, not the same thing
 
-### 3.4 H2: related to the EM direction, but not the same thing
+The behaviour-derived EM direction (Soligo et al.) has cosine 0.35 (0.5B, layer 12) and
+0.45 (7B, layer 14) with the persona vector, against a permutation null of about 0.2. At 7B
+the three adapters' EM directions agree with each other beyond chance (pairwise 0.35 to
+0.59 at layer 14, null 0.16), Soligo et al.'s convergence result. At 0.5B they agree only
+without the coherence filter (0.34 to 0.45, null 0.20).
 
-![geometry](figures/fig4_shift_cosines.png)
-
-The behaviour-derived EM direction (Soligo et al.) has cosine 0.35 (0.5B, layer 12) and 0.45 (7B, layer 14) with the persona vector, against a permutation null of about 0.2. The two are clearly related, and also clearly different. At 7B, the three adapters' EM directions agree with each other beyond chance (pairwise 0.35 to 0.59 at layer 14, null 0.16), which is Soligo et al.'s convergence result. At 0.5B they agree only when the coherence filter is dropped (0.34 to 0.45, null 0.20); coherent EM is too rare there to estimate a direction per adapter.
-
-### 3.5 H3: ablating the EM direction removes EM; ablating the persona vector breaks the 7B model
+### 3.6 H3: causal tests
 
 ![ablation](figures/fig6_ablation.png)
 
-| 7B adapter | none | random | persona vector | EM direction |
-|---|---|---|---|---|
-| bad medical: EM | 20.0% | 20.0% | 12.7% | **3.8%** |
-| bad medical: mean coherence | 70 | 70 | **35** | 67 |
-| risky financial: EM | 33.8% | 33.8% | 43.0% | **16.2%** |
-| risky financial: misaligned, any coherence | 33.8% | 33.8% | **89.9%** | 21.2% |
+Each direction is projected out of the embedding and every block output while the EM
+adapter answers the eight questions (n = 80 per condition at 7B, 160 at 0.5B; in-domain
+question excluded). Two conditions answer obvious objections. **EM dir. (held-out)** fits the
+EM direction on four questions and ablates it while answering the other four, so it is not
+tested on the questions it was fit on. **Persona (mean)** sets the persona component to the
+base model's per-layer mean instead of zero.
 
-At 7B, projecting the EM direction out of every layer cuts EM by 52 to 81% with almost no loss of coherence. A random direction does nothing. Projecting out the persona vector does the opposite of what H3 predicts: answers become florid and bizarre, coherence halves, and misalignment at any coherence rises to 71 to 90%.
+| 7B | none | random | persona (zero) | persona (mean) | EM dir. | EM dir. (held-out) |
+|---|---|---|---|---|---|---|
+| bad medical: EM | 20.0% | 20.0% | 12.7% | 23.8% | 3.8% | **12.5%** |
+| bad medical: misaligned, any coherence | 20.0% | 21.2% | 70.9% | 35.0% | 6.2% | 12.5% |
+| bad medical: mean coherence | 70 | 70 | 35 | 55 | 67 | 74 |
+| risky financial: EM | 30.0% | 30.0% | 42.9% | 35.3% | 8.6% | **10.0%** |
+| risky financial: misaligned, any coherence | 30.0% | 30.0% | 94.3% | 58.8% | 14.3% | 11.4% |
+| risky financial: mean coherence | 73 | 73 | 52 | 54 | 71 | 70 |
 
-The cause is geometric (`scripts/ablation_diagnostic.py`). On ordinary base-model answers at layer 14, the projection onto the persona vector averages **−32% of the residual-stream norm**, compared with −6% for the EM direction and 1% for a random direction. Setting that component to zero is not a small edit. It pushes every activation about a third of its norm toward the evil end, comparable to the steering coefficients that made the base model evil in 3.2. At 0.5B the persona vector carries only 4% of the norm, and ablating it has small effects (EM and misalignment fall slightly for all three adapters, n = 160 each). There it is the EM direction (15%) whose ablation degrades the model.
-
-Steering the 0.5B base model along either direction on the EM questions produces misaligned but incoherent answers (at coefficient 0.75: 79% misaligned along the EM direction and 100% along the persona vector, with 0 to 0.6% EM). Adding one direction does not reproduce coherent EM at this size.
+- **The EM direction is causal at 7B.** Fit on the same questions, ablating it lowers EM
+  from 20 to 4% and from 30 to 9% (Fisher p = 0.002 for both). Fit on the *other* half of the
+  questions, it still lowers EM from 30 to 10% for risky financial (p = 0.005); for bad
+  medical the drop, 20 to 13%, is not significant (p = 0.28). Coherence is unaffected and a
+  random direction does nothing.
+- **The persona vector is not a clean handle at 7B.** Zero-ablating it degrades the model
+  (answers turn florid and bizarre; misalignment at any coherence rises to 71 to 94%). On
+  ordinary base-model answers, the projection on this vector is −32% of the residual norm
+  at layer 14 (EM direction −6%, random 1%; `scripts/ablation_diagnostic.py`), so zeroing it
+  is a large edit. Mean-ablation, which avoids that offset, still drops coherence from about
+  72 to 55 and raises misalignment. So it is not only the offset: per-token variation along
+  this vector is used in ordinary generation.
+- **0.5B is different.** There the persona vector carries 4% of the norm and the EM
+  direction 15%. Ablating the persona vector, by zero or mean, lowers misalignment at any
+  coherence for bad medical (14.4 to 5.6% with mean-ablation, p = 0.01); the changes for the
+  other two adapters (5.7 to 3.8%, 10.7 to 9.3%) are smaller than what a random direction
+  does (10.7 to 17.9%). Ablating the EM direction, held-out or not, raises incoherent misalignment.
+  Coherent EM is too rare at 0.5B (2.5 to 3.8% without intervention) for those rates to
+  separate.
+- **Steering the base model on the EM questions** (0.5B) along either direction gives
+  misaligned but incoherent answers (at coefficient 0.75: 79% misaligned along the EM
+  direction, 100% along the persona vector, 0 to 0.6% EM). Adding one direction does not
+  reproduce coherent EM at this size.
 
 ## 4. What this means
 
-**Where the cheap vector works.** A persona vector built from the base model with system prompts alone, *if* built with Chen et al.'s judge filter, flags misaligned answers from EM models it never saw (AUROC about 0.7, well above random directions, at both sizes). It also ranks fine-tunes by how evil they act. The style-matched controls show that this is about content and not about fine-tuning on advice in general. Benign advice in the same format moves the model the opposite way along the vector, and the difference between bad and good advice points toward the evil persona almost everywhere we measured. As a cheap, pre-hoc *screen* for "this fine-tune is making the model more evil", the vector holds up.
+**Where the cheap vector helps.** Built with Chen et al.'s judge filter, a vector taken from
+the base model with system prompts alone flags misaligned answers from EM models it never
+saw. It does about as well as a behaviour-derived direction at 0.5B and somewhat worse at
+7B. It also separates bad-advice fine-tunes from benign fine-tunes in the same style: the
+benign ones end up on the opposite side. As a screen for "this fine-tune is moving the model
+toward the evil persona", it works. It does not tell you which of several bad fine-tunes is
+worst.
 
-**Where it stops.** It is not *the* EM direction. It shares roughly a tenth to a fifth of its variance with it (cosine 0.35 to 0.45), and the causal tests separate the two cleanly at 7B. Removing the behaviour-derived direction removes EM. Removing the persona vector breaks the model, because the vector also encodes a large, always-present part of the 7B assistant's ordinary state. Reading Chen et al. and Soligo et al. together suggests two views of one "misaligned persona". These results say they are related but distinct objects. A prompt-derived vector picks up "playing a character" along with the misalignment, and zero-ablation is the wrong tool for it. Ablation to the aligned mean, or steering against the vector, is the natural next test.
+**Where it stops.** It is not the EM direction. The two share roughly 10 to 20% of their
+variance (cosine 0.35 to 0.45), and at 7B the causal tests separate them: removing the
+behaviour-derived direction removes EM even when fit on other questions, while removing the
+persona vector damages the model. A vector built by asking the model to *play* a character
+seems to carry a lot of the assistant's ordinary state along with the misalignment.
+Projecting it out is the wrong intervention; steering against it, or ablating only within
+a subspace orthogonal to the model's ordinary activations, are the next things to try.
 
-**What scale changes.** At 0.5B the model cannot play the evil persona on request, its EM is mostly incoherent, and the persona vector depends on 8 judge-filtered answers. Conclusions about EM drawn from sub-1B models should be checked against a matched benign control, because without one, degradation looks like misalignment.
+**What scale changes.** At 0.5B the model cannot play the evil persona on request, its EM is
+mostly incoherent, and the vector rests on 8 filtered answers. EM results from sub-1B models
+need a matched benign control; without one, degradation looks like misalignment.
 
 ## 5. Limitations
 
 - **One model family, two sizes.** The 7B model is 4-bit quantised. Its LoRAs are applied
   exactly, but the base weights are not the ones the adapters were trained on.
-- **LLM judge, no human labels.** Claude agrees well with the pilot's judge on relative
-  ordering (alignment r = 0.79, coherence r = 0.83 on 319 shared answers,
-  `results/judge_agreement.json`). Absolute EM rates still depend on the judge: Claude
-  labels 2.5 times fewer answers EM than the pilot's judge did.
-- **Sample sizes.** 400 answers per model at 0.5B and 200 at 7B. Causal runs use 160 (0.5B)
-  or 80 (7B) answers per condition. Model-level correlations use 6 models (0.5B) or 4 (7B); their
-  p-values are exact permutation p-values, and they should be read as a pattern, not as
-  a measurement.
-- **Controls match domain, style and recipe, not the original data.** Our benign data is
-  written by Claude, not taken from Turner et al.'s pipeline. Any stylistic difference
-  between Claude's prose and theirs is uncontrolled.
-- **The controls damage coherence more than the EM adapters do.** They match the recipe, domain and format, but not the side effects. Part of the EM-minus-control difference may therefore reflect "less damage" as well as "bad content". At 7B there is one control, not three, and it was trained on the 4-bit base, whereas the EM adapters were trained on the full-precision model.
-- **Ablation is zero-ablation.** Section 3.5 shows this is a poor fit for a direction with a large mean component. Mean-ablation was not run.
+- **LLM judge, no human labels.** Claude agrees with the pilot's judge on relative ordering
+  (alignment r = 0.79, coherence r = 0.83 on 319 shared answers,
+  `results/judge_agreement.json`), but labels 2.5 times fewer answers EM.
+- **Sample sizes.** 400 answers per model at 0.5B and 200 at 7B; 80 to 160 per causal
+  condition. Model-level correlations use 6 models (0.5B) or 4 (7B), with the controls
+  moving almost as one. No multiple-comparison correction across layers and label sets.
+- **Controls.** Matched in domain, format and recipe, not in damage: they lower coherence
+  more than the EM adapters. Written by Claude, not by Turner et al.'s pipeline. One control
+  at 7B, trained on the 4-bit base.
+- **Nulls are isotropic.** Random unit directions are an easy baseline in an anisotropic
+  residual stream. Persona vectors for unrelated traits would be a stronger null; they were
+  not extracted.
 - **Layer choice.** The causal runs use the middle probe layer, fixed in advance (layer 12
-  of 24 and layer 14 of 28), not the best layer after the fact.
+  of 24 and 14 of 28).
+- **H4 not repeated.** The pilot's fourth hypothesis, screening the EM training data with
+  the vector, needs Turner et al.'s datasets. This version does not use those datasets at
+  all, so H4 is not repeated.
+- **Some analyses were added after review.** The leave-one-adapter-out comparison, the
+  held-out-question ablation and mean-ablation were added after an internal review of the
+  first draft (`causal.py --stage ablate_extra`). They are reported whichever way they came out.
 
 ## 6. Next steps
 
